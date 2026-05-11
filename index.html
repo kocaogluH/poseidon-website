@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Poseidon - Yenilikci yazilim cozumleri. Web gelistirme ve kurumsal yazilim hizmetleri." />
+    <title>Poseidon | Yazilim Cozumleri</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+      <div class="container">
+        <a href="#" class="logo"><img src="assets/logo.png" alt="Poseidon Logo" class="logo-img" /> POSEIDON</a>
+        <div class="nav-links" id="navLinks">
+          <a href="#about" data-i18n="navAbout">Hakkimizda</a>
+          <a href="#services" data-i18n="navServices">Hizmetler</a>
+          <a href="#contact" data-i18n="navContact">Iletisim</a>
+          <button class="lang-btn" id="langBtn" data-i18n="langBtn">EN</button>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="container">
+        <div class="hero-content fade-in">
+          <h1 data-i18n="heroTitle">Dijital <span>Donusumunuzu</span> Baslatin</h1>
+          <p data-i18n="heroSubtitle">Poseidon olarak, isletmenizi gelecege tasiyacak web cozumleri ve kurumsal yazilimlar gelistiriyoruz.</p>
+          <a href="#contact" class="btn-primary" data-i18n="heroCta">Bizimle Iletisime Gecin</a>
+        </div>
+      </div>
+      <div class="hero-waves">
+        <svg class="wave1" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,30 1440,60 L1440,120 L0,120 Z" fill="#0066ff" />
+        </svg>
+        <svg class="wave2" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,80 C240,20 480,100 720,60 C960,20 1200,100 1440,60 L1440,120 L0,120 Z" fill="#00d4ff" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="container">
+        <h2 class="section-title fade-in"><span data-i18n="aboutTitle">Hakkimizda</span></h2>
+        <div class="about-content">
+          <div class="about-logo fade-in">
+            <img src="assets/logo.png" alt="Poseidon Logo" />
+          </div>
+          <p class="about-text fade-in" data-i18n="aboutText">Poseidon, yenilikci yazilim cozumleri sunan genc ve dinamik bir teknoloji firmasidir. Modern teknolojileri kullanarak isletmelerin dijital donusum sureclerine rehberlik ediyoruz.</p>
+          <div class="about-logo-secondary fade-in">
+            <img src="assets/logo2.png" alt="Poseidon Software & Automation" />
+          </div>
+          <div class="about-cards">
+            <div class="about-card fade-in">
+              <h3 data-i18n="visionTitle">Vizyonumuz</h3>
+              <p data-i18n="visionText">Teknoloji ile deger yaratarak, isletmelerin dijital dunyada guclu ve surdurulebilir bir sekilde var olmasini saglamak.</p>
+            </div>
+            <div class="about-card fade-in">
+              <h3 data-i18n="missionTitle">Misyonumuz</h3>
+              <p data-i18n="missionText">Kaliteli, guvenilir ve yenilikci yazilim cozumleri ile musterilerimizin basarisina katkida bulunmak.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+      <div class="container">
+        <h2 class="section-title fade-in"><span data-i18n="servicesTitle">Hizmetlerimiz</span></h2>
+        <div class="services-grid">
+          <div class="service-card fade-in">
+            <div class="service-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <h3 data-i18n="service1Title">Web Gelistirme</h3>
+            <p data-i18n="service1Text">Modern ve kullanici dostu web siteleri, web uygulamalari ve e-ticaret platformlari gelistiriyoruz.</p>
+            <ul class="service-list">
+              <li data-i18n="service1Item1">Kurumsal Web Siteleri</li>
+              <li data-i18n="service1Item2">Web Uygulamalari</li>
+              <li data-i18n="service1Item3">E-Ticaret Cozumleri</li>
+              <li data-i18n="service1Item4">API Gelistirme</li>
+            </ul>
+          </div>
+          <div class="service-card fade-in">
+            <div class="service-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+            <h3 data-i18n="service2Title">Kurumsal Yazilim</h3>
+            <p data-i18n="service2Text">Isletmenize ozel kurumsal yazilim cozumleri tasarliyor ve gelistiriyoruz.</p>
+            <ul class="service-list">
+              <li data-i18n="service2Item1">ERP Sistemleri</li>
+              <li data-i18n="service2Item2">CRM Cozumleri</li>
+              <li data-i18n="service2Item3">Otomasyon Yazilimlari</li>
+              <li data-i18n="service2Item4">Veri Yonetim Sistemleri</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <h2 class="section-title fade-in"><span data-i18n="contactTitle">Iletisim</span></h2>
+        <p class="section-subtitle fade-in" data-i18n="contactText">Projeleriniz icin bizimle iletisime gecin. Size en kisa surede donus yapalim.</p>
+        <div class="contact-wrapper">
+          <form
+            class="contact-form fade-in"
+            id="contactForm"
+            onsubmit="return false;"
+            data-formspree-endpoint=""
+            data-contact-email="poseidonyazilim1@gmail.com"
+            data-contact-whatsapp="+905316640705"
+          >
+            <div class="form-group">
+              <label class="sr-only" for="contactName" data-i18n="contactNameLabel">Ad Soyad</label>
+              <input id="contactName" name="name" type="text" placeholder="Adiniz Soyadiniz" data-i18n-placeholder="contactName" autocomplete="name" required />
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="contactEmail" data-i18n="contactEmailLabelText">E-posta</label>
+              <input id="contactEmail" name="email" type="email" placeholder="E-posta Adresiniz" data-i18n-placeholder="contactEmail" autocomplete="email" required />
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="contactMessage" data-i18n="contactMessageLabel">Mesaj</label>
+              <textarea id="contactMessage" name="message" placeholder="Mesajiniz" data-i18n-placeholder="contactMessage" required></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn-primary" data-i18n="contactSend">Gonder</button>
+              <a class="btn-secondary" id="whatsappQuickBtn" href="#" target="_blank" rel="noreferrer" data-i18n="contactWhatsApp">
+                WhatsApp
+              </a>
+            </div>
+            <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+          </form>
+          <div class="contact-info fade-in">
+            <h3 data-i18n="contactInfoTitle">Iletisim Bilgileri</h3>
+            <div class="info-item">
+              <div class="info-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div>
+                <div class="label" data-i18n="contactEmailLabel">E-posta</div>
+                <div class="value">poseidonyazilim1@gmail.com</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="label" data-i18n="contactPhoneLabel">Telefon</div>
+                <div class="value">+90 531 664 07 05</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div>
+                <div class="label" data-i18n="contactLocationLabel">Konum</div>
+                <div class="value" data-i18n="contactLocation">Antakya / Hatay</div>
+              </div>
+            </div>
+            <div class="contact-quick">
+              <a class="quick-link" id="emailQuickLink" href="mailto:poseidonyazilim1@gmail.com" data-i18n="contactEmailQuick">E-posta ile yaz</a>
+              <a class="quick-link" id="whatsappQuickLink" href="#" target="_blank" rel="noreferrer" data-i18n="contactWhatsAppQuick">WhatsApp'tan yaz</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="#" class="logo"><img src="assets/logo.png" alt="Poseidon Logo" class="logo-img" /> POSEIDON</a>
+            <p data-i18n="footerDesc">Yenilikci yazilim cozumleri ile dijital donusumunuze guc katiyoruz.</p>
+          </div>
+          <div class="footer-section">
+            <h4 data-i18n="footerLinksTitle">Hizli Baglantilar</h4>
+            <ul>
+              <li><a href="#about" data-i18n="navAbout">Hakkimizda</a></li>
+              <li><a href="#services" data-i18n="navServices">Hizmetler</a></li>
+              <li><a href="#contact" data-i18n="navContact">Iletisim</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4 data-i18n="footerContactTitle">Iletisim</h4>
+            <ul>
+              <li>poseidonyazilim1@gmail.com</li>
+              <li>+90 531 664 07 05</li>
+              <li>Antakya / Hatay</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          &copy; 2026 Poseidon. <span data-i18n="footerRights">Tum haklari saklidir.</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
