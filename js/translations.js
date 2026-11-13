@@ -3,6 +3,7 @@ const translations = {
     // Navbar
     navAbout: "Hakkımızda",
     navServices: "Hizmetler",
+    navDemos: "Sistemlerimiz",
     navContact: "İletişim",
     langBtn: "EN",
 
@@ -40,6 +41,11 @@ const translations = {
     service2Item3: "Otomasyon Yazılımları",
     service2Item4: "Veri Yönetim Sistemleri",
 
+    // Demos
+    demosTitle: "Sistemlerimiz & Canlı Prototipler",
+    demosSubtitle:
+      "Geliştirdiğimiz kurumsal masaüstü sistemlerini web sitemiz üzerinden anında canlı deneyimleyin.",
+
     // Contact
     contactTitle: "İletişim",
     contactText:
@@ -72,6 +78,7 @@ const translations = {
     // Navbar
     navAbout: "About",
     navServices: "Services",
+    navDemos: "Our Systems",
     navContact: "Contact",
     langBtn: "TR",
 
@@ -108,6 +115,11 @@ const translations = {
     service2Item2: "CRM Solutions",
     service2Item3: "Automation Software",
     service2Item4: "Data Management Systems",
+
+    // Demos
+    demosTitle: "Our Systems & Live Prototypes",
+    demosSubtitle:
+      "Experience our enterprise desktop systems live directly on our website.",
 
     // Contact
     contactTitle: "Contact",

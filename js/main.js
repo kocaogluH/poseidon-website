@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (heroTitle) {
       if (lang === "tr") {
         heroTitle.innerHTML =
-          'Dijital Denizlerde <span>G\u00fc\u00e7l\u00fc</span> Rotan\u0131z';
+          'Dijital Denizlerde <span>Güçlü</span> Rotanız';
       } else {
         heroTitle.innerHTML =
           'Your <span>Powerful</span> Route in Digital Seas';
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Update page title
     document.title =
       lang === "tr"
-        ? "Poseidon | Yaz\u0131l\u0131m \u00c7\u00f6z\u00fcmleri"
+        ? "Poseidon | Yazılım Çözümleri"
         : "Poseidon | Software Solutions";
   }
 
@@ -69,6 +69,84 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize language
   setLanguage("tr");
+
+  // ===== Theme Switcher =====
+  const themeSwitcher = document.getElementById("themeSwitcher");
+  const themeToggleBtn = document.getElementById("themeToggleBtn");
+  const themeDropdown = document.getElementById("themeDropdown");
+  const themeOptions = document.querySelectorAll(".theme-option");
+  const activeThemeDot = document.getElementById("activeThemeDot");
+
+  const THEME_DOT_COLORS = {
+    ocean: "#2563eb",
+    emerald: "#059669",
+    slate: "#475569",
+    amber: "#d97706",
+    light: "#3b82f6",
+  };
+
+  const savedTheme = localStorage.getItem("poseidon_theme") || "ocean";
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("poseidon_theme", theme);
+
+    if (activeThemeDot && THEME_DOT_COLORS[theme]) {
+      activeThemeDot.style.background = THEME_DOT_COLORS[theme];
+    }
+
+    themeOptions.forEach((opt) => {
+      if (opt.getAttribute("data-theme") === theme) {
+        opt.classList.add("active");
+      } else {
+        opt.classList.remove("active");
+      }
+    });
+
+    const wave1 = document.querySelector(".wave1 path");
+    const wave2 = document.querySelector(".wave2 path");
+    if (wave1 && wave2) {
+      if (theme === "emerald") {
+        wave1.setAttribute("fill", "#064e3b");
+        wave2.setAttribute("fill", "#059669");
+      } else if (theme === "slate") {
+        wave1.setAttribute("fill", "#1e293b");
+        wave2.setAttribute("fill", "#475569");
+      } else if (theme === "amber") {
+        wave1.setAttribute("fill", "#78350f");
+        wave2.setAttribute("fill", "#d97706");
+      } else if (theme === "light") {
+        wave1.setAttribute("fill", "#cbd5e1");
+        wave2.setAttribute("fill", "#93c5fd");
+      } else {
+        wave1.setAttribute("fill", "#1e3a8a");
+        wave2.setAttribute("fill", "#0284c7");
+      }
+    }
+  }
+
+  if (themeToggleBtn && themeDropdown) {
+    themeToggleBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      themeDropdown.classList.toggle("show");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (themeSwitcher && !themeSwitcher.contains(e.target)) {
+        themeDropdown.classList.remove("show");
+      }
+    });
+
+    themeOptions.forEach((opt) => {
+      opt.addEventListener("click", () => {
+        const theme = opt.getAttribute("data-theme");
+        applyTheme(theme);
+        themeDropdown.classList.remove("show");
+      });
+    });
+  }
+
+  applyTheme(savedTheme);
 
   // ===== Navbar Scroll Effect =====
   const navbar = document.getElementById("navbar");
@@ -216,7 +294,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const t = UI_STRINGS[currentLang] || UI_STRINGS.tr;
 
-      // Simple email sanity check (native validation exists, but keep UX consistent)
       if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         setStatus(t.invalidEmail, "is-error");
         return;
@@ -226,7 +303,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const payload = { name, email, message, lang: currentLang };
 
-      // If Formspree configured, submit via fetch
       if (formspreeEndpoint) {
         fetch(formspreeEndpoint, {
           method: "POST",
@@ -255,7 +331,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // No backend configured: keep quick contact options available
       setStatus(t.failed, "is-error");
       syncQuickLinks();
     });

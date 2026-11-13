@@ -6,6 +6,7 @@
     <meta name="description" content="Poseidon - Yenilikci yazilim cozumleri. Web gelistirme ve kurumsal yazilim hizmetleri." />
     <title>Poseidon | Yazilim Cozumleri</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/demo.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   </head>
   <body>
@@ -16,8 +17,43 @@
         <div class="nav-links" id="navLinks">
           <a href="#about" data-i18n="navAbout">Hakkimizda</a>
           <a href="#services" data-i18n="navServices">Hizmetler</a>
+          <a href="#demos" data-i18n="navDemos">Sistemlerimiz</a>
           <a href="#contact" data-i18n="navContact">Iletisim</a>
           <button class="lang-btn" id="langBtn" data-i18n="langBtn">EN</button>
+          
+          <!-- Theme Switcher -->
+          <div class="theme-switcher" id="themeSwitcher">
+            <button class="theme-btn" id="themeToggleBtn" aria-label="Tema Seçici" title="Renk Paletini Değiştir">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 2a7 7 0 0 0-7 7c0 3 2 5 2 7a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2c0-2 2-4 2-7a7 7 0 0 0-7-7z"/>
+              </svg>
+              <span>Tema</span>
+              <span class="active-theme-dot" id="activeThemeDot"></span>
+            </button>
+            <div class="theme-dropdown" id="themeDropdown">
+              <div class="theme-option active" data-theme="ocean">
+                <span class="theme-circle" style="background: linear-gradient(135deg, #2563eb, #38bdf8);"></span>
+                <span>Derin Okyanus</span>
+              </div>
+              <div class="theme-option" data-theme="emerald">
+                <span class="theme-circle" style="background: linear-gradient(135deg, #059669, #34d399);"></span>
+                <span>Zümrüt & Grafit</span>
+              </div>
+              <div class="theme-option" data-theme="slate">
+                <span class="theme-circle" style="background: linear-gradient(135deg, #475569, #94a3b8);"></span>
+                <span>Titan & Platin</span>
+              </div>
+              <div class="theme-option" data-theme="amber">
+                <span class="theme-circle" style="background: linear-gradient(135deg, #d97706, #fbbf24);"></span>
+                <span>Kehribar & Gece</span>
+              </div>
+              <div class="theme-option" data-theme="light">
+                <span class="theme-circle" style="background: linear-gradient(135deg, #ffffff, #2563eb); border: 1px solid #cbd5e1;"></span>
+                <span>Kurumsal Açık</span>
+              </div>
+            </div>
+          </div>
         </div>
         <button class="hamburger" id="hamburger" aria-label="Menu">
           <span></span>
@@ -33,15 +69,15 @@
         <div class="hero-content fade-in">
           <h1 data-i18n="heroTitle">Dijital <span>Donusumunuzu</span> Baslatin</h1>
           <p data-i18n="heroSubtitle">Poseidon olarak, isletmenizi gelecege tasiyacak web cozumleri ve kurumsal yazilimlar gelistiriyoruz.</p>
-          <a href="#contact" class="btn-primary" data-i18n="heroCta">Bizimle Iletisime Gecin</a>
+          <a href="#demos" class="btn-primary">Canlı Sistemleri İnceleyin</a>
         </div>
       </div>
       <div class="hero-waves">
         <svg class="wave1" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,30 1440,60 L1440,120 L0,120 Z" fill="#0066ff" />
+          <path d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,30 1440,60 L1440,120 L0,120 Z" fill="#1e3a8a" />
         </svg>
         <svg class="wave2" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0,80 C240,20 480,100 720,60 C960,20 1200,100 1440,60 L1440,120 L0,120 Z" fill="#00d4ff" />
+          <path d="M0,80 C240,20 480,100 720,60 C960,20 1200,100 1440,60 L1440,120 L0,120 Z" fill="#0284c7" />
         </svg>
       </div>
     </section>
@@ -114,6 +150,627 @@
       </div>
     </section>
 
+    <!-- Systems & Live Demos Section -->
+    <section class="systems" id="demos">
+      <div class="container">
+        <h2 class="section-title fade-in"><span data-i18n="demosTitle">Sistemlerimiz & Canlı Prototipler</span></h2>
+        <p class="section-subtitle fade-in" data-i18n="demosSubtitle">Geliştirdiğimiz kurumsal masaüstü sistemlerini web sitemiz üzerinden anında canlı deneyimleyin.</p>
+
+        <!-- System Selection Tabs -->
+        <div class="system-tabs fade-in">
+          <button class="system-tab-btn active">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="M6 8h1M6 12h1M6 16h1M10 8h2M10 12h2M10 16h2M15 8h3M15 12h3M15 16h3"/>
+            </svg>
+            Barkodlu Stok & Depo Takip
+            <span class="badge-pill">Canlı Demo</span>
+          </button>
+          <button class="system-tab-btn" style="opacity: 0.6; cursor: default;" title="Çok Yakında">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+              <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+              <line x1="6" y1="1" x2="6" y2="4"/>
+              <line x1="10" y1="1" x2="10" y2="4"/>
+              <line x1="14" y1="1" x2="14" y2="4"/>
+            </svg>
+            Restoran & Adisyon Otomasyonu
+            <span class="badge-pill">Çok Yakında</span>
+          </button>
+          <button class="system-tab-btn" style="opacity: 0.6; cursor: default;" title="Çok Yakında">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="1" x2="12" y2="23"/>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+            Ön Muhasebe & Finans
+            <span class="badge-pill">Çok Yakında</span>
+          </button>
+        </div>
+
+        <!-- Windows Desktop Window Mockup -->
+        <div class="win-mockup fade-in">
+          <!-- Window Title Bar -->
+          <div class="win-titlebar">
+            <div class="win-title-left">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="M7 8h1M7 12h1M7 16h1M11 8h2M11 12h2M11 16h2M16 8h2M16 12h2M16 16h2"/>
+              </svg>
+              <span>Poseidon - Barkodlu Depo & Stok Takip Sistemi v2.4 [Canlı Prototip]</span>
+            </div>
+            <div class="win-controls">
+              <span class="win-ctrl-btn minimize" title="Simge Durumuna Küçült"></span>
+              <span class="win-ctrl-btn maximize" title="Ekranı Kapla"></span>
+              <span class="win-ctrl-btn close" title="Kapat"></span>
+            </div>
+          </div>
+
+          <!-- Window Menu Bar (Tıklanabilir 6 Sekme) -->
+          <div class="win-menubar">
+            <span class="active" data-target="view-movements">⚡ Stok Hareketleri</span>
+            <span data-target="view-products">📋 Ürün Listesi</span>
+            <span data-target="view-pos">🛒 Hızlı Satış & Fatura</span>
+            <span data-target="view-count">🔍 Sayım & Kontrol</span>
+            <span data-target="view-reports">📊 Depo Raporları</span>
+            <span data-target="view-settings">⚙️ Sistem Ayarları</span>
+          </div>
+
+          <!-- Window Quick Stats Bar -->
+          <div class="win-stats-bar">
+            <div class="win-stat-item">
+              <span>Toplam Kayıtlı Ürün:</span>
+              <span class="win-stat-badge">1,420 Çeşit</span>
+            </div>
+            <div class="win-stat-item">
+              <span>Kritik Stok Seviyesi:</span>
+              <span class="win-stat-badge" style="color: #f87171;">4 Ürün</span>
+            </div>
+            <div class="win-stat-item">
+              <span>Depo Doluluk:</span>
+              <span class="win-stat-badge">%68</span>
+            </div>
+            <button class="win-sound-toggle" id="winSoundToggle" title="Barkod okuma sesini aç/kapat">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+              </svg>
+              Ses: Açık
+            </button>
+          </div>
+
+          <!-- Window Body -->
+          <div class="win-body">
+            
+            <!-- ===== SEKME 1: STOK HAREKETLERİ & BARKOD OKUTMA ===== -->
+            <div class="win-view" id="view-movements" style="display: block;">
+              <div class="barcode-scan-box">
+                <div class="scan-box-header">
+                  <strong>⚡ Hızlı Barkod Okutma & Stok Terminali</strong>
+                  <span style="font-size: 0.78rem; color: #94a3b8;">El Terminali / Barkod Tabancası Uyumlu</span>
+                </div>
+                <div class="scan-input-group">
+                  <div class="scan-input-wrap">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="3" y1="5" x2="3" y2="19"/>
+                      <line x1="7" y1="5" x2="7" y2="19"/>
+                      <line x1="10" y1="5" x2="10" y2="19"/>
+                      <line x1="14" y1="5" x2="14" y2="19"/>
+                      <line x1="17" y1="5" x2="17" y2="19"/>
+                      <line x1="21" y1="5" x2="21" y2="19"/>
+                    </svg>
+                    <input
+                      type="text"
+                      id="barcodeScanInput"
+                      class="scan-input"
+                      placeholder="Barkodu tuşlayın veya okutun (Örn: 8690112)..."
+                      autocomplete="off"
+                    />
+                  </div>
+                  <button id="barcodeScanBtn" class="scan-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    Barkod Okut (Enter)
+                  </button>
+                </div>
+
+                <!-- Quick Barcode Chips -->
+                <div class="quick-chips-label">
+                  <span>💡 Demoyu test etmek için örnek bir ürüne tıklayın:</span>
+                </div>
+                <div class="quick-chips">
+                  <button class="chip-btn" data-barcode="8690112">
+                    📦 Koli Bandı <code>8690112</code>
+                  </button>
+                  <button class="chip-btn" data-barcode="8690245">
+                    🔩 Çelik Civata <code>8690245</code>
+                  </button>
+                  <button class="chip-btn" data-barcode="8690389">
+                    🧴 Temizleyici 5L <code>8690389</code>
+                  </button>
+                  <button class="chip-btn" data-barcode="8690512">
+                    🥫 Zeytinyağı 5L <code>8690512</code>
+                  </button>
+                  <button class="chip-btn" data-barcode="8690678">
+                    ⚙️ Rulman <code>8690678</code>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Table Card / DataGrid -->
+              <div class="win-table-card">
+                <div class="win-table-wrapper">
+                  <table class="win-table">
+                    <thead>
+                      <tr>
+                        <th>Barkod No</th>
+                        <th>Ürün Adı</th>
+                        <th>Depo / Raf</th>
+                        <th>Adet / Miktar</th>
+                        <th>Birim Fiyat</th>
+                        <th>Toplam</th>
+                        <th>İşlem</th>
+                      </tr>
+                    </thead>
+                    <tbody id="barcodeTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Table Footer Summary -->
+              <div class="win-footer-bar">
+                <div class="footer-actions">
+                  <button class="win-btn-sec" id="winBtnPrintLabel">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="6 9 6 2 18 2 18 9"/>
+                      <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                      <rect x="6" y="14" width="12" height="8"/>
+                    </svg>
+                    Barkod Etiketi Önizle
+                  </button>
+                  <button class="win-btn-sec" id="winBtnReset">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="1 4 1 10 7 10"/>
+                      <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+                    </svg>
+                    Listeyi Temizle
+                  </button>
+                  <button class="win-btn-primary" onclick="alert('Demo Bildirimi:\nStok hareketi başarıyla veritabanına işlendi ve depo sayımı güncellendi!')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                      <polyline points="17 21 17 13 7 13 7 21"/>
+                      <polyline points="7 3 7 8 15 8"/>
+                    </svg>
+                    Stok Hareketini Kaydet
+                  </button>
+                </div>
+
+                <div class="footer-totals">
+                  <div class="total-item">
+                    Kalem: <strong id="totalItemsCount">0</strong>
+                  </div>
+                  <div class="total-item">
+                    Toplam Adet: <strong id="totalQtyCount">0</strong>
+                  </div>
+                  <div class="total-item price">
+                    Toplam Tutar: <strong id="totalPriceAmount">₺0,00</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== SEKME 2: ÜRÜN LİSTESİ & EXCEL İŞLEMLERİ ===== -->
+            <div class="win-view" id="view-products" style="display: none;">
+              <div class="view-top-bar">
+                <div class="view-heading">
+                  <h3>📋 Kayıtlı Depo Ürün Kataloğu</h3>
+                  <p>Barkoda, ürün adına veya raf konumuna göre anında filtreleyin.</p>
+                </div>
+                <div class="view-header-actions">
+                  <button class="win-btn-excel" id="btnExportProductsExcel" title="Tüm ürün listesini Excel formatında indir">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                      <polyline points="7 10 12 15 17 10"/>
+                      <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Excel'e Aktar
+                  </button>
+                  <button class="win-btn-sec" id="btnOpenExcelImport" title="Excel veya CSV dosyasından toplu ürün yükle">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                      <polyline points="17 8 12 3 7 8"/>
+                      <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                    Excel'den Ürün Yükle
+                  </button>
+                  <button class="win-btn-primary" id="btnNewProduct">
+                    ➕ Yeni Ürün Kartı Aç
+                  </button>
+                </div>
+              </div>
+
+              <div class="filter-search-box">
+                <input
+                  type="text"
+                  id="productSearchInput"
+                  class="filter-search-input"
+                  placeholder="Ürün adı, barkod no veya raf ara..."
+                />
+                <select id="productCategorySelect" class="filter-category-select">
+                  <option value="all">Tüm Kategoriler</option>
+                  <option value="Ambalaj">Ambalaj</option>
+                  <option value="Hırdavat">Hırdavat & Civata</option>
+                  <option value="Kimyasal">Kimyasal & Temizlik</option>
+                  <option value="Gıda">Gıda & Sıvı</option>
+                </select>
+              </div>
+
+              <div class="win-table-card">
+                <div class="win-table-wrapper">
+                  <table class="win-table">
+                    <thead>
+                      <tr>
+                        <th>İkon</th>
+                        <th>Barkod No</th>
+                        <th>Ürün Tanımı</th>
+                        <th>Kategori</th>
+                        <th>Depo/Raf</th>
+                        <th>Mevcut Stok</th>
+                        <th>Birim Fiyat</th>
+                        <th>İşlem</th>
+                      </tr>
+                    </thead>
+                    <tbody id="productsTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== SEKME 3: HIZLI SATIŞ & FATURA (POS) ===== -->
+            <div class="win-view" id="view-pos" style="display: none;">
+              <div class="view-top-bar">
+                <div class="view-heading">
+                  <h3>🛒 Hızlı Kasa Satış & Fatura Terminali</h3>
+                  <p>Dokunmatik veya barkodlu hızlı perakende / toptan satış ekranı.</p>
+                </div>
+              </div>
+
+              <div class="pos-layout">
+                <!-- Sol: Satış Sepeti -->
+                <div class="pos-cart-panel">
+                  <div style="font-weight: 700; margin-bottom: 12px; color: #f1f5f9; display: flex; justify-content: space-between;">
+                    <span>Satış Listesi</span>
+                    <span style="font-size: 0.8rem; color: #94a3b8;">Kasa: #01</span>
+                  </div>
+                  <div class="pos-cart-list" id="posCartList"></div>
+                  <div class="pos-cart-total-box">
+                    <span>Ödenecek Tutar:</span>
+                    <strong id="posTotalAmount">₺0,00</strong>
+                  </div>
+                  <div class="pos-pay-buttons">
+                    <button class="pos-pay-btn cash" data-method="Nakit">
+                      <span>💵</span> Nakit Satış
+                    </button>
+                    <button class="pos-pay-btn card" data-method="Kredi Kartı">
+                      <span>💳</span> Kredi Kartı
+                    </button>
+                    <button class="pos-pay-btn account" data-method="Cari Hesap">
+                      <span>📄</span> Açık Hesap
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Sağ: Hızlı Ürün Dokunmatik Panel -->
+                <div class="pos-catalog-panel">
+                  <div class="pos-category-tabs">
+                    <button class="pos-cat-pill active">Tüm Hızlı Ürünler</button>
+                    <button class="pos-cat-pill">Çok Satanlar</button>
+                    <button class="pos-cat-pill">Ambalaj</button>
+                    <button class="pos-cat-pill">Hırdavat</button>
+                  </div>
+                  <div class="pos-tiles-grid" id="posTilesContainer"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== SEKME 4: SAYIM & KONTROL ===== -->
+            <div class="win-view" id="view-count" style="display: none;">
+              <div class="view-top-bar">
+                <div class="view-heading">
+                  <h3>🔍 Depo ve Raf Sayım Kontrolü</h3>
+                  <p>Sistem stoğu ile fiziksel sayımı karşılaştırıp farkları eşitleyin.</p>
+                </div>
+                <button class="win-btn-primary" id="btnConfirmCount">
+                  ✓ Sayımı Onayla & Eşitle
+                </button>
+              </div>
+
+              <div class="count-summary-grid">
+                <div class="count-stat-card">
+                  <div class="label">Sayılan Kalem</div>
+                  <div class="val">5 / 5 Tamamlandı</div>
+                </div>
+                <div class="count-stat-card">
+                  <div class="label">Fark Bulunan Kalem</div>
+                  <div class="val" style="color: #fbbf24;">2 Kalem</div>
+                </div>
+                <div class="count-stat-card">
+                  <div class="label">Aktif Sayım Deposu</div>
+                  <div class="val" style="color: var(--accent-light);">Merkez Depo</div>
+                </div>
+              </div>
+
+              <div class="win-table-card">
+                <div class="win-table-wrapper">
+                  <table class="win-table">
+                    <thead>
+                      <tr>
+                        <th>Barkod</th>
+                        <th>Ürün Adı</th>
+                        <th>Raf Konumu</th>
+                        <th>Sistem Stoğu</th>
+                        <th>Fiziksel Sayım</th>
+                        <th>Fark Durumu</th>
+                      </tr>
+                    </thead>
+                    <tbody id="countTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== SEKME 5: DEPO RAPORLARI ===== -->
+            <div class="win-view" id="view-reports" style="display: none;">
+              <div class="view-top-bar">
+                <div class="view-heading">
+                  <h3>📊 Depo Hacmi & Hareket Raporları</h3>
+                  <p>Gerçek zamanlı stok hareket analizi ve envanter istatistikleri.</p>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <button class="win-btn-excel" id="btnExportExcel">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                      <polyline points="7 10 12 15 17 10"/>
+                      <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Excel'e Aktar (XLSX)
+                  </button>
+                  <button class="win-btn-sec" id="btnExportPdf">📄 PDF Döküm</button>
+                </div>
+              </div>
+
+              <div class="reports-kpi-grid">
+                <div class="kpi-card">
+                  <div class="kpi-label">Günlük Giriş Miktarı</div>
+                  <div class="kpi-value">+480 Adet</div>
+                  <div class="kpi-sub">↑ Düne göre %14 artış</div>
+                </div>
+                <div class="kpi-card">
+                  <div class="kpi-label">Günlük Sevkiyat / Çıkış</div>
+                  <div class="kpi-value">-310 Adet</div>
+                  <div class="kpi-sub" style="color: var(--accent-light);">38 Sipariş hazırlandı</div>
+                </div>
+                <div class="kpi-card">
+                  <div class="kpi-label">Kritik Stok Uyarısı</div>
+                  <div class="kpi-value" style="color: #f87171;">4 Kalem</div>
+                  <div class="kpi-sub" style="color: #f87171;">Sipariş verilmeli</div>
+                </div>
+                <div class="kpi-card">
+                  <div class="kpi-label">Toplam Envanter Değeri</div>
+                  <div class="kpi-value" style="color: var(--accent-light);">₺348.500</div>
+                  <div class="kpi-sub">Maliyet bazlı hesaplandı</div>
+                </div>
+              </div>
+
+              <div class="charts-row">
+                <div class="chart-panel">
+                  <h4>📦 En Çok Hareket Gören İlk 4 Ürün</h4>
+                  <div class="progress-stat-row">
+                    <div class="p-header"><span>Koli Bandı 45x100mm</span><strong>340 Adet / hafta</strong></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 88%;"></div></div>
+                  </div>
+                  <div class="progress-stat-row">
+                    <div class="p-header"><span>Çelik Civata M8x40</span><strong>210 Paket / hafta</strong></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 65%;"></div></div>
+                  </div>
+                  <div class="progress-stat-row">
+                    <div class="p-header"><span>Streç Film 50cm</span><strong>145 Rulo / hafta</strong></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 48%;"></div></div>
+                  </div>
+                  <div class="progress-stat-row">
+                    <div class="p-header"><span>Endüstriyel Eldiven</span><strong>95 Adet / hafta</strong></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 32%;"></div></div>
+                  </div>
+                </div>
+
+                <div class="chart-panel">
+                  <h4>🏢 Depo Doluluk Dağılımı</h4>
+                  <div class="progress-stat-row">
+                    <div class="p-header"><span>A Blok (Ambalaj & Koli)</span><strong>%82 Dolu</strong></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 82%; background: #f59e0b;"></div></div>
+                  </div>
+                  <div class="progress-stat-row">
+                    <div class="p-header"><span>B Blok (Kimyasal Deposu)</span><strong>%45 Dolu</strong></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 45%;"></div></div>
+                  </div>
+                  <div class="progress-stat-row">
+                    <div class="p-header"><span>C Blok (Hırdavat & Metal)</span><strong>%70 Dolu</strong></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 70%;"></div></div>
+                  </div>
+                  <div class="progress-stat-row">
+                    <div class="p-header"><span>D Blok (Gıda & Sıvı)</span><strong>%58 Dolu</strong></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 58%;"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== SEKME 6: SİSTEM AYARLARI ===== -->
+            <div class="win-view" id="view-settings" style="display: none;">
+              <div class="view-top-bar">
+                <div class="view-heading">
+                  <h3>⚙️ Sistem ve Donanım Parametreleri</h3>
+                  <p>Barkod okuyucu, etiket yazıcı ve kritik limit konfigürasyonu.</p>
+                </div>
+                <button class="win-btn-primary" id="btnSaveSettings">
+                  💾 Ayarları Kaydet
+                </button>
+              </div>
+
+              <div class="settings-grid">
+                <div class="setting-card">
+                  <h4>🖨️ Donanım & Yazıcı Entegrasyonu</h4>
+                  <div class="setting-row">
+                    <span>Barkod Okuyucu Modu:</span>
+                    <select class="setting-input">
+                      <option selected>USB HID Klavye Emülasyonu</option>
+                      <option>Sanal COM Port (Seri Port)</option>
+                      <option>Kablosuz Bluetooth El Terminali</option>
+                    </select>
+                  </div>
+                  <div class="setting-row">
+                    <span>Varsayılan Etiket Yazıcı:</span>
+                    <select class="setting-input">
+                      <option selected>Zebra ZD220 Barkod Yazıcı (203 DPI)</option>
+                      <option>Xprinter XP-420B Termal</option>
+                      <option>Epson TM-T20 Fiş Yazıcı</option>
+                    </select>
+                  </div>
+                  <div class="setting-row">
+                    <span>Etiket Boyutu:</span>
+                    <select class="setting-input">
+                      <option selected>100x50 mm Termal Etiket</option>
+                      <option>80x40 mm Raf Etiketi</option>
+                      <option>40x20 mm Küçük Barkod</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="setting-card">
+                  <h4>🛡️ Stok & Bildirim Kuralları</h4>
+                  <div class="setting-row">
+                    <span>Kritik Stok Uyarı Seviyesi:</span>
+                    <input type="number" class="setting-input" value="15" style="width: 80px;" />
+                  </div>
+                  <div class="setting-row">
+                    <span>Eksiye Düşen Stok Satışı:</span>
+                    <select class="setting-input">
+                      <option selected>Uyar ve Onay İste</option>
+                      <option>Satışı Kesinlikle Engelle</option>
+                      <option>İzin Ver (Negatif Stok)</option>
+                    </select>
+                  </div>
+                  <div class="setting-row">
+                    <span>Otomatik Veritabanı Yedeği:</span>
+                    <select class="setting-input">
+                      <option selected>Her Gün Saat 23:59 (Bulut + Lokal)</option>
+                      <option>Haftalık Yedekleme</option>
+                      <option>Yalnızca Manuel</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Excel İçe Aktarma Modalı ===== -->
+    <div class="excel-modal" id="excelImportModal">
+      <div class="excel-modal-card">
+        <button class="modal-close-btn" id="excelModalCloseBtn">&times;</button>
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+          <div>
+            <h4 style="font-size: 1.15rem; color: #f1f5f9; margin: 0;">Excel ile Toplu Ürün Girişi</h4>
+            <small style="color: #94a3b8;">Stok listenizi veya tedarikçi faturasını tek tıkla aktarın</small>
+          </div>
+        </div>
+
+        <!-- Sürükle Bırak / Dosya Seç -->
+        <div class="excel-dropzone" id="excelDropzone">
+          <input type="file" id="excelFileInput" accept=".csv, .xlsx, .xls" style="display: none;" />
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.6">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          <h5>Excel veya CSV Dosyanızı Buraya Sürükleyin</h5>
+          <p>veya bilgisayarınızdan dosya seçmek için tıklayın (.xlsx, .csv)</p>
+        </div>
+
+        <!-- Yükleme İlerleme Çubuğu -->
+        <div class="import-progress-wrap" id="importProgressWrap">
+          <div style="font-size: 0.82rem; margin-bottom: 6px; color: var(--accent-light);" id="importProgressText">
+            Dosya okunuyor...
+          </div>
+          <div class="import-progress-bar">
+            <div class="import-progress-fill" id="importProgressFill"></div>
+          </div>
+        </div>
+
+        <!-- Butonlar -->
+        <div style="display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap;">
+          <button class="win-btn-primary" id="btnSimulateExcelImport" style="flex: 1; justify-content: center;">
+            ⚡ Örnek 8 Ürünü Excel'den Aktar
+          </button>
+          <button class="win-btn-sec" id="btnDownloadTemplate" title="Uyumlu CSV/Excel şablonunu bilgisayarınıza indirin">
+            📄 Şablon İndir
+          </button>
+          <button class="win-btn-sec" id="excelModalCloseSec">
+            Kapat
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Thermal Barcode Label Modal -->
+    <div class="barcode-modal" id="barcodePrintModal">
+      <div class="modal-thermal-card">
+        <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
+        <div class="thermal-header">
+          <h4>POSEIDON OTOMASYON</h4>
+          <p style="font-size: 0.72rem; margin: 0;">BARKODLU STOK VE RAF ETİKETİ</p>
+        </div>
+
+        <div class="thermal-barcode-art">
+          <span style="width: 3px;"></span><span style="width: 1px; background: transparent;"></span>
+          <span style="width: 2px;"></span><span style="width: 2px; background: transparent;"></span>
+          <span style="width: 4px;"></span><span style="width: 1px; background: transparent;"></span>
+          <span style="width: 2px;"></span><span style="width: 3px; background: transparent;"></span>
+          <span style="width: 5px;"></span><span style="width: 2px; background: transparent;"></span>
+          <span style="width: 1px;"></span><span style="width: 1px; background: transparent;"></span>
+          <span style="width: 4px;"></span><span style="width: 2px; background: transparent;"></span>
+          <span style="width: 2px;"></span><span style="width: 1px; background: transparent;"></span>
+          <span style="width: 3px;"></span><span style="width: 2px; background: transparent;"></span>
+          <span style="width: 4px;"></span><span style="width: 1px; background: transparent;"></span>
+          <span style="width: 2px;"></span><span style="width: 3px; background: transparent;"></span>
+          <span style="width: 5px;"></span><span style="width: 1px; background: transparent;"></span>
+          <span style="width: 2px;"></span>
+        </div>
+        <div class="thermal-code-num" id="lblBarcodeNum">869011245901</div>
+
+        <div class="thermal-details">
+          <div><strong>Ürün:</strong> <span id="lblProductName">Koli Bandı 45x100mm</span></div>
+          <div><strong>Raf Konumu:</strong> <span id="lblLocation">A-04</span></div>
+          <div><strong>Fiyat:</strong> <span id="lblPrice">₺45.00</span></div>
+          <div><strong>Tarih:</strong> <span id="lblDate">13.11.2026</span></div>
+        </div>
+
+        <div class="thermal-actions">
+          <button class="thermal-btn-print" id="thermalPrintBtn">🖨️ Etiketi Yazdır</button>
+          <button class="thermal-btn-close" id="modalCloseSec">Kapat</button>
+        </div>
+      </div>
+    </div>
+
     <!-- Contact Section -->
     <section class="contact" id="contact">
       <div class="container">
@@ -124,6 +781,7 @@
             class="contact-form fade-in"
             id="contactForm"
             onsubmit="return false;"
+            method="post"
             data-formspree-endpoint=""
             data-contact-email="poseidonyazilim1@gmail.com"
             data-contact-whatsapp="+905316640705"
@@ -207,6 +865,7 @@
             <ul>
               <li><a href="#about" data-i18n="navAbout">Hakkimizda</a></li>
               <li><a href="#services" data-i18n="navServices">Hizmetler</a></li>
+              <li><a href="#demos" data-i18n="navDemos">Sistemlerimiz</a></li>
               <li><a href="#contact" data-i18n="navContact">Iletisim</a></li>
             </ul>
           </div>
@@ -226,6 +885,7 @@
     </footer>
 
     <script src="js/translations.js"></script>
+    <script src="js/barcode-demo.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>

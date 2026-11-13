@@ -1,0 +1,1123 @@
+/* ===== Desktop App Simulation & Demos Section (Premium Okyanus - Mat & Zarif) ===== */
+.systems {
+  padding: 100px 0;
+  background: linear-gradient(180deg, #080d1a 0%, #0d1526 100%);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.systems .section-subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  max-width: 650px;
+  margin: 0 auto 35px;
+  font-size: 1.05rem;
+}
+
+/* System Tabs */
+.system-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 35px;
+  flex-wrap: wrap;
+}
+
+.system-tab-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+.system-tab-btn:hover {
+  color: var(--text-primary);
+  border-color: rgba(56, 189, 248, 0.3);
+  background: var(--bg-card-hover);
+}
+
+.system-tab-btn.active {
+  background: rgba(37, 99, 235, 0.15);
+  color: var(--accent-light);
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.system-tab-btn .badge-pill {
+  font-size: 0.72rem;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 8px;
+  border-radius: 12px;
+  color: var(--text-secondary);
+}
+
+.system-tab-btn.active .badge-pill {
+  background: rgba(37, 99, 235, 0.25);
+  color: var(--accent-light);
+}
+
+/* Windows App Window Mockup */
+.win-mockup {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: #0d1526;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Window Titlebar */
+.win-titlebar {
+  background: #131f38;
+  padding: 11px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  user-select: none;
+}
+
+.win-title-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #f1f5f9;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.win-title-left svg {
+  color: var(--accent-light);
+}
+
+.win-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.win-ctrl-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.win-ctrl-btn.minimize { background: #eab308; }
+.win-ctrl-btn.maximize { background: #22c55e; }
+.win-ctrl-btn.close { background: #ef4444; }
+.win-ctrl-btn:hover { opacity: 0.8; }
+
+/* Window Subnav / Menubar Tabs */
+.win-menubar {
+  background: #09101f;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 4px 16px 0;
+  display: flex;
+  gap: 8px;
+  font-size: 0.86rem;
+  color: #94a3b8;
+  overflow-x: auto;
+}
+
+.win-menubar span {
+  padding: 10px 16px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.win-menubar span:hover {
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 6px 6px 0 0;
+}
+
+.win-menubar span.active {
+  color: var(--accent-light);
+  border-bottom: 2px solid var(--accent-light);
+  font-weight: 600;
+  background: rgba(56, 189, 248, 0.08);
+  border-radius: 6px 6px 0 0;
+}
+
+/* Window Quick Stats Bar */
+.win-stats-bar {
+  background: rgba(19, 31, 56, 0.6);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  flex-wrap: wrap;
+}
+
+.win-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.win-stat-badge {
+  color: var(--accent-light);
+  font-weight: 700;
+}
+
+.win-sound-toggle {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: var(--transition);
+}
+
+.win-sound-toggle:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+/* Window Content Body & Views */
+.win-body {
+  padding: 24px;
+  min-height: 520px;
+}
+
+.win-view {
+  animation: fadeInView 0.22s ease-out;
+}
+
+@keyframes fadeInView {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* View Header */
+.view-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.view-heading h3 {
+  font-size: 1.15rem;
+  color: #f1f5f9;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.view-heading p {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+.view-header-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Barcode Scanner Box (Mat & Temiz) */
+.barcode-scan-box {
+  background: #131f38;
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.scan-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 0.88rem;
+  color: #e2e8f0;
+}
+
+.scan-input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.scan-input-wrap {
+  flex: 1;
+  position: relative;
+}
+
+.scan-input-wrap svg {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+}
+
+.scan-input {
+  width: 100%;
+  background: #09101f;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  padding: 12px 14px 12px 42px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: monospace;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.scan-input:focus {
+  border-color: var(--accent-light);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.scan-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.15s, background 0.2s;
+  white-space: nowrap;
+}
+
+.scan-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.scan-btn:active {
+  transform: translateY(0);
+}
+
+/* Quick Barcode Chips */
+.quick-chips-label {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.quick-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.chip-btn {
+  background: rgba(9, 16, 31, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.chip-btn:hover {
+  background: rgba(37, 99, 235, 0.2);
+  border-color: rgba(56, 189, 248, 0.4);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.chip-btn code {
+  color: var(--accent-light);
+  font-size: 0.75rem;
+  background: rgba(37, 99, 235, 0.15);
+  padding: 2px 5px;
+  border-radius: 4px;
+}
+
+/* Table Card / DataGrid */
+.win-table-card {
+  background: #131f38;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.win-table-wrapper {
+  overflow-x: auto;
+  max-height: 420px;
+}
+
+.win-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+.win-table th {
+  background: #09101f;
+  color: #94a3b8;
+  padding: 12px 14px;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  white-space: nowrap;
+}
+
+.win-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: #e2e8f0;
+  vertical-align: middle;
+}
+
+.win-table tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.win-table tr.new-row-flash {
+  animation: rowFlash 0.8s ease;
+}
+
+@keyframes rowFlash {
+  0% { background: rgba(37, 99, 235, 0.25); }
+  100% { background: transparent; }
+}
+
+.badge-location {
+  background: rgba(37, 99, 235, 0.15);
+  color: #60a5fa;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-family: monospace;
+  font-weight: 600;
+}
+
+.badge-status {
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+.badge-status.normal { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+.badge-status.warning { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+.badge-status.danger { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+
+.qty-control {
+  display: inline-flex;
+  align-items: center;
+  background: #09101f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.qty-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  transition: background 0.15s, color 0.15s;
+}
+
+.qty-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.qty-num {
+  padding: 0 10px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #fff;
+  min-width: 32px;
+  text-align: center;
+}
+
+.btn-row-del {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.2s;
+}
+
+.btn-row-del:hover {
+  color: #ef4444;
+}
+
+/* Empty Table State */
+.table-empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #64748b;
+}
+
+.table-empty-state svg {
+  margin-bottom: 10px;
+  color: #475569;
+}
+
+/* Table Footer / Summary Bar */
+.win-footer-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 16px 20px;
+  background: #09101f;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0 0 10px 10px;
+}
+
+.footer-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.win-btn-sec {
+  background: #182847;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  padding: 9px 16px;
+  border-radius: 6px;
+  font-size: 0.84rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: var(--transition);
+}
+
+.win-btn-sec:hover {
+  background: #22375e;
+  color: #fff;
+}
+
+.win-btn-excel {
+  background: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #fff;
+  padding: 9px 16px;
+  border-radius: 6px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: var(--transition);
+}
+
+.win-btn-excel:hover {
+  background: #047857;
+  transform: translateY(-1px);
+}
+
+.win-btn-primary {
+  background: #10b981;
+  border: none;
+  color: #fff;
+  padding: 9px 18px;
+  border-radius: 6px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: var(--transition);
+}
+
+.win-btn-primary:hover {
+  background: #059669;
+  transform: translateY(-1px);
+}
+
+.footer-totals {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.total-item {
+  font-size: 0.86rem;
+  color: #94a3b8;
+}
+
+.total-item strong {
+  color: #fff;
+  font-size: 1.15rem;
+  margin-left: 6px;
+}
+
+.total-item.price strong {
+  color: var(--accent-light);
+}
+
+/* ===== TAB 2: Ürün Listesi Ekranı ===== */
+.filter-search-box {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.filter-search-input {
+  flex: 1;
+  min-width: 240px;
+  background: #131f38;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
+}
+.filter-search-input:focus {
+  border-color: var(--accent-light);
+}
+
+.filter-category-select {
+  background: #131f38;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  outline: none;
+}
+
+/* ===== TAB 3: Hızlı Satış & POS Ekranı ===== */
+.pos-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.pos-cart-panel {
+  background: #131f38;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pos-cart-list {
+  flex: 1;
+  min-height: 240px;
+  max-height: 280px;
+  overflow-y: auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 14px;
+}
+
+.pos-cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 0.86rem;
+}
+
+.pos-cart-total-box {
+  background: #09101f;
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pos-cart-total-box span {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.pos-cart-total-box strong {
+  color: var(--accent-light);
+  font-size: 1.4rem;
+}
+
+.pos-pay-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.pos-pay-btn {
+  padding: 12px 8px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+  color: #fff;
+}
+.pos-pay-btn.cash { background: #059669; }
+.pos-pay-btn.card { background: #2563eb; }
+.pos-pay-btn.account { background: #d97706; }
+.pos-pay-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+.pos-catalog-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.pos-category-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  overflow-x: auto;
+}
+
+.pos-cat-pill {
+  background: #131f38;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.pos-cat-pill.active {
+  background: rgba(37, 99, 235, 0.2);
+  color: var(--accent-light);
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+.pos-tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+.pos-product-tile {
+  background: #131f38;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 14px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.pos-product-tile:hover {
+  background: #1c2b4c;
+  border-color: rgba(56, 189, 248, 0.4);
+  transform: translateY(-2px);
+}
+.pos-product-tile .tile-icon { font-size: 1.6rem; margin-bottom: 6px; }
+.pos-product-tile .tile-name { font-size: 0.8rem; font-weight: 600; color: #f1f5f9; line-height: 1.3; margin-bottom: 6px; }
+.pos-product-tile .tile-price { font-size: 0.84rem; font-weight: 700; color: var(--accent-light); }
+
+/* ===== TAB 4: Sayım & Kontrol Ekranı ===== */
+.count-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.count-stat-card {
+  background: #131f38;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 14px;
+}
+.count-stat-card .label { font-size: 0.78rem; color: #94a3b8; }
+.count-stat-card .val { font-size: 1.3rem; font-weight: 700; color: #fff; margin-top: 4px; }
+
+/* ===== TAB 5: Depo Raporları Ekranı ===== */
+.reports-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.kpi-card {
+  background: #131f38;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 18px;
+}
+.kpi-card .kpi-label { font-size: 0.8rem; color: #94a3b8; }
+.kpi-card .kpi-value { font-size: 1.5rem; font-weight: 800; color: #fff; margin: 6px 0; }
+.kpi-card .kpi-sub { font-size: 0.75rem; color: #10b981; }
+
+.charts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.chart-panel {
+  background: #131f38;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 20px;
+}
+.chart-panel h4 { font-size: 0.95rem; margin-bottom: 16px; color: #f1f5f9; }
+
+.progress-stat-row {
+  margin-bottom: 14px;
+}
+.progress-stat-row .p-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  margin-bottom: 5px;
+}
+.progress-bar-bg {
+  background: #09101f;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  background: #2563eb;
+  height: 100%;
+  border-radius: 4px;
+}
+
+/* ===== TAB 6: Sistem Ayarları Ekranı ===== */
+.settings-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.setting-card {
+  background: #131f38;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 20px;
+}
+.setting-card h4 { font-size: 0.96rem; margin-bottom: 14px; color: #f1f5f9; }
+
+.setting-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 0.86rem;
+  color: #cbd5e1;
+}
+
+.setting-input {
+  background: #09101f;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.84rem;
+  outline: none;
+}
+
+/* ===== Excel Import Modal ===== */
+.excel-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.excel-modal.active {
+  display: flex;
+}
+
+.excel-modal-card {
+  background: #131f38;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f1f5f9;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+  position: relative;
+  animation: modalPop 0.25s ease-out;
+}
+
+.excel-dropzone {
+  border: 2px dashed rgba(56, 189, 248, 0.3);
+  border-radius: 10px;
+  padding: 30px 20px;
+  text-align: center;
+  background: rgba(9, 16, 31, 0.6);
+  margin: 18px 0;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.excel-dropzone:hover {
+  border-color: var(--accent-light);
+  background: rgba(37, 99, 235, 0.05);
+}
+
+.excel-dropzone svg {
+  color: #10b981;
+  margin-bottom: 10px;
+}
+
+.excel-dropzone h5 {
+  font-size: 1rem;
+  margin-bottom: 6px;
+  color: #f1f5f9;
+}
+
+.excel-dropzone p {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.import-progress-wrap {
+  display: none;
+  margin: 16px 0;
+}
+
+.import-progress-bar {
+  background: #09101f;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.import-progress-fill {
+  background: #10b981;
+  height: 100%;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+/* Thermal Barcode Label Modal */
+.barcode-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(5px);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.barcode-modal.active {
+  display: flex;
+}
+
+.modal-thermal-card {
+  background: #fff;
+  color: #111;
+  width: 100%;
+  max-width: 360px;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  font-family: 'Courier New', Courier, monospace;
+  position: relative;
+  animation: modalPop 0.25s ease-out;
+}
+
+@keyframes modalPop {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: #94a3b8;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.thermal-header {
+  text-align: center;
+  border-bottom: 2px dashed #000;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.thermal-header h4 {
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+  font-family: inherit;
+}
+
+.thermal-barcode-art {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 2px;
+  height: 52px;
+  margin: 14px 0 8px;
+  padding: 0 10px;
+}
+
+.thermal-barcode-art span {
+  background: #000;
+  display: inline-block;
+  height: 100%;
+}
+
+.thermal-code-num {
+  text-align: center;
+  letter-spacing: 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.thermal-details {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  border-bottom: 2px dashed #000;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.thermal-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.thermal-actions button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.thermal-btn-print {
+  background: #000;
+  color: #fff;
+  border: none;
+}
+
+.thermal-btn-close {
+  background: #f1f5f9;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+/* Toast Message */
+.win-toast {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #131f38;
+  border-left: 4px solid var(--accent);
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  font-size: 0.9rem;
+  z-index: 10000;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.win-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+  .pos-layout { grid-template-columns: 1fr; }
+  .charts-row, .settings-grid { grid-template-columns: 1fr; }
+  .win-body { padding: 14px; }
+  .scan-input-group { flex-direction: column; }
+  .scan-btn { width: 100%; justify-content: center; padding: 12px; }
+  .win-footer-bar { flex-direction: column; align-items: stretch; }
+  .footer-totals { justify-content: space-between; }
+  .footer-actions { flex-direction: column; }
+  .footer-actions button { width: 100%; justify-content: center; }
+}
