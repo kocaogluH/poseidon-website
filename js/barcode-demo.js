@@ -1,9 +1,451 @@
 /**
  * Poseidon Barkodlu Stok & Depo Takip Sistemi
- * Tam Fonksiyonel Masaüstü Simülasyonu + Excel İçe/Dışa Aktarma
+ * Tam Fonksiyonel Masaüstü Simülasyonu + Excel İçe/Dışa Aktarma + Çok Dilli Destek (TR/EN/RU/AR)
  */
 
 document.addEventListener("DOMContentLoaded", () => {
+  const VALID_DEMO_LANGS = ["tr", "en", "ru", "ar"];
+  const storedLang = localStorage.getItem("poseidon_lang");
+  let demoLang = VALID_DEMO_LANGS.includes(storedLang) ? storedLang : "tr";
+
+  const DEMO_LANG = {
+    tr: {
+      locale: "tr-TR",
+      rackPrefix: "Raf",
+      generalWarehouse: "Genel Depo",
+      soundOn: "Ses: Açık",
+      soundOff: "Ses: Kapalı",
+      toastSoundOn: "Barkod sesi açıldı",
+      toastSoundOff: "Barkod sesi kapatıldı",
+      toastTabOpened: "Sekme açıldı",
+      toastExcelDownloaded: "✓ Excel dosyası indirildi",
+      emptyMovements: "Henüz ürün okutulmadı. Yukarıdaki örnek barkodlara tıklayın veya barkod okutun.",
+      delRowTitle: "Satırı Sil",
+      removePosTitle: "Çıkar",
+      toastQtyInc: "Miktar artırıldı (+1)",
+      toastScanned: "Barkod okundu",
+      toastListCleared: "Stok hareket listesi temizlendi.",
+      toastSavedMovement: "Stok hareketi başarıyla veritabanına işlendi ve depo sayımı güncellendi!",
+      emptyProductsSearch: "Aramanıza uygun ürün bulunamadı.",
+      stockNormal: "Stokta",
+      stockDanger: "Kritik Stok",
+      stockWarning: "Azalıyor",
+      labelBtn: "🖨️ Etiket",
+      newProductPrefix: "Yeni Eklenen Ürün",
+      customProductPrefix: "Özel Ürün",
+      toastNewProduct: "Yeni ürün kartı oluşturuldu",
+      excelReading: "Excel dosyası okunuyor...",
+      excelValidating: "Barkodlar ve ürün kartları doğrulanıyor...",
+      excelDone: (n) => `Tamamlandı! ${n} adet ürün sisteme aktarıldı.`,
+      toastImportSuccess: (n) => `✓ ${n} adet yeni ürün Excel'den başarıyla yüklendi!`,
+      toastFileParsing: "Dosya okundu, veriler işleniyor...",
+      newExcelItem: (i) => `Excel Ürünü #${i}`,
+      emptyCart: "Sepet boş. Sağdaki ürünlere tıklayarak sepete ekleyin.",
+      unitQtyLabel: "adet",
+      toastAddedCart: "Sepete eklendi",
+      toastCartEmpty: "Lütfen önce sepete ürün ekleyin.",
+      toastSaleDone: (m, r) => `Satış Tamamlandı (${m})! Fiş No: ${r}`,
+      diffEqual: "✓ Eşit (0)",
+      diffPlus: (d) => `+${d} Fazla`,
+      diffMinus: (d) => `${d} Eksik`,
+      toastCountConfirmed: "Depo sayımı onaylandı ve sistem stokları güncellendi!",
+      toastPdfReady: "PDF Envanter Dökümü hazırlandı ve indirildi.",
+      toastSettingsSaved: "Sistem ve donanım ayarları başarıyla kaydedildi!",
+      thermalPrinting: "Yazdırılıyor...",
+      thermalPrinted: "✓ Yazdırıldı",
+      toastThermalSent: "Termal barkod etiketi yazıcıya gönderildi!",
+      thermalPrintBtn: "🖨️ Etiketi Yazdır",
+      exportProdHeaders: [
+        "Barkod No",
+        "Ürün Tanımı",
+        "Kategori",
+        "Depo/Raf Konumu",
+        "Mevcut Stok Adedi",
+        "Kritik Stok Seviyesi",
+        "Birim Fiyat (TL)",
+      ],
+      exportRepHeaders: [
+        "Barkod No",
+        "Ürün Adı",
+        "Kategori",
+        "Depo Konumu",
+        "Mevcut Stok Miktarı",
+        "Birim Maliyet (TL)",
+        "Toplam Envanter Değeri (TL)",
+      ],
+      exportTplHeaders: [
+        "Barkod",
+        "Urun_Adi",
+        "Kategori",
+        "Raf_Konumu",
+        "Stok_Miktari",
+        "Kritik_Limit",
+        "Birim_Fiyat",
+      ],
+      categories: {
+        Ambalaj: "Ambalaj",
+        "Hırdavat": "Hırdavat",
+        Kimyasal: "Kimyasal",
+        "Gıda": "Gıda",
+        Genel: "Genel",
+      },
+      payMethods: {
+        Nakit: "Nakit",
+        "Kredi Kartı": "Kredi Kartı",
+        "Cari Hesap": "Cari Hesap",
+      },
+      products: {
+        "8690112": "Koli Bandı 45x100mm Şeffaf",
+        "8690245": "Çelik Civata M8x40 (100'lük)",
+        "8690389": "Endüstriyel Temizleyici 5L",
+        "8690512": "Sızma Zeytinyağı 5L Teneke",
+        "8690678": "Rulman 6204-2RS Metal Kapak",
+        "8690781": "Streç Film 50cm 17 Mikron",
+        "8690892": "Silikon Mastik Şeffaf 310ml",
+        "8690943": "Endüstriyel Eldiven No:10",
+        "8691001": "Karton Koli 40x30x30 Çift Oluklu",
+        "8691002": "Çelik Somun M10 Paslanmaz",
+        "8691003": "Gres Yağı Sanayi Tipi 1KG",
+        "8691004": "Balonlu Naylon 100cm Rulo",
+        "8691005": "Lokma Anahtar Takımı 12 Parça",
+        "8691006": "Köpük Sabun Kartuşu 1000ml",
+        "8691007": "Zımba Teli No:10 (1000 Adet)",
+        "8691008": "Palet Streç Filmi 23 Mikron Siyah",
+      },
+    },
+    en: {
+      locale: "en-US",
+      rackPrefix: "Rack",
+      generalWarehouse: "Main Warehouse",
+      soundOn: "Sound: On",
+      soundOff: "Sound: Off",
+      toastSoundOn: "Scanner sound enabled",
+      toastSoundOff: "Scanner sound muted",
+      toastTabOpened: "Tab opened",
+      toastExcelDownloaded: "✓ Excel file downloaded",
+      emptyMovements: "No items scanned yet. Click a sample barcode above or scan an item.",
+      delRowTitle: "Delete Row",
+      removePosTitle: "Remove",
+      toastQtyInc: "Quantity increased (+1)",
+      toastScanned: "Barcode scanned",
+      toastListCleared: "Stock movement list cleared.",
+      toastSavedMovement: "Stock movement saved to database and warehouse inventory updated!",
+      emptyProductsSearch: "No products match your search criteria.",
+      stockNormal: "In Stock",
+      stockDanger: "Critical",
+      stockWarning: "Low Stock",
+      labelBtn: "🖨️ Label",
+      newProductPrefix: "New Added Item",
+      customProductPrefix: "Custom Item",
+      toastNewProduct: "New product card created",
+      excelReading: "Reading Excel file...",
+      excelValidating: "Validating barcodes and SKU records...",
+      excelDone: (n) => `Done! ${n} products imported into the system.`,
+      toastImportSuccess: (n) => `✓ ${n} new products imported from Excel successfully!`,
+      toastFileParsing: "File read, processing data...",
+      newExcelItem: (i) => `Excel Product #${i}`,
+      emptyCart: "Cart is empty. Click items on the right to add to cart.",
+      unitQtyLabel: "pcs",
+      toastAddedCart: "Added to cart",
+      toastCartEmpty: "Please add an item to the cart first.",
+      toastSaleDone: (m, r) => `Sale Completed (${m})! Receipt: ${r}`,
+      diffEqual: "✓ Match (0)",
+      diffPlus: (d) => `+${d} Surplus`,
+      diffMinus: (d) => `${d} Missing`,
+      toastCountConfirmed: "Warehouse count approved and system stock synced!",
+      toastPdfReady: "PDF inventory report generated and downloaded.",
+      toastSettingsSaved: "System & hardware settings saved successfully!",
+      thermalPrinting: "Printing...",
+      thermalPrinted: "✓ Printed",
+      toastThermalSent: "Thermal barcode label sent to printer!",
+      thermalPrintBtn: "🖨️ Print Label",
+      exportProdHeaders: [
+        "Barcode No",
+        "Product Name",
+        "Category",
+        "Rack Location",
+        "Current Stock",
+        "Critical Level",
+        "Unit Price",
+      ],
+      exportRepHeaders: [
+        "Barcode No",
+        "Product Name",
+        "Category",
+        "Warehouse Location",
+        "Current Stock",
+        "Unit Cost",
+        "Total Inventory Value",
+      ],
+      exportTplHeaders: [
+        "Barcode",
+        "Product_Name",
+        "Category",
+        "Rack_Location",
+        "Stock_Qty",
+        "Critical_Limit",
+        "Unit_Price",
+      ],
+      categories: {
+        Ambalaj: "Packaging",
+        "Hırdavat": "Hardware",
+        Kimyasal: "Chemicals",
+        "Gıda": "Food & Liquid",
+        Genel: "General",
+      },
+      payMethods: {
+        Nakit: "Cash",
+        "Kredi Kartı": "Credit Card",
+        "Cari Hesap": "Open Account",
+      },
+      products: {
+        "8690112": "Clear Packing Tape 45x100mm",
+        "8690245": "Steel Bolt M8x40 (100 pcs)",
+        "8690389": "Industrial Cleaner 5L",
+        "8690512": "Extra Virgin Olive Oil 5L Tin",
+        "8690678": "Bearing 6204-2RS Metal Shield",
+        "8690781": "Stretch Film 50cm 17 Micron",
+        "8690892": "Clear Silicone Sealant 310ml",
+        "8690943": "Industrial Gloves Size 10",
+        "8691001": "Corrugated Box 40x30x30 Double Wall",
+        "8691002": "Stainless Steel Nut M10",
+        "8691003": "Industrial Grease 1KG",
+        "8691004": "Bubble Wrap Roll 100cm",
+        "8691005": "Socket Wrench Set 12-Piece",
+        "8691006": "Foam Soap Cartridge 1000ml",
+        "8691007": "Staples No:10 (1000 pcs)",
+        "8691008": "Black Pallet Stretch Film 23um",
+      },
+    },
+    ru: {
+      locale: "ru-RU",
+      rackPrefix: "Стеллаж",
+      generalWarehouse: "Общий склад",
+      soundOn: "Звук: Вкл",
+      soundOff: "Звук: Выкл",
+      toastSoundOn: "Звук сканера включён",
+      toastSoundOff: "Звук сканера выключен",
+      toastTabOpened: "Вкладка открыта",
+      toastExcelDownloaded: "✓ Файл Excel скачан",
+      emptyMovements: "Товары ещё не отсканированы. Нажмите на пример выше или отсканируйте штрихкод.",
+      delRowTitle: "Удалить строку",
+      removePosTitle: "Удалить",
+      toastQtyInc: "Количество увеличено (+1)",
+      toastScanned: "Штрихкод считан",
+      toastListCleared: "Список движения товаров очищен.",
+      toastSavedMovement: "Движение товара сохранено в базе данных, остатки склада обновлены!",
+      emptyProductsSearch: "Товары по вашему запросу не найдены.",
+      stockNormal: "В наличии",
+      stockDanger: "Крит. мало",
+      stockWarning: "Заканчивается",
+      labelBtn: "🖨️ Этикетка",
+      newProductPrefix: "Новый товар",
+      customProductPrefix: "Особый товар",
+      toastNewProduct: "Создана карточка нового товара",
+      excelReading: "Чтение файла Excel...",
+      excelValidating: "Проверка штрихкодов и карточек товаров...",
+      excelDone: (n) => `Готово! Импортировано товаров: ${n}.`,
+      toastImportSuccess: (n) => `✓ Успешно загружено из Excel товаров: ${n}!`,
+      toastFileParsing: "Файл прочитан, обработка данных...",
+      newExcelItem: (i) => `Товар из Excel #${i}`,
+      emptyCart: "Корзина пуста. Нажмите на товары справа для добавления.",
+      unitQtyLabel: "шт.",
+      toastAddedCart: "Добавлено в чек",
+      toastCartEmpty: "Пожалуйста, сначала добавьте товар в чек.",
+      toastSaleDone: (m, r) => `Продажа завершена (${m})! Чек: ${r}`,
+      diffEqual: "✓ Совпадает (0)",
+      diffPlus: (d) => `+${d} Излишек`,
+      diffMinus: (d) => `${d} Недостача`,
+      toastCountConfirmed: "Инвентаризация подтверждена, остатки в системе обновлены!",
+      toastPdfReady: "PDF-отчёт по складу сформирован и скачан.",
+      toastSettingsSaved: "Настройки системы и оборудования сохранены!",
+      thermalPrinting: "Печать...",
+      thermalPrinted: "✓ Напечатано",
+      toastThermalSent: "Термоэтикетка отправлена на принтер!",
+      thermalPrintBtn: "🖨️ Печать этикетки",
+      exportProdHeaders: [
+        "Штрихкод",
+        "Наименование",
+        "Категория",
+        "Стеллаж",
+        "Остаток",
+        "Мин. порог",
+        "Цена за ед.",
+      ],
+      exportRepHeaders: [
+        "Штрихкод",
+        "Наименование",
+        "Категория",
+        "Склад",
+        "Остаток",
+        "Себестоимость",
+        "Общая стоимость",
+      ],
+      exportTplHeaders: [
+        "Штрихкод",
+        "Название",
+        "Категория",
+        "Полка",
+        "Количество",
+        "Мин_лимит",
+        "Цена",
+      ],
+      categories: {
+        Ambalaj: "Упаковка",
+        "Hırdavat": "Крепёж",
+        Kimyasal: "Химия",
+        "Gıda": "Продукты",
+        Genel: "Общее",
+      },
+      payMethods: {
+        Nakit: "Наличные",
+        "Kredi Kartı": "Банк. карта",
+        "Cari Hesap": "В рассрочку",
+      },
+      products: {
+        "8690112": "Скотч упаковочный 45x100мм прозр.",
+        "8690245": "Болт стальной M8x40 (100 шт.)",
+        "8690389": "Промышленный очиститель 5л",
+        "8690512": "Оливковое масло Extra Virgin 5л",
+        "8690678": "Подшипник 6204-2RS метал. крышка",
+        "8690781": "Стрейч-плёнка 50см 17 мкм",
+        "8690892": "Силиконовый герметик прозр. 310мл",
+        "8690943": "Перчатки рабочие №10",
+        "8691001": "Гофрокороб 40x30x30 двойной",
+        "8691002": "Гайка нержавеющая M10",
+        "8691003": "Смазка промышленная 1 кг",
+        "8691004": "Воздушно-пузырчатая плёнка 100см",
+        "8691005": "Набор торцевых ключей 12 предм.",
+        "8691006": "Картридж пенного мыла 1000мл",
+        "8691007": "Скобы для степлера №10 (1000 шт.)",
+        "8691008": "Чёрная паллетная стрейч-плёнка 23мкм",
+      },
+    },
+    ar: {
+      locale: "en-US",
+      rackPrefix: "رف",
+      generalWarehouse: "المستودع الرئيسي",
+      soundOn: "الصوت: مفعل",
+      soundOff: "الصوت: صامت",
+      toastSoundOn: "تم تفعيل صوت الماسح",
+      toastSoundOff: "تم كتم صوت الماسح",
+      toastTabOpened: "تم فتح التبويب",
+      toastExcelDownloaded: "✓ تم تنزيل ملف Excel",
+      emptyMovements: "لم يتم مسح أي منتج بعد. انقر على أحد الأمثلة أعلاه أو امسح الباركود.",
+      delRowTitle: "حذف الصف",
+      removePosTitle: "إزالة",
+      toastQtyInc: "تمت زيادة الكمية (+1)",
+      toastScanned: "تم مسح الباركود",
+      toastListCleared: "تم مسح قائمة حركات المخزون.",
+      toastSavedMovement: "تم حفظ حركة المخزون في قاعدة البيانات وتحديث جرد المستودع!",
+      emptyProductsSearch: "لم يتم العثور على منتجات مطابقة للبحث.",
+      stockNormal: "متوفر",
+      stockDanger: "مخزون حرج",
+      stockWarning: "ينخفض",
+      labelBtn: "🖨️ ملصق",
+      newProductPrefix: "منتج مضاف جديد",
+      customProductPrefix: "منتج مخصص",
+      toastNewProduct: "تم إنشاء بطاقة منتج جديدة",
+      excelReading: "جارٍ قراءة ملف Excel...",
+      excelValidating: "جارٍ التحقق من الباركود وبطاقات المنتجات...",
+      excelDone: (n) => `اكتمل! تم استيراد ${n} منتجات إلى النظام.`,
+      toastImportSuccess: (n) => `✓ تم تحميل ${n} منتجات جديدة من Excel بنجاح!`,
+      toastFileParsing: "تمت قراءة الملف، جارٍ معالجة البيانات...",
+      newExcelItem: (i) => `منتج Excel #${i}`,
+      emptyCart: "السلة فارغة. انقر على المنتجات لإضافتها إلى الفاتورة.",
+      unitQtyLabel: "قطعة",
+      toastAddedCart: "أُضيف إلى السلة",
+      toastCartEmpty: "يرجى إضافة منتج إلى السلة أولاً.",
+      toastSaleDone: (m, r) => `اكتمل البيع (${m})! رقم الإيصال: ${r}`,
+      diffEqual: "✓ مطابق (0)",
+      diffPlus: (d) => `+${d} فائض`,
+      diffMinus: (d) => `${d} عجز`,
+      toastCountConfirmed: "تم اعتماد جرد المستودع وتحديث أرصدة النظام!",
+      toastPdfReady: "تم إعداد وتنزيل تقرير المخزون بصيغة PDF.",
+      toastSettingsSaved: "تم حفظ إعدادات النظام والأجهزة بنجاح!",
+      thermalPrinting: "جارٍ الطباعة...",
+      thermalPrinted: "✓ تمت الطباعة",
+      toastThermalSent: "تم إرسال ملصق الباركود إلى الطابعة الحرارية!",
+      thermalPrintBtn: "🖨️ طباعة الملصق",
+      exportProdHeaders: [
+        "رقم الباركود",
+        "اسم المنتج",
+        "الفئة",
+        "موقع الرف",
+        "المخزون الحالي",
+        "الحد الحرج",
+        "سعر الوحدة",
+      ],
+      exportRepHeaders: [
+        "رقم الباركود",
+        "اسم المنتج",
+        "الفئة",
+        "المستودع",
+        "المخزون الحالي",
+        "تكلفة الوحدة",
+        "القيمة الإجمالية",
+      ],
+      exportTplHeaders: [
+        "الباركود",
+        "اسم_المنتج",
+        "الفئة",
+        "موقع_الرف",
+        "الكمية",
+        "الحد_الحرج",
+        "السعر",
+      ],
+      categories: {
+        Ambalaj: "التغليف",
+        "Hırdavat": "الأدوات",
+        Kimyasal: "الكيماويات",
+        "Gıda": "الأغذية",
+        Genel: "عام",
+      },
+      payMethods: {
+        Nakit: "نقداً",
+        "Kredi Kartı": "بطاقة ائتمان",
+        "Cari Hesap": "حساب آجل",
+      },
+      products: {
+        "8690112": "شريط تغليف شفاف 45x100مم",
+        "8690245": "برغي فولاذي M8x40 (100 قطعة)",
+        "8690389": "منظف صناعي 5 لتر",
+        "8690512": "زيت زيتون بكر ممتاز 5 لتر",
+        "8690678": "رولمان بلي 6204-2RS غطاء معدني",
+        "8690781": "رول ستريتش 50سم 17 ميكرون",
+        "8690892": "سيليكون لاصق شفاف 310مل",
+        "8690943": "قفازات صناعية مقاس 10",
+        "8691001": "صندوق كرتون مزدوج 40x30x30",
+        "8691002": "صامولة فولاذ مقاوم للصدأ M10",
+        "8691003": "شحم صناعي عالي التحمل 1 كغ",
+        "8691004": "رول تغليف فقاعي 100سم",
+        "8691005": "طقم مفاتيح ربط 12 قطعة",
+        "8691006": "عبوة صابون رغوي 1000مل",
+        "8691007": "دبابيس كبس رقم 10 (1000 دبوس)",
+        "8691008": "رول تغليف طبليات أسود 23 ميكرون",
+      },
+    },
+  };
+
+  function dLang() {
+    return DEMO_LANG[demoLang] || DEMO_LANG.tr;
+  }
+
+  function getItemName(item) {
+    return dLang().products[item.barcode] || item.name;
+  }
+
+  function getItemCategory(item) {
+    return dLang().categories[item.category] || item.category;
+  }
+
+  function getItemLocation(item) {
+    const loc = item.location || "";
+    if (loc === "Genel Depo") return dLang().generalWarehouse;
+    if (loc.startsWith("Raf ")) return `${dLang().rackPrefix} ${loc.slice(4)}`;
+    return loc;
+  }
+
   // Demo Ürün Veritabanı
   const INVENTORY = [
     { barcode: "8690112", name: "Koli Bandı 45x100mm Şeffaf", category: "Ambalaj", location: "Raf A-04", stock: 140, critical: 20, price: 45.0, icon: "📦" },
@@ -64,7 +506,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== GERÇEK EXCEL (.CSV BOM) DIŞA AKTARMA FONKSİYONU =====
   function exportToExcelCSV(filename, rows) {
-    const BOM = "\uFEFF"; // Excel Türkçe karakter desteği
+    const BOM = "\uFEFF";
     const csvContent =
       BOM +
       rows
@@ -84,7 +526,7 @@ document.addEventListener("DOMContentLoaded", () => {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    showToast(`✓ Excel dosyası indirildi: ${filename}`);
+    showToast(`${dLang().toastExcelDownloaded}: ${filename}`);
   }
 
   // ===== 1. MENÜ SEKMELERİ (TÜM SEKMELERİ ÇALIŞTIRMA) =====
@@ -98,25 +540,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const targetId = tab.getAttribute("data-target");
       views.forEach((v) => {
-        if (v.id === targetId) {
-          v.style.display = "block";
-        } else {
-          v.style.display = "none";
-        }
+        v.style.display = v.id === targetId ? "block" : "none";
       });
-      showToast(`Sekme açıldı: ${tab.textContent.trim()}`);
+      showToast(`${dLang().toastTabOpened}: ${tab.textContent.trim()}`);
     });
   });
 
   // Ses Aç/Kapa Butonu
   const soundToggleBtn = document.getElementById("winSoundToggle");
+
+  function updateSoundButton() {
+    if (!soundToggleBtn) return;
+    const t = dLang();
+    soundToggleBtn.innerHTML = soundEnabled
+      ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg> ${t.soundOn}`
+      : `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="23" y2="23"/><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/></svg> ${t.soundOff}`;
+  }
+
   if (soundToggleBtn) {
     soundToggleBtn.addEventListener("click", () => {
       soundEnabled = !soundEnabled;
-      soundToggleBtn.innerHTML = soundEnabled
-        ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg> Ses: Açık`
-        : `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="23" y2="23"/><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/></svg> Ses: Kapalı`;
-      showToast(soundEnabled ? "Barkod sesi açıldı" : "Barkod sesi kapatıldı");
+      updateSoundButton();
+      showToast(soundEnabled ? dLang().toastSoundOn : dLang().toastSoundOff);
     });
   }
 
@@ -136,6 +581,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderMovementTable(lastAddedBarcode = null) {
     if (!tableBody) return;
+    const t = dLang();
     tableBody.innerHTML = "";
 
     if (movementItems.length === 0) {
@@ -147,7 +593,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <rect x="2" y="4" width="20" height="16" rx="2"/>
                 <path d="M7 15h0M7 9h0M11 9h0M15 9h0M11 15h0M15 15h0"/>
               </svg>
-              <div>Henüz ürün okutulmadı. Yukarıdaki örnek barkodlara tıklayın veya barkod okutun.</div>
+              <div>${t.emptyMovements}</div>
             </div>
           </td>
         </tr>`;
@@ -158,15 +604,15 @@ document.addEventListener("DOMContentLoaded", () => {
           tr.className = "new-row-flash";
         }
 
-        const lineTotal = (item.qty * item.price).toLocaleString("tr-TR", {
+        const lineTotal = (item.qty * item.price).toLocaleString(t.locale, {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
         });
 
         tr.innerHTML = `
           <td><code>${item.barcode}</code></td>
-          <td><strong>${item.name}</strong></td>
-          <td><span class="badge-location">${item.location}</span></td>
+          <td><strong>${getItemName(item)}</strong></td>
+          <td><span class="badge-location">${getItemLocation(item)}</span></td>
           <td>
             <div class="qty-control">
               <button class="qty-btn" data-action="dec" data-barcode="${item.barcode}">-</button>
@@ -177,7 +623,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <td>₺${item.price.toFixed(2)}</td>
           <td><strong>₺${lineTotal}</strong></td>
           <td>
-            <button class="btn-row-del" data-action="del" data-barcode="${item.barcode}" title="Satırı Sil">
+            <button class="btn-row-del" data-action="del" data-barcode="${item.barcode}" title="${t.delRowTitle}">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="3 6 5 6 21 6"/>
                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
@@ -196,7 +642,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (totalItemsEl) totalItemsEl.textContent = totalLines;
     if (totalQtyEl) totalQtyEl.textContent = totalQty;
     if (totalPriceEl) {
-      totalPriceEl.textContent = "₺" + totalPrice.toLocaleString("tr-TR", {
+      totalPriceEl.textContent = "₺" + totalPrice.toLocaleString(t.locale, {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       });
@@ -208,14 +654,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!cleanCode) return;
 
     playBeep();
+    const t = dLang();
 
     const existing = movementItems.find((i) => i.barcode === cleanCode);
     if (existing) {
       existing.qty += 1;
-      showToast(`Miktar artırıldı (+1): ${existing.name}`);
+      showToast(`${t.toastQtyInc}: ${getItemName(existing)}`);
     } else {
       const match = INVENTORY.find((i) => i.barcode === cleanCode) || {
-        name: `Özel Ürün (#${cleanCode.slice(-4)})`,
+        barcode: cleanCode,
+        name: `${t.customProductPrefix} (#${cleanCode.slice(-4)})`,
         location: "Genel Depo",
         price: 95.0,
       };
@@ -227,7 +675,7 @@ document.addEventListener("DOMContentLoaded", () => {
         qty: 1,
         price: match.price,
       });
-      showToast(`Barkod okundu: ${match.name}`);
+      showToast(`${t.toastScanned}: ${getItemName(match)}`);
     }
 
     renderMovementTable(cleanCode);
@@ -290,7 +738,15 @@ document.addEventListener("DOMContentLoaded", () => {
     btnReset.addEventListener("click", () => {
       movementItems = [];
       renderMovementTable();
-      showToast("Stok hareket listesi temizlendi.");
+      showToast(dLang().toastListCleared);
+    });
+  }
+
+  const btnSaveMovement = document.getElementById("winBtnSaveMovement");
+  if (btnSaveMovement) {
+    btnSaveMovement.addEventListener("click", () => {
+      playCashRegister();
+      showToast(dLang().toastSavedMovement);
     });
   }
 
@@ -304,14 +760,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderProductsList() {
     if (!productsTableBody) return;
+    const t = dLang();
     const query = (productSearchInput?.value || "").toLowerCase().trim();
     const category = productCategorySelect?.value || "all";
 
     const filtered = INVENTORY.filter((item) => {
+      const displayName = getItemName(item).toLowerCase();
+      const displayLoc = getItemLocation(item).toLowerCase();
       const matchesQuery =
+        displayName.includes(query) ||
         item.name.toLowerCase().includes(query) ||
         item.barcode.includes(query) ||
-        item.location.toLowerCase().includes(query);
+        displayLoc.includes(query);
       const matchesCat = category === "all" || item.category === category;
       return matchesQuery && matchesCat;
     });
@@ -322,32 +782,32 @@ document.addEventListener("DOMContentLoaded", () => {
       productsTableBody.innerHTML = `
         <tr>
           <td colspan="8" style="text-align: center; padding: 30px; color: #94a3b8;">
-            Aramanıza uygun ürün bulunamadı.
+            ${t.emptyProductsSearch}
           </td>
         </tr>`;
       return;
     }
 
     filtered.forEach((item) => {
-      let statusBadge = `<span class="badge-status normal">Stokta (${item.stock})</span>`;
+      let statusBadge = `<span class="badge-status normal">${t.stockNormal} (${item.stock})</span>`;
       if (item.stock <= item.critical) {
-        statusBadge = `<span class="badge-status danger">Kritik Stok (${item.stock})</span>`;
+        statusBadge = `<span class="badge-status danger">${t.stockDanger} (${item.stock})</span>`;
       } else if (item.stock < item.critical * 1.5) {
-        statusBadge = `<span class="badge-status warning">Azalıyor (${item.stock})</span>`;
+        statusBadge = `<span class="badge-status warning">${t.stockWarning} (${item.stock})</span>`;
       }
 
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td><span style="font-size: 1.2rem;">${item.icon || "📦"}</span></td>
         <td><code>${item.barcode}</code></td>
-        <td><strong>${item.name}</strong></td>
-        <td>${item.category}</td>
-        <td><span class="badge-location">${item.location}</span></td>
+        <td><strong>${getItemName(item)}</strong></td>
+        <td>${getItemCategory(item)}</td>
+        <td><span class="badge-location">${getItemLocation(item)}</span></td>
         <td>${statusBadge}</td>
         <td>₺${item.price.toFixed(2)}</td>
         <td>
           <button class="win-btn-sec" style="padding: 4px 10px; font-size: 0.76rem;" onclick="window.printBarcodeDirect('${item.barcode}')">
-            🖨️ Etiket
+            ${t.labelBtn}
           </button>
         </td>
       `;
@@ -360,11 +820,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (btnNewProduct) {
     btnNewProduct.addEventListener("click", () => {
+      const t = dLang();
       const randomNum = Math.floor(1000 + Math.random() * 9000);
       const newCode = "8690" + randomNum;
       INVENTORY.unshift({
         barcode: newCode,
-        name: `Yeni Eklenen Ürün #${randomNum}`,
+        name: `${t.newProductPrefix} #${randomNum}`,
         category: "Hırdavat",
         location: "Raf B-" + Math.floor(1 + Math.random() * 20),
         stock: 50,
@@ -373,30 +834,21 @@ document.addEventListener("DOMContentLoaded", () => {
         icon: "📦",
       });
       renderProductsList();
-      showToast(`Yeni ürün kartı oluşturuldu: #${newCode}`);
+      showToast(`${t.toastNewProduct}: #${newCode}`);
     });
   }
 
   // Ürün Listesini Gerçek Excel (CSV) Olarak İndirme
   if (btnExportProductsExcel) {
     btnExportProductsExcel.addEventListener("click", () => {
-      const headers = [
-        "Barkod No",
-        "Ürün Tanımı",
-        "Kategori",
-        "Depo/Raf Konumu",
-        "Mevcut Stok Adedi",
-        "Kritik Stok Seviyesi",
-        "Birim Fiyat (TL)",
-      ];
-
-      const rows = [headers];
+      const t = dLang();
+      const rows = [t.exportProdHeaders];
       INVENTORY.forEach((item) => {
         rows.push([
           item.barcode,
-          item.name,
-          item.category,
-          item.location,
+          getItemName(item),
+          getItemCategory(item),
+          getItemLocation(item),
           item.stock,
           item.critical,
           item.price.toFixed(2),
@@ -436,20 +888,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Şablon Excel Dosyası İndirme
   if (btnDownloadTemplate) {
     btnDownloadTemplate.addEventListener("click", () => {
-      const templateHeaders = [
-        "Barkod",
-        "Urun_Adi",
-        "Kategori",
-        "Raf_Konumu",
-        "Stok_Miktari",
-        "Kritik_Limit",
-        "Birim_Fiyat",
-      ];
+      const t = dLang();
       const sampleRows = [
-        templateHeaders,
-        ["8690991", "Örnek Çelik Somun M10", "Hırdavat", "Raf C-02", "120", "20", "18.50"],
-        ["8690992", "Karton Koli 40x30x30", "Ambalaj", "Raf A-10", "300", "50", "32.00"],
-        ["8690993", "Sanayi Tipi Gres Yağı 1kg", "Kimyasal", "Raf B-08", "45", "10", "210.00"],
+        t.exportTplHeaders,
+        ["8690991", t.products["8691002"] || "Çelik Somun M10", t.categories["Hırdavat"], `${t.rackPrefix} C-02`, "120", "20", "18.50"],
+        ["8690992", t.products["8691001"] || "Karton Koli 40x30x30", t.categories["Ambalaj"], `${t.rackPrefix} A-10`, "300", "50", "32.00"],
+        ["8690993", t.products["8691003"] || "Gres Yağı 1KG", t.categories["Kimyasal"], `${t.rackPrefix} B-08`, "45", "10", "210.00"],
       ];
       exportToExcelCSV("poseidon-ornek-stok-sablonu.csv", sampleRows);
     });
@@ -458,19 +902,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // Excel'den Toplu Ürün Girişi Simülasyonu
   function executeImport(batchProducts) {
     if (!importProgressWrap || !importProgressFill) return;
+    const t = dLang();
     importProgressWrap.style.display = "block";
     importProgressFill.style.width = "0%";
-    if (importProgressText) importProgressText.textContent = "Excel dosyası okunuyor...";
+    if (importProgressText) importProgressText.textContent = t.excelReading;
 
     setTimeout(() => {
       importProgressFill.style.width = "45%";
-      if (importProgressText) importProgressText.textContent = "Barkodlar ve ürün kartları doğrulanıyor...";
+      if (importProgressText) importProgressText.textContent = dLang().excelValidating;
 
       setTimeout(() => {
         importProgressFill.style.width = "100%";
-        if (importProgressText) importProgressText.textContent = `Tamamlandı! ${batchProducts.length} adet ürün sisteme aktarıldı.`;
+        if (importProgressText) importProgressText.textContent = dLang().excelDone(batchProducts.length);
 
-        // Ürünleri Envantere Ekle
         batchProducts.forEach((p) => {
           INVENTORY.unshift(p);
         });
@@ -479,7 +923,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderPosTiles();
 
         playCashRegister();
-        showToast(`✓ ${batchProducts.length} adet yeni ürün Excel'den başarıyla yüklendi!`);
+        showToast(dLang().toastImportSuccess(batchProducts.length));
 
         setTimeout(() => {
           closeExcelModal();
@@ -516,6 +960,7 @@ document.addEventListener("DOMContentLoaded", () => {
       reader.onload = (evt) => {
         const text = evt.target.result;
         const lines = text.split(/\r\n|\n/).filter((l) => l.trim().length > 0);
+        const t = dLang();
 
         if (lines.length > 1) {
           const imported = [];
@@ -524,7 +969,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (parts.length >= 2) {
               imported.push({
                 barcode: parts[0] || "869" + Math.floor(1000 + Math.random() * 9000),
-                name: parts[1] || `Excel Ürünü #${i}`,
+                name: parts[1] || t.newExcelItem(i),
                 category: parts[2] || "Genel",
                 location: parts[3] || "Raf A-01",
                 stock: parseInt(parts[4]) || 50,
@@ -539,8 +984,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
           }
         }
-        // Eğer standart okunamadıysa demo batch çalıştır
-        showToast("Dosya okundu, veriler işleniyor...");
+        showToast(t.toastFileParsing);
         btnSimulateExcelImport.click();
       };
       reader.readAsText(file, "UTF-8");
@@ -565,7 +1009,7 @@ document.addEventListener("DOMContentLoaded", () => {
       tile.className = "pos-product-tile";
       tile.innerHTML = `
         <div class="tile-icon">${item.icon || "📦"}</div>
-        <div class="tile-name">${item.name}</div>
+        <div class="tile-name">${getItemName(item)}</div>
         <div class="tile-price">₺${item.price.toFixed(2)}</div>
       `;
       tile.addEventListener("click", () => {
@@ -577,22 +1021,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderPosCart() {
     if (!posCartListEl) return;
+    const t = dLang();
     posCartListEl.innerHTML = "";
 
     if (posCart.length === 0) {
-      posCartListEl.innerHTML = `<div style="text-align: center; color: #64748b; padding: 40px 0;">Sepet boş. Sağdaki ürünlere tıklayarak sepete ekleyin.</div>`;
+      posCartListEl.innerHTML = `<div style="text-align: center; color: #64748b; padding: 40px 0;">${t.emptyCart}</div>`;
     } else {
       posCart.forEach((item, idx) => {
         const line = document.createElement("div");
         line.className = "pos-cart-item";
         line.innerHTML = `
           <div>
-            <strong>${item.name}</strong><br/>
-            <small style="color: #94a3b8;">${item.qty} adet x ₺${item.price.toFixed(2)}</small>
+            <strong>${getItemName(item)}</strong><br/>
+            <small style="color: #94a3b8;">${item.qty} ${t.unitQtyLabel} × ₺${item.price.toFixed(2)}</small>
           </div>
           <div style="display: flex; align-items: center; gap: 10px;">
             <strong style="color: var(--accent-light);">₺${(item.qty * item.price).toFixed(2)}</strong>
-            <button class="btn-row-del" onclick="window.removePosItem(${idx})" title="Çıkar">✕</button>
+            <button class="btn-row-del" onclick="window.removePosItem(${idx})" title="${t.removePosTitle}">✕</button>
           </div>
         `;
         posCartListEl.appendChild(line);
@@ -600,7 +1045,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const total = posCart.reduce((sum, i) => sum + i.qty * i.price, 0);
-    if (posTotalEl) posTotalEl.textContent = "₺" + total.toLocaleString("tr-TR", { minimumFractionDigits: 2 });
+    if (posTotalEl) {
+      posTotalEl.textContent = "₺" + total.toLocaleString(t.locale, { minimumFractionDigits: 2 });
+    }
   }
 
   function addToPosCart(item) {
@@ -612,7 +1059,7 @@ document.addEventListener("DOMContentLoaded", () => {
       posCart.push({ barcode: item.barcode, name: item.name, qty: 1, price: item.price });
     }
     renderPosCart();
-    showToast(`Sepete eklendi: ${item.name}`);
+    showToast(`${dLang().toastAddedCart}: ${getItemName(item)}`);
   }
 
   window.removePosItem = function (idx) {
@@ -622,14 +1069,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".pos-pay-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
+      const t = dLang();
       if (posCart.length === 0) {
-        showToast("Lütfen önce sepete ürün ekleyin.");
+        showToast(t.toastCartEmpty);
         return;
       }
       playCashRegister();
-      const method = btn.getAttribute("data-method") || "Nakit";
+      const rawMethod = btn.getAttribute("data-method") || "Nakit";
+      const methodLabel = t.payMethods[rawMethod] || rawMethod;
       const receiptNo = "#POS-" + Math.floor(1000 + Math.random() * 9000);
-      showToast(`Satış Tamamlandı (${method})! Fiş No: ${receiptNo}`);
+      showToast(t.toastSaleDone(methodLabel, receiptNo));
       posCart = [];
       renderPosCart();
     });
@@ -648,21 +1097,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderCountTable() {
     if (!countTableBody) return;
+    const t = dLang();
     countTableBody.innerHTML = "";
 
     countItems.forEach((item, idx) => {
       const diff = item.counted - item.system;
-      let diffBadge = `<span style="color: #10b981; font-weight: 700;">✓ Eşit (0)</span>`;
+      let diffBadge = `<span style="color: #10b981; font-weight: 700;">${t.diffEqual}</span>`;
       if (diff > 0) {
-        diffBadge = `<span style="color: #38bdf8; font-weight: 700;">+${diff} Fazla</span>`;
+        diffBadge = `<span style="color: #38bdf8; font-weight: 700;">${t.diffPlus(diff)}</span>`;
       } else if (diff < 0) {
-        diffBadge = `<span style="color: #f87171; font-weight: 700;">${diff} Eksik</span>`;
+        diffBadge = `<span style="color: #f87171; font-weight: 700;">${t.diffMinus(diff)}</span>`;
       }
 
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td><code>${item.barcode}</code></td>
-        <td><strong>${item.name}</strong></td>
+        <td><strong>${getItemName(item)}</strong></td>
         <td><span class="badge-location">${item.location}</span></td>
         <td><strong>${item.system}</strong></td>
         <td>
@@ -689,7 +1139,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btnConfirmCount.addEventListener("click", () => {
       countItems.forEach((i) => (i.system = i.counted));
       renderCountTable();
-      showToast("Depo sayımı onaylandı ve sistem stokları güncellendi!");
+      showToast(dLang().toastCountConfirmed);
     });
   }
 
@@ -699,23 +1149,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (btnExportExcel) {
     btnExportExcel.addEventListener("click", () => {
-      const headers = [
-        "Barkod No",
-        "Ürün Adı",
-        "Kategori",
-        "Depo Konumu",
-        "Mevcut Stok Miktarı",
-        "Birim Maliyet (TL)",
-        "Toplam Envanter Değeri (TL)",
-      ];
-      const rows = [headers];
+      const t = dLang();
+      const rows = [t.exportRepHeaders];
       INVENTORY.forEach((item) => {
         const lineVal = item.stock * item.price;
         rows.push([
           item.barcode,
-          item.name,
-          item.category,
-          item.location,
+          getItemName(item),
+          getItemCategory(item),
+          getItemLocation(item),
           item.stock,
           item.price.toFixed(2),
           lineVal.toFixed(2),
@@ -727,7 +1169,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (btnExportPdf) {
     btnExportPdf.addEventListener("click", () => {
-      showToast("PDF Envanter Dökümü hazırlandı ve indirildi.");
+      showToast(dLang().toastPdfReady);
     });
   }
 
@@ -735,7 +1177,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnSaveSettings = document.getElementById("btnSaveSettings");
   if (btnSaveSettings) {
     btnSaveSettings.addEventListener("click", () => {
-      showToast("Sistem ve donanım ayarları başarıyla kaydedildi!");
+      showToast(dLang().toastSettingsSaved);
     });
   }
 
@@ -753,10 +1195,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function openLabel(item) {
     if (!modal) return;
-    document.getElementById("lblProductName").textContent = item.name;
+    const t = dLang();
+    document.getElementById("lblProductName").textContent = getItemName(item);
     document.getElementById("lblBarcodeNum").textContent = item.barcode;
-    document.getElementById("lblLocation").textContent = item.location;
-    document.getElementById("lblDate").textContent = new Date().toLocaleDateString("tr-TR");
+    document.getElementById("lblLocation").textContent = getItemLocation(item);
+    document.getElementById("lblDate").textContent = new Date().toLocaleDateString(t.locale);
     document.getElementById("lblPrice").textContent = "₺" + item.price.toFixed(2);
     modal.classList.add("active");
   }
@@ -777,19 +1220,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (thermalPrintBtn) {
     thermalPrintBtn.addEventListener("click", () => {
-      thermalPrintBtn.textContent = "Yazdırılıyor...";
+      const t = dLang();
+      thermalPrintBtn.textContent = t.thermalPrinting;
       setTimeout(() => {
-        thermalPrintBtn.textContent = "✓ Yazdırıldı";
-        showToast("Termal barkod etiketi yazıcıya gönderildi!");
+        thermalPrintBtn.textContent = dLang().thermalPrinted;
+        showToast(dLang().toastThermalSent);
         setTimeout(() => {
           closeModal();
-          thermalPrintBtn.textContent = "🖨️ Etiketi Yazdır";
+          thermalPrintBtn.textContent = dLang().thermalPrintBtn;
         }, 800);
       }, 700);
     });
   }
 
+  // Dil değişikliğinde tüm dinamik demo görünümlerini güncelle
+  document.addEventListener("poseidon:langchange", (e) => {
+    const nextLang = e.detail?.lang;
+    if (nextLang && DEMO_LANG[nextLang]) {
+      demoLang = nextLang;
+      updateSoundButton();
+      renderMovementTable();
+      renderProductsList();
+      renderPosTiles();
+      renderPosCart();
+      renderCountTable();
+    }
+  });
+
   // İlk çizimler
+  updateSoundButton();
   renderMovementTable();
   renderProductsList();
   renderPosTiles();
