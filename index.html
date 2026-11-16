@@ -7,9 +7,35 @@
     <title>Poseidon | Yazilim Cozumleri</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/demo.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
+    <!-- Multi-Layered Turquoise Ocean Video & Studio Background -->
+    <div class="ambient-canvas" aria-hidden="true">
+      <div class="ambient-ocean-wrap" id="oceanWrap">
+        <video
+          class="ambient-ocean-video"
+          id="oceanBgVideo"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          poster="https://commons.wikimedia.org/wiki/Special:FilePath/Aerial_view_of_sand_beach._Top_view_sea_waves._Drone_footage.webm?width=1280"
+        >
+          <source src="https://commons.wikimedia.org/wiki/Special:FilePath/Aerial_view_of_sand_beach._Top_view_sea_waves._Drone_footage.webm" type="video/webm" />
+          <source src="https://upload.wikimedia.org/wikipedia/commons/9/91/Mesa_del_Mar_waves_2.webm" type="video/webm" />
+        </video>
+        <div class="ambient-ocean-overlay" id="oceanOverlay"></div>
+      </div>
+      <div class="ambient-glow"></div>
+      <div class="ambient-grid"></div>
+      <div class="ambient-dots"></div>
+      <div class="ambient-noise"></div>
+    </div>
+
     <!-- Navbar -->
     <nav class="navbar" id="navbar">
       <div class="container">
@@ -28,29 +54,26 @@
                 <circle cx="12" cy="12" r="10"/>
                 <path d="M12 2a7 7 0 0 0-7 7c0 3 2 5 2 7a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2c0-2 2-4 2-7a7 7 0 0 0-7-7z"/>
               </svg>
-              <span>Tema</span>
+              <span data-i18n="themeBtnLabel">Tema</span>
               <span class="active-theme-dot" id="activeThemeDot"></span>
             </button>
             <div class="theme-dropdown" id="themeDropdown">
-              <div class="theme-option active" data-theme="ocean">
-                <span class="theme-circle" style="background: linear-gradient(135deg, #2563eb, #38bdf8);"></span>
-                <span>Derin Okyanus</span>
+              <div class="theme-dropdown-label" data-i18n="themeMenuTitle">Görünüm Temaları</div>
+              <div class="theme-option" data-theme="ocean-video">
+                <span class="theme-circle" style="background: linear-gradient(135deg, #06b6d4, #0284c7);"></span>
+                <span data-i18n="themeOceanVideo">Turkuaz Okyanus</span>
               </div>
-              <div class="theme-option" data-theme="emerald">
-                <span class="theme-circle" style="background: linear-gradient(135deg, #059669, #34d399);"></span>
-                <span>Zümrüt & Grafit</span>
-              </div>
-              <div class="theme-option" data-theme="slate">
-                <span class="theme-circle" style="background: linear-gradient(135deg, #475569, #94a3b8);"></span>
-                <span>Titan & Platin</span>
-              </div>
-              <div class="theme-option" data-theme="amber">
-                <span class="theme-circle" style="background: linear-gradient(135deg, #d97706, #fbbf24);"></span>
-                <span>Kehribar & Gece</span>
-              </div>
-              <div class="theme-option" data-theme="light">
+              <div class="theme-option active" data-theme="studio-light">
                 <span class="theme-circle" style="background: linear-gradient(135deg, #ffffff, #2563eb); border: 1px solid #cbd5e1;"></span>
-                <span>Kurumsal Açık</span>
+                <span data-i18n="themeStudioLight">3B Sistem (Ferah)</span>
+              </div>
+              <div class="theme-option" data-theme="studio-dark">
+                <span class="theme-circle" style="background: linear-gradient(135deg, #0b0f19, #38bdf8);"></span>
+                <span data-i18n="themeStudioDark">3B Sistem (Koyu)</span>
+              </div>
+              <div class="theme-option" data-theme="ocean-light">
+                <span class="theme-circle" style="background: linear-gradient(135deg, #ffffff, #22d3ee); border: 1px solid #a5f3fc;"></span>
+                <span data-i18n="themeOceanLight">Aydınlık Turkuaz</span>
               </div>
             </div>
           </div>
@@ -63,22 +86,431 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
+    <!-- Hero A: Live Turquoise Ocean Video Hero -->
+    <section class="hero hero-ocean-view" id="heroOcean">
       <div class="container">
-        <div class="hero-content fade-in">
-          <h1 data-i18n="heroTitle">Dijital <span>Donusumunuzu</span> Baslatin</h1>
-          <p data-i18n="heroSubtitle">Poseidon olarak, isletmenizi gelecege tasiyacak web cozumleri ve kurumsal yazilimlar gelistiriyoruz.</p>
-          <a href="#demos" class="btn-primary">Canlı Sistemleri İnceleyin</a>
+        <div class="hero-grid">
+          <div class="hero-content fade-in">
+            <div class="hero-badge">
+              <span class="hero-badge-dot"></span>
+              <span data-i18n="heroBadge">KURUMSAL YAZILIM &amp; OTOMASYON MİMARİSİ</span>
+            </div>
+            <h1 data-i18n="heroTitle">Dijital Denizlerde <span>Güçlü</span> Rotanız</h1>
+            <p data-i18n="heroSubtitle">Veri Deryasında Kaybolmayın! İşinizi Poseidon ile Kontrol Altına Alın.</p>
+            <div class="hero-cta-group">
+              <a href="#demos" class="btn-primary">
+                <span data-i18n="heroPrimaryCta">Canlı Sistemleri İnceleyin</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+              <a href="#contact" class="btn-secondary" data-i18n="heroCta">Bizimle İletişime Geçin</a>
+            </div>
+            <div class="hero-metrics">
+              <div class="hero-metric-item">
+                <strong class="hero-metric-val">%99.9</strong>
+                <span class="hero-metric-label" data-i18n="metricUptime">Çalışma Süresi</span>
+              </div>
+              <div class="hero-metric-divider"></div>
+              <div class="hero-metric-item">
+                <strong class="hero-metric-val">&lt; 15ms</strong>
+                <span class="hero-metric-label" data-i18n="metricBarcode">Barkod Tepkisi</span>
+              </div>
+              <div class="hero-metric-divider"></div>
+              <div class="hero-metric-item">
+                <strong class="hero-metric-val" data-i18n="metricIntegratedVal">Tam Entegre</strong>
+                <span class="hero-metric-label">ERP &amp; POS</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual fade-in">
+            <div class="telemetry-card spotlight-card">
+              <div class="telemetry-header">
+                <div class="telemetry-title-wrap">
+                  <span class="telemetry-status-dot"></span>
+                  <span class="telemetry-code">POSEIDON.CORE // v2.4.8</span>
+                </div>
+                <span class="telemetry-pill" data-i18n="telemetryLive">CANLI TELEMETRİ</span>
+              </div>
+              <div class="telemetry-kpi-row">
+                <div class="telemetry-kpi">
+                  <span class="t-label" data-i18n="telemetrySkuLabel">AKTİF DEPO STOK</span>
+                  <strong class="t-val">1,420 <small>SKU</small></strong>
+                  <span class="t-trend positive" data-i18n="telemetrySkuTrend">+14% haftalık</span>
+                </div>
+                <div class="telemetry-kpi">
+                  <span class="t-label" data-i18n="telemetrySyncLabel">SENKRONİZASYON</span>
+                  <strong class="t-val">12 <small>ms</small></strong>
+                  <span class="t-trend" data-i18n="telemetrySyncSub">Lokal + Bulut</span>
+                </div>
+                <div class="telemetry-kpi">
+                  <span class="t-label" data-i18n="telemetryPosLabel">POS TERMİNAL</span>
+                  <strong class="t-val">04 <small data-i18n="telemetryPosActive">Aktif</small></strong>
+                  <span class="t-trend positive">Nominal</span>
+                </div>
+              </div>
+              <div class="telemetry-stream">
+                <div class="telemetry-stream-head">
+                  <span data-i18n="telemetryStreamTitle">CANLI İŞLEM AKIŞI</span>
+                  <span class="mono-tag">ERP_EVENT_BUS</span>
+                </div>
+                <div class="telemetry-log-row">
+                  <span class="log-time">13:42:08</span>
+                  <span class="log-code">8690112</span>
+                  <span class="log-msg">Koli Bandı 45x100mm · Raf A-04</span>
+                  <span class="log-badge ok">OK</span>
+                </div>
+                <div class="telemetry-log-row">
+                  <span class="log-time">13:42:14</span>
+                  <span class="log-code">POS-#01</span>
+                  <span class="log-msg">Fatura #4821 · Nakit Tahsilat</span>
+                  <span class="log-badge accent">SYNC</span>
+                </div>
+                <div class="telemetry-log-row">
+                  <span class="log-time">13:42:29</span>
+                  <span class="log-code">8690512</span>
+                  <span class="log-msg">Zeytinyağı 5L · Kritik Eşik (12)</span>
+                  <span class="log-badge warn" data-i18n="telemetryWarn">UYARI</span>
+                </div>
+              </div>
+              <div class="telemetry-footer">
+                <div class="telemetry-load-wrap">
+                  <div class="telemetry-load-label">
+                    <span data-i18n="telemetryHealth">Sunucu &amp; Veritabanı Sağlığı</span>
+                    <span>98.4%</span>
+                  </div>
+                  <div class="telemetry-load-bar">
+                    <span style="width: 98.4%;"></span>
+                  </div>
+                </div>
+                <a href="#demos" class="telemetry-jump" data-i18n="telemetryJump">Terminali Aç →</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="hero-waves">
-        <svg class="wave1" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,30 1440,60 L1440,120 L0,120 Z" fill="#1e3a8a" />
-        </svg>
-        <svg class="wave2" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0,80 C240,20 480,100 720,60 C960,20 1200,100 1440,60 L1440,120 L0,120 Z" fill="#0284c7" />
-        </svg>
+    </section>
+
+    <!-- Hero B: 3-Stage Scrollytelling Hardware & Software Architecture Hero -->
+    <section class="scrolly-section hero-scrolly-view" id="hero" data-active-step="1">
+      <div class="scrolly-sticky" id="scrollySticky">
+        <canvas class="stream-canvas" id="streamCanvas" aria-hidden="true"></canvas>
+
+        <div class="container scrolly-container">
+          <div class="scrolly-stage">
+            <!-- Left Column: Step-Responsive Editorial Copy -->
+            <div class="scrolly-left">
+              <div class="scrolly-copy-panel is-active" data-step="1">
+                <div class="scrolly-eyebrow">
+                  <span class="eyebrow-dot"></span>
+                  <span data-i18n="scrollyStep1Eyebrow">01 / DİJİTAL ÇEKİRDEK</span>
+                </div>
+                <h1 class="scrolly-title" data-i18n="heroTitle">Dijital Dönüşümün <span>Çekirdek</span> Mimarisi</h1>
+                <p class="scrolly-desc" data-i18n="scrollyStep1Desc">
+                  Donanım gücünü parçalara ayırıp en saf yazılım modülleriyle birleştiriyoruz. Aşağı kaydırdıkça mimarinin nasıl kurulduğunu izleyin.
+                </p>
+                <div class="scrolly-cta-row">
+                  <a href="#demos" class="btn-primary">
+                    <span data-i18n="heroPrimaryCta">Canlı Sistemleri İnceleyin</span>
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+                  <a href="#contact" class="btn-secondary" data-i18n="heroCta">Bizimle İletişime Geçin</a>
+                </div>
+              </div>
+
+              <div class="scrolly-copy-panel" data-step="2">
+                <div class="scrolly-eyebrow">
+                  <span class="eyebrow-dot"></span>
+                  <span data-i18n="scrollyStep2Eyebrow">02 / MİMARİ AKIŞ</span>
+                </div>
+                <h2 class="scrolly-title" data-i18n="scrollyStep2Title">Yazılım Modülleri <span>Tek Gövdede</span> Birleşir</h2>
+                <p class="scrolly-desc" data-i18n="scrollyStep2Desc">
+                  Web, API, SQL ve Otomasyon çekirdekleri veri hatları boyunca süzülerek modern iş bilgisayarınız üzerinde kusursuz arayüzlere dönüşür.
+                </p>
+                <div class="scrolly-step-tags">
+                  <span class="step-chip">&lt;/&gt; React &amp; Web</span>
+                  <span class="step-chip">{ } REST &amp; GraphQL</span>
+                  <span class="step-chip" data-i18n="scrollyChipSql">SQL Canlı Senkron</span>
+                </div>
+              </div>
+
+              <div class="scrolly-copy-panel" data-step="3">
+                <div class="scrolly-eyebrow">
+                  <span class="eyebrow-dot"></span>
+                  <span data-i18n="scrollyStep3Eyebrow">03 / CANLI SİSTEM</span>
+                </div>
+                <h2 class="scrolly-title" data-i18n="scrollyStep3Title">İşletmenize Özel <span>Tam Entegre</span> Ekosistem</h2>
+                <p class="scrolly-desc" data-i18n="scrollyStep3Desc">
+                  ERP, Barkodlu Depo Takibi ve Hızlı Satış terminalleri uçtan uca bağlanır. Her bir bileşen yüksek hız ve kesintisiz çalışma için optimize edilir.
+                </p>
+                <div class="scrolly-cta-row">
+                  <a href="#demos" class="btn-primary">
+                    <span data-i18n="scrollyStep3Cta">Barkod &amp; ERP Demosunu Aç</span>
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19"></line>
+                      <polyline points="19 12 12 19 5 12"></polyline>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Center Column: Interactive 3D Hardware + Flowing Software Icons Rig -->
+            <div class="scrolly-center">
+              <div class="hardware-rig" id="hardwareRig">
+                <div class="rig-studio-shadow"></div>
+
+                <!-- Module 1: Exploded 3D PC Case -->
+                <div class="rig-pc-case" id="rigPcCase">
+                  <div class="pc-layer pc-backplate">
+                    <div class="pc-io-ports">
+                      <span></span><span></span><span></span><span></span>
+                    </div>
+                  </div>
+                  <div class="pc-layer pc-chassis">
+                    <div class="pc-chassis-top">
+                      <span class="pc-led-dot"></span>
+                      <span class="pc-chassis-label">POSEIDON // CORE TOWER</span>
+                    </div>
+                    <div class="pc-mesh-vents">
+                      <span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                  </div>
+                  <div class="pc-layer pc-motherboard">
+                    <div class="pcb-traces"></div>
+                    <div class="pc-cpu-core">
+                      <div class="cpu-pins"></div>
+                      <span class="cpu-brand">P-CORE</span>
+                      <span class="cpu-sub">v2.4</span>
+                    </div>
+                    <div class="pc-ram-sticks">
+                      <span></span><span></span><span></span>
+                    </div>
+                  </div>
+                  <div class="pc-layer pc-gpu-unit">
+                    <div class="gpu-fan"></div>
+                    <div class="gpu-fan"></div>
+                    <span class="gpu-label">COMPUTE ENGINE</span>
+                  </div>
+                  <div class="pc-layer pc-glass-panel">
+                    <span class="glass-shine"></span>
+                    <span class="glass-corner-tag">TEMPERED // 3D</span>
+                  </div>
+                </div>
+
+                <!-- Module 2: Flowing Software Icon Nodes (Spread -> Stream Down -> Enter Laptop) -->
+                <div class="rig-icon-stream" id="rigIconStream">
+                  <div class="tech-node" data-idx="0">
+                    <span class="tech-glyph">&lt;/&gt;</span>
+                    <span class="tech-name">Web UI</span>
+                  </div>
+                  <div class="tech-node" data-idx="1">
+                    <span class="tech-glyph">{ }</span>
+                    <span class="tech-name">API Core</span>
+                  </div>
+                  <div class="tech-node" data-idx="2">
+                    <span class="tech-glyph">SQL</span>
+                    <span class="tech-name">Veritabanı</span>
+                  </div>
+                  <div class="tech-node" data-idx="3">
+                    <span class="tech-glyph">☁</span>
+                    <span class="tech-name">Bulut</span>
+                  </div>
+                  <div class="tech-node" data-idx="4">
+                    <span class="tech-glyph">⚙</span>
+                    <span class="tech-name">Otomasyon</span>
+                  </div>
+                  <div class="tech-node" data-idx="5">
+                    <span class="tech-glyph">|||</span>
+                    <span class="tech-name">Barkod</span>
+                  </div>
+                  <div class="tech-node" data-idx="6">
+                    <span class="tech-glyph">◈</span>
+                    <span class="tech-name">ERP</span>
+                  </div>
+                  <div class="tech-node" data-idx="7">
+                    <span class="tech-glyph">⚡</span>
+                    <span class="tech-name">Hızlı POS</span>
+                  </div>
+                </div>
+
+                <!-- Module 3: Assembling 3D Laptop -->
+                <div class="rig-laptop" id="rigLaptop">
+                  <div class="laptop-lid">
+                    <div class="laptop-bezel">
+                      <span class="laptop-cam"></span>
+                      <div class="laptop-screen-ui">
+                        <div class="ui-topbar">
+                          <span class="ui-dots"><i></i><i></i><i></i></span>
+                          <span class="ui-title">poseidon-erp.app</span>
+                          <span class="ui-pill">DERLENİYOR</span>
+                        </div>
+                        <div class="ui-grid">
+                          <div class="ui-block ui-sidebar">
+                            <span></span><span></span><span></span><span></span>
+                          </div>
+                          <div class="ui-block ui-main">
+                            <div class="ui-code-lines">
+                              <span></span><span></span><span></span>
+                            </div>
+                            <div class="ui-bars">
+                              <i style="height: 45%"></i>
+                              <i style="height: 75%"></i>
+                              <i style="height: 60%"></i>
+                              <i style="height: 92%"></i>
+                              <i style="height: 68%"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="laptop-base">
+                    <div class="laptop-keyboard">
+                      <span></span><span></span><span></span>
+                    </div>
+                    <div class="laptop-trackpad"></div>
+                  </div>
+                </div>
+
+                <!-- Module 4: Complete Enterprise Workstation + 5 Floating Spec Tags -->
+                <div class="rig-workstation" id="rigWorkstation">
+                  <div class="ws-desk-surface">
+                    <!-- Main Enterprise Monitor -->
+                    <div class="ws-monitor">
+                      <div class="ws-screen">
+                        <div class="ws-app-header">
+                          <span class="ws-brand">POSEIDON ERP v2.4</span>
+                          <span class="ws-live-badge">● CANLI SENKRON</span>
+                        </div>
+                        <div class="ws-app-kpis">
+                          <div class="ws-kpi">
+                            <small>STOK</small>
+                            <strong>1,420</strong>
+                          </div>
+                          <div class="ws-kpi">
+                            <small>TEPKİ</small>
+                            <strong>12ms</strong>
+                          </div>
+                          <div class="ws-kpi">
+                            <small>UPTIME</small>
+                            <strong>%99.9</strong>
+                          </div>
+                        </div>
+                        <div class="ws-app-rows">
+                          <div class="ws-row"><span>8690112</span><span>Koli Bandı</span><em>A-04</em></div>
+                          <div class="ws-row"><span>8690245</span><span>Çelik Civata</span><em>C-12</em></div>
+                          <div class="ws-row"><span>8690678</span><span>Rulman 6204</span><em>C-05</em></div>
+                        </div>
+                      </div>
+                      <div class="ws-stand-neck"></div>
+                      <div class="ws-stand-foot"></div>
+                    </div>
+
+                    <!-- Mini Workstation Server Tower -->
+                    <div class="ws-tower">
+                      <div class="ws-tower-led"></div>
+                      <div class="ws-tower-slots">
+                        <span></span><span></span><span></span>
+                      </div>
+                      <span class="ws-tower-tag">SRV</span>
+                    </div>
+
+                    <!-- Barcode Scanner Terminal -->
+                    <div class="ws-scanner">
+                      <div class="ws-scan-beam"></div>
+                      <div class="ws-scan-screen">POS #01</div>
+                    </div>
+                  </div>
+
+                  <!-- 5 Floating Spec Tags -->
+                  <div class="floating-spec-tag tag-1">
+                    <span class="tag-dot"></span>
+                    <div>
+                      <strong data-i18n="specTag1Title">ERP &amp; STOK YÖNETİMİ</strong>
+                      <small data-i18n="specTag1Sub">Gerçek Zamanlı Raf Takibi</small>
+                    </div>
+                  </div>
+                  <div class="floating-spec-tag tag-2">
+                    <span class="tag-dot"></span>
+                    <div>
+                      <strong data-i18n="specTag2Title">KURUMSAL WEB &amp; E-TİCARET</strong>
+                      <small data-i18n="specTag2Sub">Yüksek Hızlı Modern Arayüz</small>
+                    </div>
+                  </div>
+                  <div class="floating-spec-tag tag-3">
+                    <span class="tag-dot"></span>
+                    <div>
+                      <strong data-i18n="specTag3Title">HIZLI POS &amp; BARKOD</strong>
+                      <small data-i18n="specTag3Sub">&lt; 15ms El Terminali Tepkisi</small>
+                    </div>
+                  </div>
+                  <div class="floating-spec-tag tag-4">
+                    <span class="tag-dot"></span>
+                    <div>
+                      <strong data-i18n="specTag4Title">BULUT &amp; SQL SENKRON</strong>
+                      <small data-i18n="specTag4Sub">Otomatik Günlük Yedekleme</small>
+                    </div>
+                  </div>
+                  <div class="floating-spec-tag tag-5">
+                    <span class="tag-dot"></span>
+                    <div>
+                      <strong data-i18n="specTag5Title">%99.9 ÇALIŞMA SÜRESİ</strong>
+                      <small data-i18n="specTag5Sub">Ölçeklenebilir Mimari</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Editorial Big Step Numeral & Telemetry Specs -->
+            <div class="scrolly-right">
+              <div class="scrolly-big-num" id="scrollyBigNum">01</div>
+              <div class="scrolly-spec-box">
+                <div class="spec-row">
+                  <span data-i18n="scrollySpecStatusLabel">DURUM</span>
+                  <strong id="scrollyStatusVal">KASA KATMANLARI AYRILDI</strong>
+                </div>
+                <div class="spec-row">
+                  <span data-i18n="scrollySpecModulesLabel">MODÜLLER</span>
+                  <strong id="scrollyModulesVal">8 ÇEKİRDEK İKON AKTİF</strong>
+                </div>
+                <div class="spec-row">
+                  <span data-i18n="scrollySpecArchLabel">MİMARİ</span>
+                  <strong data-i18n="scrollySpecArchVal">MODÜLER · FULL-STACK</strong>
+                </div>
+              </div>
+              <div class="scrolly-scroll-hint" id="scrollyScrollHint">
+                <span data-i18n="scrollyScrollHint">Keşfetmek için kaydırın</span>
+                <span class="scroll-arrow">↓</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Step Progress Navigation -->
+          <div class="scrolly-progress-nav" id="scrollyProgressNav">
+            <button type="button" class="scrolly-step-btn is-active" data-target-step="1">
+              <span class="step-num">01</span>
+              <span class="step-label" data-i18n="scrollyNav1">Parçalanan Kasa &amp; İkonlar</span>
+            </button>
+            <div class="scrolly-progress-track">
+              <div class="scrolly-progress-fill" id="scrollyProgressFill"></div>
+            </div>
+            <button type="button" class="scrolly-step-btn" data-target-step="2">
+              <span class="step-num">02</span>
+              <span class="step-label" data-i18n="scrollyNav2">Akan İkonlar &amp; Laptop</span>
+            </button>
+            <button type="button" class="scrolly-step-btn" data-target-step="3">
+              <span class="step-num">03</span>
+              <span class="step-label" data-i18n="scrollyNav3">Oluşan Sistem</span>
+            </button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -884,6 +1316,38 @@
         </div>
       </div>
     </footer>
+
+    <!-- Quick Theme & Scene Switcher Dock -->
+    <div class="concept-dock" id="conceptDock" role="region" aria-label="Hızlı Tema Seçici">
+      <div class="video-scene-switcher" id="videoSceneSwitcher" aria-label="Okyanus Video Sahnesi Seçici">
+        <button type="button" class="scene-btn active" data-scene="turquoise" title="Turkuaz Kıyı">🌊 <span data-i18n="sceneTurquoise">Turkuaz</span></button>
+        <button type="button" class="scene-btn" data-scene="drone" title="Drone Okyanus">🌊 <span data-i18n="sceneDrone">Drone</span></button>
+        <button type="button" class="scene-btn" data-scene="open-sea" title="Açık Deniz">🌊 <span data-i18n="sceneOpenSea">Açık Deniz</span></button>
+      </div>
+      <div class="concept-dock-actions">
+        <button type="button" class="concept-dock-btn" data-concept="ocean-video">
+          <span class="dock-swatch swatch-turquoise"></span>
+          <span data-i18n="themeOceanVideo">Turkuaz Okyanus</span>
+        </button>
+        <button type="button" class="concept-dock-btn active" data-concept="studio-light">
+          <span class="dock-swatch swatch-studio-light"></span>
+          <span data-i18n="themeStudioLight">3B Sistem (Ferah)</span>
+        </button>
+        <button type="button" class="concept-dock-btn" data-concept="studio-dark">
+          <span class="dock-swatch swatch-studio-dark"></span>
+          <span data-i18n="themeStudioDark">3B Sistem (Koyu)</span>
+        </button>
+        <button type="button" class="concept-dock-btn" data-concept="ocean-light">
+          <span class="dock-swatch swatch-turquoise-light"></span>
+          <span data-i18n="themeOceanLight">Aydınlık Turkuaz</span>
+        </button>
+        <button type="button" class="concept-dock-collapse" id="conceptDockToggle" title="Çubuğu Küçült / Genişlet" aria-label="Çubuğu Küçült / Genişlet">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+      </div>
+    </div>
 
     <script src="js/translations.js"></script>
     <script src="js/barcode-demo.js"></script>

@@ -1,17 +1,77 @@
 const translations = {
   tr: {
-    // Navbar
+    // Navbar & Themes
     navAbout: "Hakkımızda",
     navServices: "Hizmetler",
     navDemos: "Sistemlerimiz",
     navContact: "İletişim",
     langBtn: "EN",
+    themeBtnLabel: "Tema",
+    themeMenuTitle: "Görünüm Temaları",
+    themeOceanVideo: "Turkuaz Okyanus",
+    themeStudioLight: "3B Sistem (Ferah)",
+    themeStudioDark: "3B Sistem (Koyu)",
+    themeOceanLight: "Aydınlık Turkuaz",
+    sceneTurquoise: "Turkuaz",
+    sceneDrone: "Drone",
+    sceneOpenSea: "Açık Deniz",
 
     // Hero
+    heroBadge: "KURUMSAL YAZILIM & OTOMASYON MİMARİSİ",
     heroTitle: "Dijital Denizlerde Güçlü Rotanız",
     heroSubtitle:
       "Veri Deryasında Kaybolmayın! İşinizi Poseidon ile Kontrol Altına Alın.",
+    heroPrimaryCta: "Canlı Sistemleri İnceleyin",
     heroCta: "Bizimle İletişime Geçin",
+    metricUptime: "Çalışma Süresi",
+    metricBarcode: "Barkod Tepkisi",
+    metricIntegratedVal: "Tam Entegre",
+
+    // Telemetry Card
+    telemetryLive: "CANLI TELEMETRİ",
+    telemetrySkuLabel: "AKTİF DEPO STOK",
+    telemetrySkuTrend: "+14% haftalık",
+    telemetrySyncLabel: "SENKRONİZASYON",
+    telemetrySyncSub: "Lokal + Bulut",
+    telemetryPosLabel: "POS TERMİNAL",
+    telemetryPosActive: "Aktif",
+    telemetryStreamTitle: "CANLI İŞLEM AKIŞI",
+    telemetryWarn: "UYARI",
+    telemetryHealth: "Sunucu & Veritabanı Sağlığı",
+    telemetryJump: "Terminali Aç →",
+
+    // 3D Scrollytelling Hero
+    scrollyStep1Eyebrow: "01 / DİJİTAL ÇEKİRDEK",
+    scrollyStep1Desc:
+      "Donanım gücünü parçalara ayırıp en saf yazılım modülleriyle birleştiriyoruz. Aşağı kaydırdıkça mimarinin nasıl kurulduğunu izleyin.",
+    scrollyStep2Eyebrow: "02 / MİMARİ AKIŞ",
+    scrollyStep2Title: "Yazılım Modülleri Tek Gövdede Birleşir",
+    scrollyStep2Desc:
+      "Web, API, SQL ve Otomasyon çekirdekleri veri hatları boyunca süzülerek modern iş bilgisayarınız üzerinde kusursuz arayüzlere dönüşür.",
+    scrollyChipSql: "SQL Canlı Senkron",
+    scrollyStep3Eyebrow: "03 / CANLI SİSTEM",
+    scrollyStep3Title: "İşletmenize Özel Tam Entegre Ekosistem",
+    scrollyStep3Desc:
+      "ERP, Barkodlu Depo Takibi ve Hızlı Satış terminalleri uçtan uca bağlanır. Her bir bileşen yüksek hız ve kesintisiz çalışma için optimize edilir.",
+    scrollyStep3Cta: "Barkod & ERP Demosunu Aç",
+    specTag1Title: "ERP & STOK YÖNETİMİ",
+    specTag1Sub: "Gerçek Zamanlı Raf Takibi",
+    specTag2Title: "KURUMSAL WEB & E-TİCARET",
+    specTag2Sub: "Yüksek Hızlı Modern Arayüz",
+    specTag3Title: "HIZLI POS & BARKOD",
+    specTag3Sub: "< 15ms El Terminali Tepkisi",
+    specTag4Title: "BULUT & SQL SENKRON",
+    specTag4Sub: "Otomatik Günlük Yedekleme",
+    specTag5Title: "%99.9 ÇALIŞMA SÜRESİ",
+    specTag5Sub: "Ölçeklenebilir Mimari",
+    scrollySpecStatusLabel: "DURUM",
+    scrollySpecModulesLabel: "MODÜLLER",
+    scrollySpecArchLabel: "MİMARİ",
+    scrollySpecArchVal: "MODÜLER · FULL-STACK",
+    scrollyScrollHint: "Keşfetmek için kaydırın",
+    scrollyNav1: "Parçalanan Kasa & İkonlar",
+    scrollyNav2: "Akan İkonlar & Laptop",
+    scrollyNav3: "Oluşan Sistem",
 
     // About
     aboutTitle: "Hakkımızda",
@@ -75,18 +135,78 @@ const translations = {
   },
 
   en: {
-    // Navbar
+    // Navbar & Themes
     navAbout: "About",
     navServices: "Services",
     navDemos: "Our Systems",
     navContact: "Contact",
     langBtn: "TR",
+    themeBtnLabel: "Theme",
+    themeMenuTitle: "Appearance Themes",
+    themeOceanVideo: "Turquoise Ocean",
+    themeStudioLight: "3D System (Light)",
+    themeStudioDark: "3D System (Dark)",
+    themeOceanLight: "Bright Turquoise",
+    sceneTurquoise: "Turquoise",
+    sceneDrone: "Drone",
+    sceneOpenSea: "Open Sea",
 
     // Hero
+    heroBadge: "ENTERPRISE SOFTWARE & AUTOMATION ARCHITECTURE",
     heroTitle: "Your Powerful Route in Digital Seas",
     heroSubtitle:
       "Don't Get Lost in the Ocean of Data! Take Control of Your Business with Poseidon.",
+    heroPrimaryCta: "Explore Live Systems",
     heroCta: "Get In Touch",
+    metricUptime: "Uptime SLA",
+    metricBarcode: "Barcode Latency",
+    metricIntegratedVal: "Fully Integrated",
+
+    // Telemetry Card
+    telemetryLive: "LIVE TELEMETRY",
+    telemetrySkuLabel: "ACTIVE INVENTORY",
+    telemetrySkuTrend: "+14% weekly",
+    telemetrySyncLabel: "SYNCHRONIZATION",
+    telemetrySyncSub: "Local + Cloud",
+    telemetryPosLabel: "POS TERMINALS",
+    telemetryPosActive: "Active",
+    telemetryStreamTitle: "LIVE EVENT STREAM",
+    telemetryWarn: "WARN",
+    telemetryHealth: "Server & Database Health",
+    telemetryJump: "Open Terminal →",
+
+    // 3D Scrollytelling Hero
+    scrollyStep1Eyebrow: "01 / DIGITAL CORE",
+    scrollyStep1Desc:
+      "We break down hardware power and fuse it with clean software modules. Scroll down to watch the architecture assemble.",
+    scrollyStep2Eyebrow: "02 / ARCHITECTURE FLOW",
+    scrollyStep2Title: "Software Modules Unite in One Body",
+    scrollyStep2Desc:
+      "Web, API, SQL and Automation cores stream along data lanes and compile into seamless interfaces inside your workstation.",
+    scrollyChipSql: "SQL Live Sync",
+    scrollyStep3Eyebrow: "03 / LIVE ECOSYSTEM",
+    scrollyStep3Title: "Custom Fully Integrated Ecosystem",
+    scrollyStep3Desc:
+      "ERP, Barcode Warehouse Tracking and Fast POS terminals connect end-to-end. Every module is tuned for speed and reliability.",
+    scrollyStep3Cta: "Open Barcode & ERP Demo",
+    specTag1Title: "ERP & INVENTORY",
+    specTag1Sub: "Real-Time Rack Tracking",
+    specTag2Title: "ENTERPRISE WEB & E-COM",
+    specTag2Sub: "High-Speed Modern UI",
+    specTag3Title: "FAST POS & BARCODE",
+    specTag3Sub: "< 15ms Scanner Response",
+    specTag4Title: "CLOUD & SQL SYNC",
+    specTag4Sub: "Automated Daily Backup",
+    specTag5Title: "99.9% UPTIME SLA",
+    specTag5Sub: "Scalable Architecture",
+    scrollySpecStatusLabel: "STATUS",
+    scrollySpecModulesLabel: "MODULES",
+    scrollySpecArchLabel: "ARCHITECTURE",
+    scrollySpecArchVal: "MODULAR · FULL-STACK",
+    scrollyScrollHint: "Scroll to explore",
+    scrollyNav1: "Exploded Case & Icons",
+    scrollyNav2: "Flowing Icons & Laptop",
+    scrollyNav3: "Unified System",
 
     // About
     aboutTitle: "About Us",

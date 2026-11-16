@@ -1,7 +1,7 @@
-/* ===== Desktop App Simulation & Demos Section (Premium Okyanus - Mat & Zarif) ===== */
+/* ===== Desktop App Simulation & Demos Section ===== */
 .systems {
   padding: 100px 0;
-  background: linear-gradient(180deg, #080d1a 0%, #0d1526 100%);
+  background: var(--demo-bg);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   position: relative;
@@ -69,9 +69,9 @@
 .win-mockup {
   max-width: 1100px;
   margin: 0 auto;
-  background: #0d1526;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: var(--win-bg);
+  border-radius: var(--radius);
+  border: 1px solid var(--win-border);
   box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.75);
   overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -79,12 +79,12 @@
 
 /* Window Titlebar */
 .win-titlebar {
-  background: #131f38;
+  background: var(--win-header);
   padding: 11px 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid var(--win-border);
   user-select: none;
 }
 
@@ -92,7 +92,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #f1f5f9;
+  color: var(--win-text);
   font-size: 0.88rem;
   font-weight: 600;
 }
@@ -122,13 +122,13 @@
 
 /* Window Subnav / Menubar Tabs */
 .win-menubar {
-  background: #09101f;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--win-menubar);
+  border-bottom: 1px solid var(--win-border);
   padding: 4px 16px 0;
   display: flex;
   gap: 8px;
   font-size: 0.86rem;
-  color: #94a3b8;
+  color: var(--win-text-muted);
   overflow-x: auto;
 }
 
@@ -144,7 +144,7 @@
 }
 
 .win-menubar span:hover {
-  color: #f1f5f9;
+  color: var(--win-text);
   background: rgba(255, 255, 255, 0.03);
   border-radius: 6px 6px 0 0;
 }
@@ -159,15 +159,15 @@
 
 /* Window Quick Stats Bar */
 .win-stats-bar {
-  background: rgba(19, 31, 56, 0.6);
+  background: var(--win-stats);
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid var(--win-border-subtle);
   font-size: 0.82rem;
-  color: #cbd5e1;
+  color: var(--win-text-soft);
   flex-wrap: wrap;
 }
 
@@ -184,8 +184,8 @@
 
 .win-sound-toggle {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #cbd5e1;
+  border: 1px solid var(--win-border);
+  color: var(--win-text-soft);
   border-radius: 6px;
   padding: 4px 10px;
   font-size: 0.78rem;
@@ -198,7 +198,7 @@
 
 .win-sound-toggle:hover {
   background: rgba(255, 255, 255, 0.06);
-  color: #fff;
+  color: var(--win-text);
 }
 
 /* Window Content Body & Views */
@@ -228,7 +228,7 @@
 
 .view-heading h3 {
   font-size: 1.15rem;
-  color: #f1f5f9;
+  color: var(--win-text);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -236,7 +236,7 @@
 
 .view-heading p {
   font-size: 0.82rem;
-  color: #94a3b8;
+  color: var(--win-text-muted);
   margin-top: 2px;
 }
 
@@ -248,11 +248,11 @@
 
 /* Barcode Scanner Box (Mat & Temiz) */
 .barcode-scan-box {
-  background: #131f38;
-  border-radius: 10px;
+  background: var(--win-panel);
+  border-radius: calc(var(--radius) * 0.85);
   padding: 18px 20px;
   margin-bottom: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--win-border);
 }
 
 .scan-box-header {
@@ -261,7 +261,7 @@
   align-items: center;
   margin-bottom: 12px;
   font-size: 0.88rem;
-  color: #e2e8f0;
+  color: var(--win-text-soft);
 }
 
 .scan-input-group {
@@ -280,30 +280,30 @@
   left: 14px;
   top: 50%;
   transform: translateY(-50%);
-  color: #94a3b8;
+  color: var(--win-text-muted);
 }
 
 .scan-input {
   width: 100%;
-  background: #09101f;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #fff;
+  background: var(--win-input);
+  border: 1px solid var(--win-border);
+  color: var(--win-text);
   padding: 12px 14px 12px 42px;
   border-radius: 8px;
   font-size: 0.95rem;
-  font-family: monospace;
+  font-family: var(--font-mono);
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .scan-input:focus {
   border-color: var(--accent-light);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  box-shadow: var(--focus);
 }
 
 .scan-btn {
   background: var(--accent);
-  color: #fff;
+  color: var(--btn-primary-text);
   border: none;
   padding: 0 24px;
   border-radius: 8px;
@@ -318,7 +318,7 @@
 }
 
 .scan-btn:hover {
-  background: #1d4ed8;
+  background: var(--btn-primary-hover);
   transform: translateY(-1px);
 }
 
@@ -329,7 +329,7 @@
 /* Quick Barcode Chips */
 .quick-chips-label {
   font-size: 0.78rem;
-  color: #94a3b8;
+  color: var(--win-text-muted);
   margin-bottom: 8px;
   display: flex;
   align-items: center;
@@ -343,9 +343,9 @@
 }
 
 .chip-btn {
-  background: rgba(9, 16, 31, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #cbd5e1;
+  background: var(--win-input);
+  border: 1px solid var(--win-border);
+  color: var(--win-text-soft);
   padding: 6px 12px;
   border-radius: 6px;
   font-size: 0.78rem;
@@ -357,25 +357,25 @@
 }
 
 .chip-btn:hover {
-  background: rgba(37, 99, 235, 0.2);
-  border-color: rgba(56, 189, 248, 0.4);
-  color: #fff;
+  background: rgba(56, 189, 248, 0.14);
+  border-color: var(--accent-light);
+  color: var(--win-text);
   transform: translateY(-1px);
 }
 
 .chip-btn code {
   color: var(--accent-light);
   font-size: 0.75rem;
-  background: rgba(37, 99, 235, 0.15);
+  background: rgba(56, 189, 248, 0.12);
   padding: 2px 5px;
   border-radius: 4px;
 }
 
 /* Table Card / DataGrid */
 .win-table-card {
-  background: #131f38;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: var(--win-panel);
+  border-radius: calc(var(--radius) * 0.85);
+  border: 1px solid var(--win-border);
   overflow: hidden;
   margin-bottom: 20px;
 }
@@ -393,18 +393,18 @@
 }
 
 .win-table th {
-  background: #09101f;
-  color: #94a3b8;
+  background: var(--win-menubar);
+  color: var(--win-text-muted);
   padding: 12px 14px;
   font-weight: 600;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--win-border);
   white-space: nowrap;
 }
 
 .win-table td {
   padding: 12px 14px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  color: #e2e8f0;
+  border-bottom: 1px solid var(--win-border-subtle);
+  color: var(--win-text-soft);
   vertical-align: middle;
 }
 
@@ -444,8 +444,8 @@
 .qty-control {
   display: inline-flex;
   align-items: center;
-  background: #09101f;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--win-input);
+  border: 1px solid var(--win-border);
   border-radius: 6px;
   overflow: hidden;
 }
@@ -453,7 +453,7 @@
 .qty-btn {
   background: transparent;
   border: none;
-  color: #94a3b8;
+  color: var(--win-text-muted);
   width: 26px;
   height: 26px;
   cursor: pointer;
@@ -466,14 +466,14 @@
 
 .qty-btn:hover {
   background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  color: var(--win-text);
 }
 
 .qty-num {
   padding: 0 10px;
   font-weight: 600;
   font-size: 0.85rem;
-  color: #fff;
+  color: var(--win-text);
   min-width: 32px;
   text-align: center;
 }
@@ -496,7 +496,7 @@
 .table-empty-state {
   text-align: center;
   padding: 40px 20px;
-  color: #64748b;
+  color: var(--win-text-muted);
 }
 
 .table-empty-state svg {
@@ -512,9 +512,9 @@
   gap: 16px;
   flex-wrap: wrap;
   padding: 16px 20px;
-  background: #09101f;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 0 0 10px 10px;
+  background: var(--win-menubar);
+  border-top: 1px solid var(--win-border-subtle);
+  border-radius: 0 0 calc(var(--radius) * 0.85) calc(var(--radius) * 0.85);
 }
 
 .footer-actions {
@@ -524,9 +524,9 @@
 }
 
 .win-btn-sec {
-  background: #182847;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #e2e8f0;
+  background: var(--win-btn-sec-bg);
+  border: 1px solid var(--win-border);
+  color: var(--win-text-soft);
   padding: 9px 16px;
   border-radius: 6px;
   font-size: 0.84rem;
@@ -539,8 +539,8 @@
 }
 
 .win-btn-sec:hover {
-  background: #22375e;
-  color: #fff;
+  background: var(--win-btn-sec-hover);
+  color: var(--win-text);
 }
 
 .win-btn-excel {
@@ -591,11 +591,11 @@
 
 .total-item {
   font-size: 0.86rem;
-  color: #94a3b8;
+  color: var(--win-text-muted);
 }
 
 .total-item strong {
-  color: #fff;
+  color: var(--win-text);
   font-size: 1.15rem;
   margin-left: 6px;
 }
@@ -615,9 +615,9 @@
 .filter-search-input {
   flex: 1;
   min-width: 240px;
-  background: #131f38;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #fff;
+  background: var(--win-panel);
+  border: 1px solid var(--win-border);
+  color: var(--win-text);
   padding: 10px 14px;
   border-radius: 8px;
   font-size: 0.9rem;
@@ -628,9 +628,9 @@
 }
 
 .filter-category-select {
-  background: #131f38;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #cbd5e1;
+  background: var(--win-panel);
+  border: 1px solid var(--win-border);
+  color: var(--win-text-soft);
   padding: 10px 14px;
   border-radius: 8px;
   font-size: 0.88rem;
@@ -645,9 +645,9 @@
 }
 
 .pos-cart-panel {
-  background: #131f38;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--win-panel);
+  border-radius: calc(var(--radius) * 0.85);
+  border: 1px solid var(--win-border);
   padding: 18px;
   display: flex;
   flex-direction: column;
@@ -658,7 +658,7 @@
   min-height: 240px;
   max-height: 280px;
   overflow-y: auto;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid var(--win-border-subtle);
   margin-bottom: 14px;
 }
 
@@ -667,12 +667,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--win-border-subtle);
   font-size: 0.86rem;
 }
 
 .pos-cart-total-box {
-  background: #09101f;
+  background: var(--win-input);
   border-radius: 8px;
   padding: 14px;
   margin-bottom: 14px;
@@ -682,7 +682,7 @@
 }
 
 .pos-cart-total-box span {
-  color: #94a3b8;
+  color: var(--win-text-muted);
   font-size: 0.9rem;
 }
 
@@ -729,9 +729,9 @@
 }
 
 .pos-cat-pill {
-  background: #131f38;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #94a3b8;
+  background: var(--win-panel);
+  border: 1px solid var(--win-border);
+  color: var(--win-text-muted);
   padding: 6px 14px;
   border-radius: 20px;
   font-size: 0.8rem;
@@ -739,9 +739,9 @@
   white-space: nowrap;
 }
 .pos-cat-pill.active {
-  background: rgba(37, 99, 235, 0.2);
+  background: rgba(56, 189, 248, 0.16);
   color: var(--accent-light);
-  border-color: rgba(56, 189, 248, 0.4);
+  border-color: var(--accent-light);
 }
 
 .pos-tiles-grid {
@@ -751,8 +751,8 @@
 }
 
 .pos-product-tile {
-  background: #131f38;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--win-panel);
+  border: 1px solid var(--win-border);
   border-radius: 8px;
   padding: 14px 10px;
   text-align: center;
@@ -760,12 +760,12 @@
   transition: all 0.2s;
 }
 .pos-product-tile:hover {
-  background: #1c2b4c;
-  border-color: rgba(56, 189, 248, 0.4);
+  background: var(--win-panel-hover);
+  border-color: var(--accent-light);
   transform: translateY(-2px);
 }
 .pos-product-tile .tile-icon { font-size: 1.6rem; margin-bottom: 6px; }
-.pos-product-tile .tile-name { font-size: 0.8rem; font-weight: 600; color: #f1f5f9; line-height: 1.3; margin-bottom: 6px; }
+.pos-product-tile .tile-name { font-size: 0.8rem; font-weight: 600; color: var(--win-text); line-height: 1.3; margin-bottom: 6px; }
 .pos-product-tile .tile-price { font-size: 0.84rem; font-weight: 700; color: var(--accent-light); }
 
 /* ===== TAB 4: Sayım & Kontrol Ekranı ===== */
@@ -777,13 +777,13 @@
 }
 
 .count-stat-card {
-  background: #131f38;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--win-panel);
+  border: 1px solid var(--win-border-subtle);
   border-radius: 8px;
   padding: 14px;
 }
-.count-stat-card .label { font-size: 0.78rem; color: #94a3b8; }
-.count-stat-card .val { font-size: 1.3rem; font-weight: 700; color: #fff; margin-top: 4px; }
+.count-stat-card .label { font-size: 0.78rem; color: var(--win-text-muted); }
+.count-stat-card .val { font-size: 1.3rem; font-weight: 700; color: var(--win-text); margin-top: 4px; }
 
 /* ===== TAB 5: Depo Raporları Ekranı ===== */
 .reports-kpi-grid {
@@ -794,13 +794,13 @@
 }
 
 .kpi-card {
-  background: #131f38;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 10px;
+  background: var(--win-panel);
+  border: 1px solid var(--win-border-subtle);
+  border-radius: calc(var(--radius) * 0.85);
   padding: 18px;
 }
-.kpi-card .kpi-label { font-size: 0.8rem; color: #94a3b8; }
-.kpi-card .kpi-value { font-size: 1.5rem; font-weight: 800; color: #fff; margin: 6px 0; }
+.kpi-card .kpi-label { font-size: 0.8rem; color: var(--win-text-muted); }
+.kpi-card .kpi-value { font-size: 1.5rem; font-weight: 800; color: var(--win-text); margin: 6px 0; }
 .kpi-card .kpi-sub { font-size: 0.75rem; color: #10b981; }
 
 .charts-row {
@@ -811,12 +811,12 @@
 }
 
 .chart-panel {
-  background: #131f38;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 10px;
+  background: var(--win-panel);
+  border: 1px solid var(--win-border-subtle);
+  border-radius: calc(var(--radius) * 0.85);
   padding: 20px;
 }
-.chart-panel h4 { font-size: 0.95rem; margin-bottom: 16px; color: #f1f5f9; }
+.chart-panel h4 { font-size: 0.95rem; margin-bottom: 16px; color: var(--win-text); }
 
 .progress-stat-row {
   margin-bottom: 14px;
@@ -825,17 +825,17 @@
   display: flex;
   justify-content: space-between;
   font-size: 0.82rem;
-  color: #cbd5e1;
+  color: var(--win-text-soft);
   margin-bottom: 5px;
 }
 .progress-bar-bg {
-  background: #09101f;
+  background: var(--win-input);
   height: 8px;
   border-radius: 4px;
   overflow: hidden;
 }
 .progress-bar-fill {
-  background: #2563eb;
+  background: var(--accent);
   height: 100%;
   border-radius: 4px;
 }
@@ -849,27 +849,27 @@
 }
 
 .setting-card {
-  background: #131f38;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 10px;
+  background: var(--win-panel);
+  border: 1px solid var(--win-border-subtle);
+  border-radius: calc(var(--radius) * 0.85);
   padding: 20px;
 }
-.setting-card h4 { font-size: 0.96rem; margin-bottom: 14px; color: #f1f5f9; }
+.setting-card h4 { font-size: 0.96rem; margin-bottom: 14px; color: var(--win-text); }
 
 .setting-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--win-border-subtle);
   font-size: 0.86rem;
-  color: #cbd5e1;
+  color: var(--win-text-soft);
 }
 
 .setting-input {
-  background: #09101f;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #fff;
+  background: var(--win-input);
+  border: 1px solid var(--win-border);
+  color: var(--win-text);
   padding: 6px 12px;
   border-radius: 6px;
   font-size: 0.84rem;
@@ -897,9 +897,9 @@
 }
 
 .excel-modal-card {
-  background: #131f38;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #f1f5f9;
+  background: var(--win-panel);
+  border: 1px solid var(--win-border);
+  color: var(--win-text);
   width: 100%;
   max-width: 520px;
   border-radius: 14px;
@@ -914,7 +914,7 @@
   border-radius: 10px;
   padding: 30px 20px;
   text-align: center;
-  background: rgba(9, 16, 31, 0.6);
+  background: var(--win-input);
   margin: 18px 0;
   cursor: pointer;
   transition: all 0.2s;
@@ -933,12 +933,12 @@
 .excel-dropzone h5 {
   font-size: 1rem;
   margin-bottom: 6px;
-  color: #f1f5f9;
+  color: var(--win-text);
 }
 
 .excel-dropzone p {
   font-size: 0.8rem;
-  color: #94a3b8;
+  color: var(--win-text-muted);
   margin: 0;
 }
 
@@ -948,7 +948,7 @@
 }
 
 .import-progress-bar {
-  background: #09101f;
+  background: var(--win-input);
   height: 8px;
   border-radius: 4px;
   overflow: hidden;
@@ -1086,14 +1086,17 @@
 /* Toast Message */
 .win-toast {
   position: fixed;
-  bottom: 25px;
+  bottom: 84px;
   right: 25px;
-  background: #131f38;
+  background: var(--win-panel);
   border-left: 4px solid var(--accent);
-  color: #fff;
+  border-top: 1px solid var(--win-border);
+  border-right: 1px solid var(--win-border);
+  border-bottom: 1px solid var(--win-border);
+  color: var(--win-text);
   padding: 14px 20px;
   border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
   font-size: 0.9rem;
   z-index: 10000;
   transform: translateY(100px);
