@@ -45,28 +45,28 @@ document.addEventListener("DOMContentLoaded", () => {
     tr: {
       oceanTitle: 'Dijital Denizlerde <span>Güçlü</span> Rotanız',
       scrollyTitle: 'Dijital Dönüşümün <span>Çekirdek</span> Mimarisi',
-      step2Title: 'Yazılım Modülleri <span>Tek Gövdede</span> Birleşir',
+      step2Title: 'Yazılım Modülleri <span>Tek Sistemde</span> Birleşir',
       step3Title: 'İşletmenize Özel <span>Tam Entegre</span> Ekosistem',
       pageTitle: "Poseidon | Yazılım Çözümleri",
     },
     en: {
       oceanTitle: 'Your <span>Powerful</span> Route in Digital Seas',
       scrollyTitle: 'Core <span>Software</span> Architecture',
-      step2Title: 'Software Modules Unite in <span>One Body</span>',
+      step2Title: 'Software Modules Unite into <span>One System</span>',
       step3Title: 'Custom <span>Fully Integrated</span> Ecosystem',
       pageTitle: "Poseidon | Software Solutions",
     },
     ru: {
       oceanTitle: 'Ваш <span>надёжный</span> курс в цифровых морях',
       scrollyTitle: '<span>Ключевая</span> архитектура цифровой трансформации',
-      step2Title: 'Программные модули в <span>едином корпусе</span>',
+      step2Title: 'Программные модули в <span>единой системе</span>',
       step3Title: '<span>Полностью интегрированная</span> экосистема для бизнеса',
       pageTitle: "Poseidon | Программные решения",
     },
     ar: {
       oceanTitle: 'مسارك <span>القوي</span> في البحار الرقمية',
       scrollyTitle: 'البنية <span>الأساسية</span> للتحول الرقمي',
-      step2Title: 'وحدات البرمجيات تتحد في <span>هيكل واحد</span>',
+      step2Title: 'وحدات البرمجيات تتكامل في <span>نظام واحد</span>',
       step3Title: 'منظومة <span>متكاملة</span> مخصصة لأعمالك',
       pageTitle: "Poseidon | حلول برمجية",
     },
@@ -78,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("poseidon_lang", nextLang);
     document.documentElement.lang = nextLang;
     document.documentElement.dir = nextLang === "ar" ? "rtl" : "ltr";
+    document.documentElement.setAttribute("translate", "no");
 
     if (currentLangCodeEl) {
       currentLangCodeEl.textContent = nextLang.toUpperCase();
@@ -415,12 +416,12 @@ document.addEventListener("DOMContentLoaded", () => {
       ru: {
         1: {
           num: "01",
-          status: "СЛОИ КОРПУСА РАЗДЕЛЕНЫ",
+          status: "АРХИТЕКТУРА ОТКРЫТА",
           modules: "8 БАЗОВЫХ МОДУЛЕЙ АКТИВНЫ",
         },
         2: {
           num: "02",
-          status: "ПОТОК ДАННЫХ В НОУТБУК",
+          status: "ПОТОК ДАННЫХ В СИСТЕМУ",
           modules: "СБОРКА МОДУЛЕЙ ИНТЕРФЕЙСА",
         },
         3: {
@@ -432,13 +433,13 @@ document.addEventListener("DOMContentLoaded", () => {
       ar: {
         1: {
           num: "01",
-          status: "تفكّكت طبقات الهيكل",
-          modules: "8 أيقونات نواة نشطة",
+          status: "تجهيز وحدات النظام",
+          modules: "8 وحدات برمجية نشطة",
         },
         2: {
           num: "02",
-          status: "تدفق البيانات نحو الحاسوب",
-          modules: "تجميع وحدات الواجهة",
+          status: "تدفق البيانات وتكاملها",
+          modules: "تجميع واجهات النظام",
         },
         3: {
           num: "03",
