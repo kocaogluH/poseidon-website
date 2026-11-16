@@ -109,13 +109,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeDropdown = document.getElementById("themeDropdown");
   const themeOptions = document.querySelectorAll(".theme-option");
   const activeThemeDot = document.getElementById("activeThemeDot");
-  const conceptDock = document.getElementById("conceptDock");
-  const conceptDockBtns = document.querySelectorAll(".concept-dock-btn");
-  const conceptDockToggle = document.getElementById("conceptDockToggle");
 
   const oceanWrap = document.getElementById("oceanWrap");
   const oceanVideo = document.getElementById("oceanBgVideo");
-  const videoSceneSwitcher = document.getElementById("videoSceneSwitcher");
   const sceneBtns = document.querySelectorAll(".scene-btn");
 
   const OCEAN_VIDEOS = {
@@ -177,9 +173,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   sceneBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
       const scene = btn.getAttribute("data-scene");
-      if (scene) setOceanScene(scene, true);
+      if (!scene) return;
+      const curTheme = document.documentElement.getAttribute("data-theme");
+      const isOcean = curTheme === "ocean-video" || curTheme === "ocean-light";
+      setOceanScene(scene, true);
+      if (!isOcean) {
+        applyTheme("ocean-video");
+      }
     });
   });
 
@@ -214,9 +217,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const isVideoTheme =
       nextTheme === "ocean-video" || nextTheme === "ocean-light";
-    if (videoSceneSwitcher) {
-      videoSceneSwitcher.classList.toggle("visible", isVideoTheme);
-    }
 
     if (isVideoTheme) {
       setOceanScene(currentScene, false);
@@ -236,13 +236,6 @@ document.addEventListener("DOMContentLoaded", () => {
       opt.classList.toggle(
         "active",
         opt.getAttribute("data-theme") === nextTheme
-      );
-    });
-
-    conceptDockBtns.forEach((btn) => {
-      btn.classList.toggle(
-        "active",
-        btn.getAttribute("data-concept") === nextTheme
       );
     });
 
@@ -271,19 +264,6 @@ document.addEventListener("DOMContentLoaded", () => {
         applyTheme(theme);
         themeDropdown.classList.remove("show");
       });
-    });
-  }
-
-  conceptDockBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const theme = btn.getAttribute("data-concept");
-      if (theme) applyTheme(theme);
-    });
-  });
-
-  if (conceptDockToggle && conceptDock) {
-    conceptDockToggle.addEventListener("click", () => {
-      conceptDock.classList.toggle("collapsed");
     });
   }
 

@@ -75,6 +75,13 @@
                 <span class="theme-circle" style="background: linear-gradient(135deg, #ffffff, #22d3ee); border: 1px solid #a5f3fc;"></span>
                 <span data-i18n="themeOceanLight">Aydınlık Turkuaz</span>
               </div>
+              <div class="theme-dropdown-divider"></div>
+              <div class="theme-dropdown-label" data-i18n="sceneMenuTitle">Okyanus Sahnesi</div>
+              <div class="video-scene-switcher" id="videoSceneSwitcher" aria-label="Okyanus Video Sahnesi Seçici">
+                <button type="button" class="scene-btn active" data-scene="turquoise" title="Turkuaz Kıyı">🌊 <span data-i18n="sceneTurquoise">Turkuaz</span></button>
+                <button type="button" class="scene-btn" data-scene="drone" title="Drone Okyanus">🌊 <span data-i18n="sceneDrone">Drone</span></button>
+                <button type="button" class="scene-btn" data-scene="open-sea" title="Açık Deniz">🌊 <span data-i18n="sceneOpenSea">Açık Deniz</span></button>
+              </div>
             </div>
           </div>
         </div>
@@ -1316,38 +1323,6 @@
         </div>
       </div>
     </footer>
-
-    <!-- Quick Theme & Scene Switcher Dock -->
-    <div class="concept-dock" id="conceptDock" role="region" aria-label="Hızlı Tema Seçici">
-      <div class="video-scene-switcher" id="videoSceneSwitcher" aria-label="Okyanus Video Sahnesi Seçici">
-        <button type="button" class="scene-btn active" data-scene="turquoise" title="Turkuaz Kıyı">🌊 <span data-i18n="sceneTurquoise">Turkuaz</span></button>
-        <button type="button" class="scene-btn" data-scene="drone" title="Drone Okyanus">🌊 <span data-i18n="sceneDrone">Drone</span></button>
-        <button type="button" class="scene-btn" data-scene="open-sea" title="Açık Deniz">🌊 <span data-i18n="sceneOpenSea">Açık Deniz</span></button>
-      </div>
-      <div class="concept-dock-actions">
-        <button type="button" class="concept-dock-btn" data-concept="ocean-video">
-          <span class="dock-swatch swatch-turquoise"></span>
-          <span data-i18n="themeOceanVideo">Turkuaz Okyanus</span>
-        </button>
-        <button type="button" class="concept-dock-btn active" data-concept="studio-light">
-          <span class="dock-swatch swatch-studio-light"></span>
-          <span data-i18n="themeStudioLight">3B Sistem (Ferah)</span>
-        </button>
-        <button type="button" class="concept-dock-btn" data-concept="studio-dark">
-          <span class="dock-swatch swatch-studio-dark"></span>
-          <span data-i18n="themeStudioDark">3B Sistem (Koyu)</span>
-        </button>
-        <button type="button" class="concept-dock-btn" data-concept="ocean-light">
-          <span class="dock-swatch swatch-turquoise-light"></span>
-          <span data-i18n="themeOceanLight">Aydınlık Turkuaz</span>
-        </button>
-        <button type="button" class="concept-dock-collapse" id="conceptDockToggle" title="Çubuğu Küçült / Genişlet" aria-label="Çubuğu Küçült / Genişlet">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </button>
-      </div>
-    </div>
 
     <script src="js/translations.js"></script>
     <script src="js/barcode-demo.js"></script>
