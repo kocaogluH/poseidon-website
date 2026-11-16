@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/demo.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
     <!-- Multi-Layered Turquoise Ocean Video & Studio Background -->
@@ -45,8 +45,40 @@
           <a href="#services" data-i18n="navServices">Hizmetler</a>
           <a href="#demos" data-i18n="navDemos">Sistemlerimiz</a>
           <a href="#contact" data-i18n="navContact">Iletisim</a>
-          <button class="lang-btn" id="langBtn" data-i18n="langBtn">EN</button>
-          
+
+          <!-- Language Switcher -->
+          <div class="lang-switcher" id="langSwitcher">
+            <button type="button" class="lang-btn" id="langBtn" aria-label="Dil Seçici" title="Dil Seçin">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+              <span id="currentLangCode">TR</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="lang-dropdown" id="langDropdown">
+              <div class="lang-option active" data-lang="tr">
+                <span class="lang-code-badge">TR</span>
+                <span>Türkçe</span>
+              </div>
+              <div class="lang-option" data-lang="en">
+                <span class="lang-code-badge">EN</span>
+                <span>English</span>
+              </div>
+              <div class="lang-option" data-lang="ru">
+                <span class="lang-code-badge">RU</span>
+                <span>Русский</span>
+              </div>
+              <div class="lang-option" data-lang="ar">
+                <span class="lang-code-badge">AR</span>
+                <span>العربية</span>
+              </div>
+            </div>
+          </div>
+
           <!-- Theme Switcher -->
           <div class="theme-switcher" id="themeSwitcher">
             <button class="theme-btn" id="themeToggleBtn" aria-label="Tema Seçici" title="Renk Paletini Değiştir">

@@ -270,4 +270,276 @@ const translations = {
     footerContactTitle: "Contact",
     footerRights: "All rights reserved.",
   },
+
+  ru: {
+    // Navbar & Themes
+    navAbout: "О нас",
+    navServices: "Услуги",
+    navDemos: "Наши системы",
+    navContact: "Контакты",
+    langBtn: "RU",
+    themeBtnLabel: "Тема",
+    themeMenuTitle: "Темы оформления",
+    themeOceanVideo: "Бирюзовый океан",
+    themeStudioLight: "3D-система (Светлая)",
+    themeStudioDark: "3D-система (Тёмная)",
+    themeOceanLight: "Светлая бирюза",
+    sceneMenuTitle: "Сцена океана",
+    sceneTurquoise: "Бирюза",
+    sceneDrone: "Дрон",
+    sceneOpenSea: "Открытое море",
+
+    // Hero
+    heroBadge: "КОРПОРАТИВНОЕ ПО И АРХИТЕКТУРА АВТОМАТИЗАЦИИ",
+    heroTitle: "Ваш надёжный курс в цифровых морях",
+    heroSubtitle:
+      "Не теряйтесь в океане данных! Возьмите управление бизнесом в свои руки с Poseidon.",
+    heroPrimaryCta: "Смотреть живые системы",
+    heroCta: "Связаться с нами",
+    metricUptime: "Время работы SLA",
+    metricBarcode: "Отклик штрихкода",
+    metricIntegratedVal: "Полная интеграция",
+
+    // Telemetry Card
+    telemetryLive: "ЖИВАЯ ТЕЛЕМЕТРИЯ",
+    telemetrySkuLabel: "АКТИВНЫЙ СКЛАД",
+    telemetrySkuTrend: "+14% за неделю",
+    telemetrySyncLabel: "СИНХРОНИЗАЦИЯ",
+    telemetrySyncSub: "Локально + Облако",
+    telemetryPosLabel: "POS-ТЕРМИНАЛЫ",
+    telemetryPosActive: "Активны",
+    telemetryStreamTitle: "ПОТОК ОПЕРАЦИЙ",
+    telemetryWarn: "ВНИМАНИЕ",
+    telemetryHealth: "Состояние сервера и БД",
+    telemetryJump: "Открыть терминал →",
+
+    // 3D Scrollytelling Hero
+    scrollyStep1Eyebrow: "01 / ЦИФРОВОЕ ЯДРО",
+    scrollyStep1Desc:
+      "Мы раскрываем мощность оборудования и соединяем её с чистыми программными модулями. Прокрутите вниз, чтобы увидеть сборку архитектуры.",
+    scrollyStep2Eyebrow: "02 / ПОТОК АРХИТЕКТУРЫ",
+    scrollyStep2Title: "Программные модули объединяются в единый корпус",
+    scrollyStep2Desc:
+      "Ядра Web, API, SQL и автоматизации проходят по линиям данных и превращаются в безупречный интерфейс на вашем рабочем компьютере.",
+    scrollyChipSql: "SQL Живая синхр.",
+    scrollyStep3Eyebrow: "03 / ЖИВАЯ ЭКОСИСТЕМА",
+    scrollyStep3Title: "Полностью интегрированная экосистема для бизнеса",
+    scrollyStep3Desc:
+      "ERP, складской учёт по штрихкодам и быстрые POS-терминалы работают как единое целое. Каждый модуль оптимизирован для скорости и стабильности.",
+    scrollyStep3Cta: "Открыть демо Штрихкод & ERP",
+    specTag1Title: "ERP И УЧЁТ СКЛАДА",
+    specTag1Sub: "Контроль полок в реальном времени",
+    specTag2Title: "ВЕБ И E-COMMERCE",
+    specTag2Sub: "Быстрый современный интерфейс",
+    specTag3Title: "БЫСТРЫЙ POS И ШТРИХКОД",
+    specTag3Sub: "< 15 мс отклик сканера",
+    specTag4Title: "ОБЛАКО И SQL СИНХР.",
+    specTag4Sub: "Ежедневный автобэкап",
+    specTag5Title: "99.9% НАДЁЖНОСТЬ SLA",
+    specTag5Sub: "Масштабируемая архитектура",
+    scrollySpecStatusLabel: "СТАТУС",
+    scrollySpecModulesLabel: "МОДУЛИ",
+    scrollySpecArchLabel: "АРХИТЕКТУРА",
+    scrollySpecArchVal: "МОДУЛЬНАЯ · FULL-STACK",
+    scrollyScrollHint: "Прокрутите для обзора",
+    scrollyNav1: "Корпус и иконки",
+    scrollyNav2: "Поток иконок и ноутбук",
+    scrollyNav3: "Готовая система",
+
+    // About
+    aboutTitle: "О нас",
+    aboutText:
+      "Poseidon — молодая и динамичная технологическая компания, предлагающая инновационные программные решения. Используя современные технологии, мы сопровождаем цифровую трансформацию бизнеса и создаём масштабируемые системы под задачи клиентов.",
+    visionTitle: "Наше видение",
+    visionText:
+      "Создавать ценность с помощью технологий, обеспечивая компаниям сильное и устойчивое присутствие в цифровом мире.",
+    missionTitle: "Наша миссия",
+    missionText:
+      "Способствовать успеху наших клиентов с помощью качественных, надёжных и инновационных программных решений.",
+
+    // Services
+    servicesTitle: "Наши услуги",
+    service1Title: "Веб-разработка",
+    service1Text:
+      "Создаём современные и удобные сайты, веб-приложения и e-commerce платформы с адаптивным дизайном на новейших технологиях.",
+    service1Item1: "Корпоративные сайты",
+    service1Item2: "Веб-приложения",
+    service1Item3: "E-Commerce решения",
+    service1Item4: "Разработка API",
+    service2Title: "Корпоративное ПО",
+    service2Text:
+      "Проектируем и разрабатываем индивидуальное корпоративное ПО для вашего бизнеса, оптимизирующее процессы и повышающее эффективность.",
+    service2Item1: "ERP-системы",
+    service2Item2: "CRM-решения",
+    service2Item3: "ПО для автоматизации",
+    service2Item4: "Системы управления данными",
+
+    // Demos
+    demosTitle: "Наши системы и живые прототипы",
+    demosSubtitle:
+      "Протестируйте наши корпоративные настольные системы прямо на сайте в режиме реального времени.",
+
+    // Contact
+    contactTitle: "Контакты",
+    contactText:
+      "Свяжитесь с нами по поводу ваших проектов. Мы ответим вам в кратчайшие сроки.",
+    contactName: "Ваше имя и фамилия",
+    contactEmail: "Ваш E-mail",
+    contactMessage: "Ваше сообщение",
+    contactSend: "Отправить",
+    contactWhatsApp: "WhatsApp",
+    contactNameLabel: "Имя и фамилия",
+    contactEmailLabelText: "E-mail",
+    contactMessageLabel: "Сообщение",
+    contactInfoTitle: "Контактная информация",
+    contactEmailLabel: "E-mail",
+    contactPhoneLabel: "Телефон",
+    contactLocationLabel: "Расположение",
+    contactLocation: "Антакья / Хатай, Турция",
+    contactEmailQuick: "Написать на E-mail",
+    contactWhatsAppQuick: "Написать в WhatsApp",
+
+    // Footer
+    footerDesc:
+      "Усиливаем вашу цифровую трансформацию с помощью инновационных программных решений.",
+    footerLinksTitle: "Быстрые ссылки",
+    footerContactTitle: "Контакты",
+    footerRights: "Все права защищены.",
+  },
+
+  ar: {
+    // Navbar & Themes
+    navAbout: "من نحن",
+    navServices: "خدماتنا",
+    navDemos: "أنظمتنا",
+    navContact: "تواصل معنا",
+    langBtn: "AR",
+    themeBtnLabel: "المظهر",
+    themeMenuTitle: "سمات العرض",
+    themeOceanVideo: "محيط تركواز",
+    themeStudioLight: "نظام ثلاثي الأبعاد (فاتح)",
+    themeStudioDark: "نظام ثلاثي الأبعاد (داكن)",
+    themeOceanLight: "تركواز مشرق",
+    sceneMenuTitle: "مشهد المحيط",
+    sceneTurquoise: "تركواز",
+    sceneDrone: "درون",
+    sceneOpenSea: "البحر المفتوح",
+
+    // Hero
+    heroBadge: "بنية البرمجيات المؤسسية والأتمتة",
+    heroTitle: "مسارك القوي في البحار الرقمية",
+    heroSubtitle:
+      "لا تته في بحر البيانات! تحكّم في أعمالك بثقة مع أنظمة بوسيدون.",
+    heroPrimaryCta: "استكشف الأنظمة الحية",
+    heroCta: "تواصل معنا",
+    metricUptime: "استمرارية التشغيل",
+    metricBarcode: "استجابة الباركود",
+    metricIntegratedVal: "تكامل كامل",
+
+    // Telemetry Card
+    telemetryLive: "قياس مباشر",
+    telemetrySkuLabel: "مخزون المستودع النشط",
+    telemetrySkuTrend: "+14% أسبوعياً",
+    telemetrySyncLabel: "المزامنة",
+    telemetrySyncSub: "محلي + سحابي",
+    telemetryPosLabel: "نقاط البيع POS",
+    telemetryPosActive: "نشط",
+    telemetryStreamTitle: "تدفق العمليات المباشر",
+    telemetryWarn: "تنبيه",
+    telemetryHealth: "صحة الخادم وقاعدة البيانات",
+    telemetryJump: "افتح الطرفية ←",
+
+    // 3D Scrollytelling Hero
+    scrollyStep1Eyebrow: "01 / النواة الرقمية",
+    scrollyStep1Desc:
+      "نفكك قوة العتاد ونجمعها مع أنقى وحدات البرمجيات. مرّر للأسفل لمشاهدة كيف تتشكّل البنية المتكاملة.",
+    scrollyStep2Eyebrow: "02 / تدفق البنية",
+    scrollyStep2Title: "وحدات البرمجيات تتحد في هيكل واحد",
+    scrollyStep2Desc:
+      "تتدفق نوى الويب وواجهات البرمجة وقواعد بيانات SQL والأتمتة عبر مسارات البيانات لتتحول إلى واجهات سلسة على حاسوب عملك.",
+    scrollyChipSql: "مزامنة SQL حية",
+    scrollyStep3Eyebrow: "03 / النظام الحي",
+    scrollyStep3Title: "منظومة متكاملة مخصصة لأعمالك",
+    scrollyStep3Desc:
+      "تتصل أنظمة ERP وتتبع المستودعات بالباركود ونقاط البيع السريعة من البداية إلى النهاية. كل مكوّن مصمم لأقصى سرعة وثبات.",
+    scrollyStep3Cta: "افتح تجربة الباركود و ERP",
+    specTag1Title: "إدارة ERP والمخزون",
+    specTag1Sub: "تتبع الرفوف بالوقت الفعلي",
+    specTag2Title: "مواقع الشركات والتجارة",
+    specTag2Sub: "واجهة حديثة فائقة السرعة",
+    specTag3Title: "نقاط بيع سريعة وباركود",
+    specTag3Sub: "استجابة أسرع من 15ms",
+    specTag4Title: "مزامنة سحابية و SQL",
+    specTag4Sub: "نسخ احتياطي يومي تلقائي",
+    specTag5Title: "جاهزية تشغيل 99.9%",
+    specTag5Sub: "بنية قابلة للتوسع",
+    scrollySpecStatusLabel: "الحالة",
+    scrollySpecModulesLabel: "الوحدات",
+    scrollySpecArchLabel: "البنية",
+    scrollySpecArchVal: "معيارية · FULL-STACK",
+    scrollyScrollHint: "مرّر للاستكشاف",
+    scrollyNav1: "تفكك الهيكل والأيقونات",
+    scrollyNav2: "تدفق الأيقونات والحاسوب",
+    scrollyNav3: "النظام المتكامل",
+
+    // About
+    aboutTitle: "من نحن",
+    aboutText:
+      "بوسيدون شركة تقنية شابة وديناميكية تقدم حلولاً برمجية مبتكرة. نوجه المؤسسات في رحلة التحول الرقمي باستخدام أحدث التقنيات، ونسعى لتقديم الحلول الأنسب والأكثر قابلية للتوسع وفق احتياجات عملائنا.",
+    visionTitle: "رؤيتنا",
+    visionText:
+      "تحقيق قيمة حقيقية عبر التكنولوجيا لتمكين الشركات من حضور قوي ومستدام في العالم الرقمي.",
+    missionTitle: "رسالتنا",
+    missionText:
+      "المساهمة في نجاح عملائنا من خلال حلول برمجية عالية الجودة وموثوقة ومبتكرة.",
+
+    // Services
+    servicesTitle: "خدماتنا",
+    service1Title: "تطوير الويب",
+    service1Text:
+      "نطور مواقع إلكترونية حديثة وسهلة الاستخدام، وتطبيقات ويب ومنصات تجارة إلكترونية بتصميم متجاوب وأحدث التقنيات.",
+    service1Item1: "مواقع الشركات المؤسسية",
+    service1Item2: "تطبيقات الويب",
+    service1Item3: "حلول التجارة الإلكترونية",
+    service1Item4: "تطوير واجهات API",
+    service2Title: "برمجيات المؤسسات",
+    service2Text:
+      "نصمم ونطور حلولاً برمجية مخصصة لطبيعة أعمالك لتحسين سير العمليات ورفع الكفاءة والإنتاجية.",
+    service2Item1: "أنظمة تخطيط الموارد ERP",
+    service2Item2: "حلول إدارة العملاء CRM",
+    service2Item3: "برمجيات الأتمتة",
+    service2Item4: "أنظمة إدارة البيانات",
+
+    // Demos
+    demosTitle: "أنظمتنا والنماذج التفاعلية",
+    demosSubtitle:
+      "جرّب أنظمتنا المكتبية المؤسسية مباشرة عبر موقعنا الإلكتروني بالوقت الفعلي.",
+
+    // Contact
+    contactTitle: "تواصل معنا",
+    contactText:
+      "تواصل معنا لمناقشة مشاريعك، وسنرد عليك في أقرب وقت ممكن.",
+    contactName: "الاسم الكامل",
+    contactEmail: "البريد الإلكتروني",
+    contactMessage: "رسالتك",
+    contactSend: "إرسال",
+    contactWhatsApp: "واتساب",
+    contactNameLabel: "الاسم الكامل",
+    contactEmailLabelText: "البريد الإلكتروني",
+    contactMessageLabel: "الرسالة",
+    contactInfoTitle: "معلومات التواصل",
+    contactEmailLabel: "البريد الإلكتروني",
+    contactPhoneLabel: "الهاتف",
+    contactLocationLabel: "الموقع",
+    contactLocation: "أنطاكيا / هاتاي، تركيا",
+    contactEmailQuick: "راسلنا عبر البريد",
+    contactWhatsAppQuick: "راسلنا على واتساب",
+
+    // Footer
+    footerDesc:
+      "نعزّز تحوّلك الرقمي بحلول برمجية مبتكرة وموثوقة.",
+    footerLinksTitle: "روابط سريعة",
+    footerContactTitle: "التواصل",
+    footerRights: "جميع الحقوق محفوظة.",
+  },
 };

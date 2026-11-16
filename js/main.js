@@ -1,6 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ===== Language System =====
-  let currentLang = "tr";
+  // ===== Language System (TR / EN / RU / AR) =====
+  const VALID_LANGS = ["tr", "en", "ru", "ar"];
+  const storedLang = localStorage.getItem("poseidon_lang");
+  let currentLang = VALID_LANGS.includes(storedLang) ? storedLang : "tr";
+
+  const langSwitcher = document.getElementById("langSwitcher");
+  const langBtn = document.getElementById("langBtn");
+  const langDropdown = document.getElementById("langDropdown");
+  const langOptions = document.querySelectorAll(".lang-option");
+  const currentLangCodeEl = document.getElementById("currentLangCode");
 
   const UI_STRINGS = {
     tr: {
@@ -17,91 +25,144 @@ document.addEventListener("DOMContentLoaded", () => {
         "Message could not be sent. Please try again or contact us via WhatsApp/Email.",
       invalidEmail: "Please enter a valid email address.",
     },
+    ru: {
+      sending: "Отправка…",
+      sent: "Ваше сообщение отправлено. Спасибо!",
+      failed:
+        "Не удалось отправить сообщение. Попробуйте снова или свяжитесь через WhatsApp/E-mail.",
+      invalidEmail: "Пожалуйста, введите корректный адрес электронной почты.",
+    },
+    ar: {
+      sending: "جارٍ الإرسال…",
+      sent: "تم إرسال رسالتك بنجاح. شكراً لك!",
+      failed:
+        "تعذّر إرسال الرسالة. يرجى المحاولة مرة أخرى أو التواصل عبر واتساب/البريد.",
+      invalidEmail: "يرجى إدخال عنوان بريد إلكتروني صحيح.",
+    },
+  };
+
+  const HERO_HTML = {
+    tr: {
+      oceanTitle: 'Dijital Denizlerde <span>Güçlü</span> Rotanız',
+      scrollyTitle: 'Dijital Dönüşümün <span>Çekirdek</span> Mimarisi',
+      step2Title: 'Yazılım Modülleri <span>Tek Gövdede</span> Birleşir',
+      step3Title: 'İşletmenize Özel <span>Tam Entegre</span> Ekosistem',
+      pageTitle: "Poseidon | Yazılım Çözümleri",
+    },
+    en: {
+      oceanTitle: 'Your <span>Powerful</span> Route in Digital Seas',
+      scrollyTitle: 'Core <span>Software</span> Architecture',
+      step2Title: 'Software Modules Unite in <span>One Body</span>',
+      step3Title: 'Custom <span>Fully Integrated</span> Ecosystem',
+      pageTitle: "Poseidon | Software Solutions",
+    },
+    ru: {
+      oceanTitle: 'Ваш <span>надёжный</span> курс в цифровых морях',
+      scrollyTitle: '<span>Ключевая</span> архитектура цифровой трансформации',
+      step2Title: 'Программные модули в <span>едином корпусе</span>',
+      step3Title: '<span>Полностью интегрированная</span> экосистема для бизнеса',
+      pageTitle: "Poseidon | Программные решения",
+    },
+    ar: {
+      oceanTitle: 'مسارك <span>القوي</span> في البحار الرقمية',
+      scrollyTitle: 'البنية <span>الأساسية</span> للتحول الرقمي',
+      step2Title: 'وحدات البرمجيات تتحد في <span>هيكل واحد</span>',
+      step3Title: 'منظومة <span>متكاملة</span> مخصصة لأعمالك',
+      pageTitle: "Poseidon | حلول برمجية",
+    },
   };
 
   function setLanguage(lang) {
-    currentLang = lang;
-    document.documentElement.lang = lang;
+    const nextLang = VALID_LANGS.includes(lang) ? lang : "tr";
+    currentLang = nextLang;
+    localStorage.setItem("poseidon_lang", nextLang);
+    document.documentElement.lang = nextLang;
+    document.documentElement.dir = nextLang === "ar" ? "rtl" : "ltr";
+
+    if (currentLangCodeEl) {
+      currentLangCodeEl.textContent = nextLang.toUpperCase();
+    }
+
+    langOptions.forEach((opt) => {
+      opt.classList.toggle(
+        "active",
+        opt.getAttribute("data-lang") === nextLang
+      );
+    });
 
     // Update text content
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       const key = el.getAttribute("data-i18n");
-      if (translations[lang] && translations[lang][key]) {
-        el.textContent = translations[lang][key];
+      if (translations[nextLang] && translations[nextLang][key]) {
+        el.textContent = translations[nextLang][key];
       }
     });
 
     // Update placeholders
     document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
       const key = el.getAttribute("data-i18n-placeholder");
-      if (translations[lang] && translations[lang][key]) {
-        el.placeholder = translations[lang][key];
+      if (translations[nextLang] && translations[nextLang][key]) {
+        el.placeholder = translations[nextLang][key];
       }
     });
 
     // Update hero titles in both Ocean Hero and 3D Scrollytelling Hero
+    const heroHtml = HERO_HTML[nextLang] || HERO_HTML.tr;
+
     const heroOceanTitle = document.querySelector(
       '#heroOcean [data-i18n="heroTitle"]'
     );
-    if (heroOceanTitle) {
-      heroOceanTitle.innerHTML =
-        lang === "tr"
-          ? 'Dijital Denizlerde <span>Güçlü</span> Rotanız'
-          : 'Your <span>Powerful</span> Route in Digital Seas';
-    }
+    if (heroOceanTitle) heroOceanTitle.innerHTML = heroHtml.oceanTitle;
 
     const heroScrollyTitle = document.querySelector(
       '#hero .scrolly-title[data-i18n="heroTitle"]'
     );
-    if (heroScrollyTitle) {
-      heroScrollyTitle.innerHTML =
-        lang === "tr"
-          ? 'Dijital Dönüşümün <span>Çekirdek</span> Mimarisi'
-          : 'Core <span>Software</span> Architecture';
-    }
+    if (heroScrollyTitle) heroScrollyTitle.innerHTML = heroHtml.scrollyTitle;
 
     const scrollyStep2Title = document.querySelector(
       '[data-i18n="scrollyStep2Title"]'
     );
-    if (scrollyStep2Title) {
-      scrollyStep2Title.innerHTML =
-        lang === "tr"
-          ? 'Yazılım Modülleri <span>Tek Gövdede</span> Birleşir'
-          : 'Software Modules Unite in <span>One Body</span>';
-    }
+    if (scrollyStep2Title) scrollyStep2Title.innerHTML = heroHtml.step2Title;
 
     const scrollyStep3Title = document.querySelector(
       '[data-i18n="scrollyStep3Title"]'
     );
-    if (scrollyStep3Title) {
-      scrollyStep3Title.innerHTML =
-        lang === "tr"
-          ? 'İşletmenize Özel <span>Tam Entegre</span> Ekosistem'
-          : 'Custom <span>Fully Integrated</span> Ecosystem';
-    }
+    if (scrollyStep3Title) scrollyStep3Title.innerHTML = heroHtml.step3Title;
 
     // Update page title
-    document.title =
-      lang === "tr"
-        ? "Poseidon | Yazılım Çözümleri"
-        : "Poseidon | Software Solutions";
+    document.title = heroHtml.pageTitle;
 
     document.dispatchEvent(
-      new CustomEvent("poseidon:langchange", { detail: { lang } })
+      new CustomEvent("poseidon:langchange", { detail: { lang: nextLang } })
     );
   }
 
-  // Language button
-  const langBtn = document.getElementById("langBtn");
-  if (langBtn) {
-    langBtn.addEventListener("click", () => {
-      const newLang = currentLang === "tr" ? "en" : "tr";
-      setLanguage(newLang);
+  // Language dropdown toggle & selection
+  if (langBtn && langDropdown) {
+    langBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const themeMenu = document.getElementById("themeDropdown");
+      if (themeMenu) themeMenu.classList.remove("show");
+      langDropdown.classList.toggle("show");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (langSwitcher && !langSwitcher.contains(e.target)) {
+        langDropdown.classList.remove("show");
+      }
+    });
+
+    langOptions.forEach((opt) => {
+      opt.addEventListener("click", () => {
+        const selected = opt.getAttribute("data-lang");
+        if (selected) setLanguage(selected);
+        langDropdown.classList.remove("show");
+      });
     });
   }
 
   // Initialize language
-  setLanguage("tr");
+  setLanguage(currentLang);
 
   // ===== Theme & Live Concept Switcher =====
   const themeSwitcher = document.getElementById("themeSwitcher");
@@ -249,6 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (themeToggleBtn && themeDropdown) {
     themeToggleBtn.addEventListener("click", (e) => {
       e.stopPropagation();
+      if (langDropdown) langDropdown.classList.remove("show");
       themeDropdown.classList.toggle("show");
     });
 
@@ -348,6 +410,40 @@ document.addEventListener("DOMContentLoaded", () => {
           num: "03",
           status: "ENTERPRISE SYSTEM READY",
           modules: "5 MODULES INTEGRATED",
+        },
+      },
+      ru: {
+        1: {
+          num: "01",
+          status: "СЛОИ КОРПУСА РАЗДЕЛЕНЫ",
+          modules: "8 БАЗОВЫХ МОДУЛЕЙ АКТИВНЫ",
+        },
+        2: {
+          num: "02",
+          status: "ПОТОК ДАННЫХ В НОУТБУК",
+          modules: "СБОРКА МОДУЛЕЙ ИНТЕРФЕЙСА",
+        },
+        3: {
+          num: "03",
+          status: "КОРПОРАТИВНАЯ СИСТЕМА ГОТОВА",
+          modules: "5 МОДУЛЕЙ ИНТЕГРИРОВАНЫ",
+        },
+      },
+      ar: {
+        1: {
+          num: "01",
+          status: "تفكّكت طبقات الهيكل",
+          modules: "8 أيقونات نواة نشطة",
+        },
+        2: {
+          num: "02",
+          status: "تدفق البيانات نحو الحاسوب",
+          modules: "تجميع وحدات الواجهة",
+        },
+        3: {
+          num: "03",
+          status: "النظام المؤسسي جاهز",
+          modules: "5 وحدات متكاملة بالكامل",
         },
       },
     };
@@ -648,15 +744,47 @@ document.addEventListener("DOMContentLoaded", () => {
       if (variant) statusEl.classList.add(variant);
     }
 
+    const CONTACT_LABELS = {
+      tr: {
+        subject: "Poseidon - İletişim Formu",
+        intro: "Poseidon web sitesi iletişim formu:",
+        name: "Ad Soyad",
+        email: "E-posta",
+        message: "Mesaj",
+      },
+      en: {
+        subject: "Poseidon - Contact Form",
+        intro: "Poseidon website contact form:",
+        name: "Name",
+        email: "Email",
+        message: "Message",
+      },
+      ru: {
+        subject: "Poseidon - Контактная форма",
+        intro: "Сообщение с сайта Poseidon:",
+        name: "Имя и фамилия",
+        email: "E-mail",
+        message: "Сообщение",
+      },
+      ar: {
+        subject: "Poseidon - نموذج التواصل",
+        intro: "رسالة من نموذج التواصل لموقع Poseidon:",
+        name: "الاسم الكامل",
+        email: "البريد الإلكتروني",
+        message: "الرسالة",
+      },
+    };
+
     function buildWhatsAppUrl({ name, email, message }) {
       if (!whatsappNumber) return "#";
+      const lbl = CONTACT_LABELS[currentLang] || CONTACT_LABELS.tr;
       const lines = [
-        "Poseidon web sitesi iletişim formu:",
+        lbl.intro,
         "",
-        `Ad Soyad: ${name || "-"}`,
-        `E-posta: ${email || "-"}`,
+        `${lbl.name}: ${name || "-"}`,
+        `${lbl.email}: ${email || "-"}`,
         "",
-        `Mesaj: ${message || "-"}`,
+        `${lbl.message}: ${message || "-"}`,
       ];
       const text = encodeURIComponent(lines.join("\n"));
       return `https://wa.me/${whatsappNumber}?text=${text}`;
@@ -675,20 +803,17 @@ document.addEventListener("DOMContentLoaded", () => {
       if (whatsappLink) whatsappLink.href = waUrl;
 
       if (emailQuickLink && contactEmail) {
-        const subject =
-          currentLang === "tr"
-            ? "Poseidon - İletişim Formu"
-            : "Poseidon - Contact Form";
+        const lbl = CONTACT_LABELS[currentLang] || CONTACT_LABELS.tr;
         const bodyLines = [
-          `${currentLang === "tr" ? "Ad Soyad" : "Name"}: ${name || "-"}`,
-          `Email: ${email || "-"}`,
+          `${lbl.name}: ${name || "-"}`,
+          `${lbl.email}: ${email || "-"}`,
           "",
-          `${currentLang === "tr" ? "Mesaj" : "Message"}:`,
+          `${lbl.message}:`,
           message || "-",
         ];
         emailQuickLink.href = `mailto:${encodeURIComponent(
           contactEmail
-        )}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+        )}?subject=${encodeURIComponent(lbl.subject)}&body=${encodeURIComponent(
           bodyLines.join("\n")
         )}`;
       }
@@ -697,6 +822,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initialize quick links once and keep them updated
     syncQuickLinks();
     contactForm.addEventListener("input", syncQuickLinks);
+    document.addEventListener("poseidon:langchange", syncQuickLinks);
 
     contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
