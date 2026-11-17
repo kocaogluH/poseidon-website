@@ -881,4 +881,467 @@ document.addEventListener("DOMContentLoaded", () => {
       syncQuickLinks();
     });
   }
+
+  // ===== About Section: 3D Coverflow System Showcase =====
+  function initAboutShowcase() {
+    const showcase = document.getElementById("aboutShowcase");
+    if (!showcase) return;
+
+    const cfStage = document.getElementById("cfStage");
+    const cfPrevBtn = document.getElementById("cfPrevBtn");
+    const cfNextBtn = document.getElementById("cfNextBtn");
+    const cfDots = document.getElementById("cfDots");
+
+    const SCREENS_I18N = {
+      tr: [
+        {
+          id: "depo-dashboard",
+          img: "assets/screens/depo-dashboard.png",
+          tag: "DEPO // DASHBOARD",
+          title: "Depo & Stok Özet Paneli",
+          sub: "Canlı ciro, en çok satanlar grafiği ve anlık stok durumu",
+        },
+        {
+          id: "depo-pos",
+          img: "assets/screens/depo-pos.png",
+          tag: "DEPO // HIZLI SATIŞ & KASA",
+          title: "Dokunmatik Barkodlu POS Terminali",
+          sub: "Hızlı perakende satışı, para üstü hesaplama ve fiş kesimi",
+        },
+        {
+          id: "depo-urunler",
+          img: "assets/screens/depo-urunler.png",
+          tag: "DEPO // STOK & KATALOG",
+          title: "Stok Kartları & Raf Yönetimi",
+          sub: "Kategori hiyerarşisi, barkod tanımları ve kritik limitler",
+        },
+        {
+          id: "depo-fiyat",
+          img: "assets/screens/depo-fiyat-guncelleme.png",
+          tag: "DEPO // FİYAT MOTORU",
+          title: "Toplu Fiyat & Zam/İndirim Motoru",
+          sub: "Kategori bazlı yüzdesel fiyat güncelleme ve kâr marjı hesabı",
+        },
+        {
+          id: "depo-analiz",
+          img: "assets/screens/depo-analiz.png",
+          tag: "DEPO // SATIŞ ANALİTİĞİ",
+          title: "Satış & Hareket Analitiği",
+          sub: "Tarih aralıklı hareket dökümleri ve dinamik filtreleme",
+        },
+        {
+          id: "resto-dashboard",
+          img: "assets/screens/resto-dashboard.png",
+          tag: "RESTO // RESTORAN DASHBOARD",
+          title: "Resto POS Restoran Yönetimi",
+          sub: "Anlık salon cirosu, masa doluluk oranı ve mutfak akışı",
+        },
+        {
+          id: "resto-masalar",
+          img: "assets/screens/resto-masalar.png",
+          tag: "RESTO // MASALAR HARİTASI",
+          title: "Canlı Masalar Kroki Haritası",
+          sub: "Salon ve teras krokisi, masa birleştirme ve adisyon durumu",
+        },
+        {
+          id: "fiyat-cepte-ajans",
+          img: "assets/screens/fiyat-cepte-ajans.png",
+          tag: "FİYAT CEPTE // ÇOKLU MAĞAZA",
+          title: "Ajans & Mağaza Yönetim Paneli",
+          sub: "Tek merkezden butik vitrinleri ve sipariş yönetimi",
+        },
+        {
+          id: "fiyat-cepte-vitrin",
+          img: "assets/screens/fiyat-cepte-vitrin.png",
+          tag: "FİYAT CEPTE // BUTİK VİTRİNİ",
+          title: "Mobil Butik Vitrin & Sipariş Platformu",
+          sub: "Doğal paletler, Instagram Stories entegrasyonu ve sepet",
+        },
+      ],
+      en: [
+        {
+          id: "depo-dashboard",
+          img: "assets/screens/depo-dashboard.png",
+          tag: "WAREHOUSE // DASHBOARD",
+          title: "Warehouse & Stock Dashboard",
+          sub: "Live turnover, top-selling items and inventory telemetry",
+        },
+        {
+          id: "depo-pos",
+          img: "assets/screens/depo-pos.png",
+          tag: "WAREHOUSE // POS TERMINAL",
+          title: "Touchscreen Barcode POS Terminal",
+          sub: "Fast retail checkout, change calculation and instant receipts",
+        },
+        {
+          id: "depo-urunler",
+          img: "assets/screens/depo-urunler.png",
+          tag: "WAREHOUSE // INVENTORY",
+          title: "Item Master & Shelf Management",
+          sub: "Category hierarchy, barcodes and reorder threshold alerts",
+        },
+        {
+          id: "depo-fiyat",
+          img: "assets/screens/depo-fiyat-guncelleme.png",
+          tag: "WAREHOUSE // PRICING ENGINE",
+          title: "Bulk Price & Margin Engine",
+          sub: "Category-wide percentage adjustments and margin updates",
+        },
+        {
+          id: "depo-analiz",
+          img: "assets/screens/depo-analiz.png",
+          tag: "WAREHOUSE // ANALYTICS",
+          title: "Sales & Stock Movement Analytics",
+          sub: "Date-range ledger audits and dynamic filtering",
+        },
+        {
+          id: "resto-dashboard",
+          img: "assets/screens/resto-dashboard.png",
+          tag: "RESTO // DASHBOARD",
+          title: "Resto POS Hospitality Dashboard",
+          sub: "Live turnover, dining hall occupancy and kitchen queue",
+        },
+        {
+          id: "resto-masalar",
+          img: "assets/screens/resto-masalar.png",
+          tag: "RESTO // FLOOR PLAN",
+          title: "Interactive Floor & Table Map",
+          sub: "Visual floor plans, table merging and live ticket status",
+        },
+        {
+          id: "fiyat-cepte-ajans",
+          img: "assets/screens/fiyat-cepte-ajans.png",
+          tag: "FIYAT CEPTE // MULTI-STORE",
+          title: "Agency & Store Management Panel",
+          sub: "Centralized control of boutique storefronts and order desks",
+        },
+        {
+          id: "fiyat-cepte-vitrin",
+          img: "assets/screens/fiyat-cepte-vitrin.png",
+          tag: "FIYAT CEPTE // STOREFRONT",
+          title: "Boutique Storefront & Ordering Desk",
+          sub: "Natural organic palettes, Instagram Stories and instant checkout",
+        },
+      ],
+      ru: [
+        {
+          id: "depo-dashboard",
+          img: "assets/screens/depo-dashboard.png",
+          tag: "СКЛАД // ПАНЕЛЬ УПРАВЛЕНИЯ",
+          title: "Панель управления складом",
+          sub: "Выручка, топ продаж и график складских остатков",
+        },
+        {
+          id: "depo-pos",
+          img: "assets/screens/depo-pos.png",
+          tag: "СКЛАД // БЫСТРАЯ КАССА",
+          title: "Сенсорный кассовый POS-терминал",
+          sub: "Быстрые розничные продажи, расчет сдачи и печать чеков",
+        },
+        {
+          id: "depo-urunler",
+          img: "assets/screens/depo-urunler.png",
+          tag: "СКЛАД // КАТАЛОГ ТОВАРОВ",
+          title: "Каталог товаров и складские полки",
+          sub: "Иерархия категорий, штрихкоды и минимальные остатки",
+        },
+        {
+          id: "depo-fiyat",
+          img: "assets/screens/depo-fiyat-guncelleme.png",
+          tag: "СКЛАД // МОДУЛЬ ЦЕНООБРАЗОВАНИЯ",
+          title: "Пакетное обновление цен и наценок",
+          sub: "Массовая корректировка цен по категориям и расчет маржи",
+        },
+        {
+          id: "depo-analiz",
+          img: "assets/screens/depo-analiz.png",
+          tag: "СКЛАД // АНАЛИТИКА ПРОДАЖ",
+          title: "Анализ продаж и складских движений",
+          sub: "Отчеты за период, анализ прибыли и фильтрация данных",
+        },
+        {
+          id: "resto-dashboard",
+          img: "assets/screens/resto-dashboard.png",
+          tag: "RESTO // ПАНЕЛЬ РЕСТОРАНА",
+          title: "Resto POS — Панель ресторана",
+          sub: "Выручка зала, занятость столиков и очередь кухни",
+        },
+        {
+          id: "resto-masalar",
+          img: "assets/screens/resto-masalar.png",
+          tag: "RESTO // КАРТА ЗАЛА",
+          title: "Интерактивная карта столов зала",
+          sub: "План зала и террасы, объединение столов и статус счета",
+        },
+        {
+          id: "fiyat-cepte-ajans",
+          img: "assets/screens/fiyat-cepte-ajans.png",
+          tag: "FIYAT CEPTE // МУЛЬТИ-МАГАЗИН",
+          title: "Агентская панель мульти-магазинов",
+          sub: "Управление витринами и продажами множества бутиков",
+        },
+        {
+          id: "fiyat-cepte-vitrin",
+          img: "assets/screens/fiyat-cepte-vitrin.png",
+          tag: "FIYAT CEPTE // ВИТРИНА БУТИКА",
+          title: "Витрина бутика и заказы в WhatsApp",
+          sub: "Органическая палитра, интеграция Stories и быстрая корзина",
+        },
+      ],
+      ar: [
+        {
+          id: "depo-dashboard",
+          img: "assets/screens/depo-dashboard.png",
+          tag: "المستودعات // لوحة التحكم",
+          title: "لوحة تحكم المستودعات والمخزون",
+          sub: "إجمالي المبيعات، المنتجات الأكثر مبيعاً ورسوم بيانية فورية",
+        },
+        {
+          id: "depo-pos",
+          img: "assets/screens/depo-pos.png",
+          tag: "المستودعات // نقاط البيع",
+          title: "نقطة بيع سريعة بشاشة لمس وباركود",
+          sub: "بيع تجزئة فوري، احتساب الباقي وطباعة الإيصالات",
+        },
+        {
+          id: "depo-urunler",
+          img: "assets/screens/depo-urunler.png",
+          tag: "المستودعات // كتالوج الأصناف",
+          title: "كتالوج المنتجات وإدارة الأرفف",
+          sub: "تصنيفات شجرية، باركود وحدود تنبيه المخزون",
+        },
+        {
+          id: "depo-fiyat",
+          img: "assets/screens/depo-fiyat-guncelleme.png",
+          tag: "المستودعات // محرك الأسعار",
+          title: "محرك تعديل الأسعار والخصومات الشامل",
+          sub: "تحديث نسب الأسعار حسب الأقسام واحتساب هوامش الربح",
+        },
+        {
+          id: "depo-analiz",
+          img: "assets/screens/depo-analiz.png",
+          tag: "المستودعات // تحليلات المخزون",
+          title: "تحليلات المبيعات وحركة المخزون",
+          sub: "كشوفات الحركات حسب التاريخ، تقارير الأرباح وتصفية متقدمة",
+        },
+        {
+          id: "resto-dashboard",
+          img: "assets/screens/resto-dashboard.png",
+          tag: "RESTO // لوحة المطاعم",
+          title: "لوحة تحكم مطاعم Resto POS",
+          sub: "إيرادات الصالة اللحظية، نسبة إشغال الطاولات ومتابعة المطبخ",
+        },
+        {
+          id: "resto-masalar",
+          img: "assets/screens/resto-masalar.png",
+          tag: "RESTO // مخطط الصالة",
+          title: "مخطط الصالة والطاولات التفاعلي",
+          sub: "خريطة بصرية للأقسام، دمج ونقل الطاولات وحالة الطلبات",
+        },
+        {
+          id: "fiyat-cepte-ajans",
+          img: "assets/screens/fiyat-cepte-ajans.png",
+          tag: "FIYAT CEPTE // إدارة المتاجر",
+          title: "لوحة تحكم الوكالات والمتاجر المتعددة",
+          sub: "إدارة واجهات ومبيعات عدة متاجر وبوتيكات من لوحة واحدة",
+        },
+        {
+          id: "fiyat-cepte-vitrin",
+          img: "assets/screens/fiyat-cepte-vitrin.png",
+          tag: "FIYAT CEPTE // واجهة البوتيك",
+          title: "واجهة متجر البوتيك والطلب المباشر",
+          sub: "تصاميم وألوان طبيعية، قصص إنستغرام وسلة طلب سريعة",
+        },
+      ],
+    };
+
+    let cfIndex = 0;
+    let isStageHovered = false;
+
+    function getScreens() {
+      return SCREENS_I18N[currentLang] || SCREENS_I18N.tr;
+    }
+
+    function buildCardHtml(item, idx) {
+      return `
+        <div class="sc-screen-card" data-screen-idx="${idx}">
+          <div class="sc-win-chrome">
+            <span class="sc-win-dots"><i></i><i></i><i></i></span>
+            <span class="sc-win-tag">${item.tag}</span>
+          </div>
+          <div class="sc-screen-img-wrap">
+            <img class="sc-custom-photo" src="${item.img}" alt="${item.title}" loading="lazy" />
+          </div>
+          <div class="sc-screen-caption">
+            <div>
+              <strong>${item.title}</strong>
+              <span>${item.sub}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function updateCoverflowPositions() {
+      if (!cfStage || !cfDots) return;
+      const cards = cfStage.querySelectorAll(".cf-card");
+      const total = cards.length;
+      if (total === 0) return;
+
+      const isNarrow = window.innerWidth <= 820;
+      const step1 = isNarrow ? 195 : 290;
+      const step2 = isNarrow ? 320 : 485;
+
+      cards.forEach((card, i) => {
+        let diff = i - cfIndex;
+        if (diff > total / 2) diff -= total;
+        if (diff < -total / 2) diff += total;
+
+        const abs = Math.abs(diff);
+        if (abs === 0) {
+          card.style.transform =
+            "translate(-50%, -50%) translateX(0px) translateZ(80px) scale(1.04) rotateY(0deg)";
+          card.style.opacity = "1";
+          card.style.zIndex = "10";
+          card.style.filter = "none";
+          card.style.pointerEvents = "auto";
+          card.classList.add("is-active");
+        } else if (abs === 1) {
+          const sign = diff > 0 ? 1 : -1;
+          card.style.transform = `translate(-50%, -50%) translateX(${sign * step1}px) translateZ(-90px) scale(0.85) rotateY(${-sign * 26}deg)`;
+          card.style.opacity = "0.78";
+          card.style.zIndex = "6";
+          card.style.filter = "brightness(0.84)";
+          card.style.pointerEvents = "auto";
+          card.classList.remove("is-active");
+        } else if (abs === 2) {
+          const sign = diff > 0 ? 1 : -1;
+          card.style.transform = `translate(-50%, -50%) translateX(${sign * step2}px) translateZ(-210px) scale(0.68) rotateY(${-sign * 36}deg)`;
+          card.style.opacity = "0.42";
+          card.style.zIndex = "3";
+          card.style.filter = "brightness(0.68)";
+          card.style.pointerEvents = "auto";
+          card.classList.remove("is-active");
+        } else {
+          card.style.transform =
+            "translate(-50%, -50%) translateZ(-320px) scale(0.5)";
+          card.style.opacity = "0";
+          card.style.zIndex = "1";
+          card.style.pointerEvents = "none";
+          card.classList.remove("is-active");
+        }
+      });
+
+      cfDots.querySelectorAll(".cf-dot").forEach((dot, i) => {
+        dot.classList.toggle("active", i === cfIndex);
+      });
+    }
+
+    function renderCoverflow() {
+      if (!cfStage || !cfDots) return;
+      const list = getScreens();
+      if (cfIndex >= list.length) cfIndex = 0;
+
+      cfStage.innerHTML = list
+        .map(
+          (item, i) =>
+            `<div class="cf-card" data-cf-idx="${i}">${buildCardHtml(item, i)}</div>`
+        )
+        .join("");
+
+      cfDots.innerHTML = list
+        .map(
+          (_, i) =>
+            `<button type="button" class="cf-dot ${i === cfIndex ? "active" : ""}" data-cf-dot="${i}" aria-label="${i + 1}"></button>`
+        )
+        .join("");
+
+      updateCoverflowPositions();
+    }
+
+    if (cfPrevBtn) {
+      cfPrevBtn.addEventListener("click", () => {
+        const total = getScreens().length;
+        cfIndex = (cfIndex - 1 + total) % total;
+        updateCoverflowPositions();
+      });
+    }
+
+    if (cfNextBtn) {
+      cfNextBtn.addEventListener("click", () => {
+        const total = getScreens().length;
+        cfIndex = (cfIndex + 1) % total;
+        updateCoverflowPositions();
+      });
+    }
+
+    if (cfDots) {
+      cfDots.addEventListener("click", (e) => {
+        const dot = e.target.closest(".cf-dot");
+        if (!dot) return;
+        cfIndex = Number(dot.getAttribute("data-cf-dot")) || 0;
+        updateCoverflowPositions();
+      });
+    }
+
+    if (cfStage) {
+      let touchStartX = null;
+      cfStage.addEventListener(
+        "touchstart",
+        (e) => {
+          touchStartX = e.touches[0]?.clientX ?? null;
+        },
+        { passive: true }
+      );
+      cfStage.addEventListener(
+        "touchend",
+        (e) => {
+          if (touchStartX === null) return;
+          const endX = e.changedTouches[0]?.clientX ?? touchStartX;
+          const dx = endX - touchStartX;
+          touchStartX = null;
+          if (Math.abs(dx) > 40) {
+            const total = getScreens().length;
+            cfIndex =
+              dx < 0 ? (cfIndex + 1) % total : (cfIndex - 1 + total) % total;
+            updateCoverflowPositions();
+          }
+        },
+        { passive: true }
+      );
+
+      // Clicking a card in the 3D coverflow:
+      // Side cards slide to center. The active center card does not enlarge (per requirement).
+      cfStage.addEventListener("click", (e) => {
+        const cfCard = e.target.closest(".cf-card");
+        if (!cfCard) return;
+        const idx = Number(cfCard.getAttribute("data-cf-idx")) || 0;
+        if (idx !== cfIndex) {
+          cfIndex = idx;
+          updateCoverflowPositions();
+        }
+      });
+    }
+
+    showcase.addEventListener("mouseenter", () => {
+      isStageHovered = true;
+    });
+    showcase.addEventListener("mouseleave", () => {
+      isStageHovered = false;
+    });
+
+    setInterval(() => {
+      if (isStageHovered) return;
+      const total = getScreens().length;
+      if (total <= 1) return;
+      cfIndex = (cfIndex + 1) % total;
+      updateCoverflowPositions();
+    }, 4500);
+
+    window.addEventListener("resize", updateCoverflowPositions);
+    document.addEventListener("poseidon:langchange", renderCoverflow);
+    renderCoverflow();
+  }
+
+  initAboutShowcase();
 });

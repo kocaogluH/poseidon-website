@@ -99,6 +99,8 @@ const translations = {
     missionTitle: "Misyonumuz",
     missionText:
       "Kaliteli, güvenilir ve yenilikçi yazılım çözümleri ile müşterilerimizin başarısına katkıda bulunmak.",
+    scHeaderTitle: "YAZILIM & OTOMASYON SİSTEMLERİMİZDEN GÖRÜNÜMLER",
+    scClickHint: "3B Sahne — Kartlara veya oklara tıklayarak inceleyin",
 
     // Services
     servicesTitle: "Hizmetlerimiz",
@@ -405,6 +407,8 @@ const translations = {
     missionTitle: "Our Mission",
     missionText:
       "To contribute to our clients' success with high-quality, reliable, and innovative software solutions.",
+    scHeaderTitle: "PREVIEWS FROM OUR SOFTWARE & AUTOMATION SYSTEMS",
+    scClickHint: "3D Showcase — Click cards or arrows to navigate",
 
     // Services
     servicesTitle: "Our Services",
@@ -711,6 +715,8 @@ const translations = {
     missionTitle: "Наша миссия",
     missionText:
       "Способствовать успеху наших клиентов с помощью качественных, надёжных и инновационных программных решений.",
+    scHeaderTitle: "ЭКРАНЫ НАШИХ СИСТЕМ ПО И АВТОМАТИЗАЦИИ",
+    scClickHint: "3D сцена — нажимайте на карточки или стрелки",
 
     // Services
     servicesTitle: "Наши услуги",
@@ -1017,6 +1023,8 @@ const translations = {
     missionTitle: "رسالتنا",
     missionText:
       "المساهمة في نجاح عملائنا من خلال حلول برمجية عالية الجودة وموثوقة ومبتكرة.",
+    scHeaderTitle: "لقطات من أنظمة البرمجيات والأتمتة لدينا",
+    scClickHint: "عرض ثلاثي الأبعاد — انقر للتنقل بين الأنظمة",
 
     // Services
     servicesTitle: "خدماتنا",

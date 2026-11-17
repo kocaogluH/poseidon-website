@@ -563,9 +563,29 @@
             <img src="assets/logo.png" alt="Poseidon Logo" />
           </div>
           <p class="about-text fade-in" data-i18n="aboutText">Poseidon, yenilikci yazilim cozumleri sunan genc ve dinamik bir teknoloji firmasidir. Modern teknolojileri kullanarak isletmelerin dijital donusum sureclerine rehberlik ediyoruz.</p>
-          <div class="about-logo-secondary fade-in">
-            <img src="assets/logo2.png" alt="Poseidon Software & Automation" />
+
+          <!-- 3D System Screenshots Showcase -->
+          <div class="about-showcase fade-in" id="aboutShowcase">
+            <div class="sc-header-row">
+              <div class="sc-badge-label">
+                <span class="sc-live-dot"></span>
+                <span data-i18n="scHeaderTitle">YAZILIM &amp; OTOMASYON SİSTEMLERİMİZDEN GÖRÜNÜMLER</span>
+              </div>
+              <span class="sc-hint-text" data-i18n="scClickHint">3B Sahne — Kartlara veya oklara tıklayarak inceleyin</span>
+            </div>
+
+            <div class="sc-view-coverflow" id="scViewCoverflow">
+              <div class="cf-stage-wrap">
+                <button type="button" class="cf-arrow cf-prev" id="cfPrevBtn" aria-label="Önceki ekran">‹</button>
+                <div class="cf-stage" id="cfStage"></div>
+                <button type="button" class="cf-arrow cf-next" id="cfNextBtn" aria-label="Sonraki ekran">›</button>
+              </div>
+              <div class="cf-controls">
+                <div class="cf-dots" id="cfDots"></div>
+              </div>
+            </div>
           </div>
+
           <div class="about-cards">
             <div class="about-card fade-in">
               <h3 data-i18n="visionTitle">Vizyonumuz</h3>
@@ -1244,6 +1264,7 @@
         </div>
       </div>
     </div>
+
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
