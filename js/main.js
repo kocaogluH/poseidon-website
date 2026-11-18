@@ -258,6 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "studio-light",
     "studio-dark",
     "ocean-light",
+    "liquid-glass",
   ];
 
   const THEME_DOT_COLORS = {
@@ -265,15 +266,16 @@ document.addEventListener("DOMContentLoaded", () => {
     "studio-light": "#2563eb",
     "studio-dark": "#38bdf8",
     "ocean-light": "#22d3ee",
+    "liquid-glass": "#bae6fd",
   };
 
   const storedTheme = localStorage.getItem("poseidon_theme");
   const savedTheme = VALID_THEMES.includes(storedTheme)
     ? storedTheme
-    : "studio-light";
+    : "ocean-video";
 
   function applyTheme(theme) {
-    const nextTheme = VALID_THEMES.includes(theme) ? theme : "studio-light";
+    const nextTheme = VALID_THEMES.includes(theme) ? theme : "ocean-video";
     document.documentElement.setAttribute("data-theme", nextTheme);
     localStorage.setItem("poseidon_theme", nextTheme);
 
@@ -339,6 +341,7 @@ document.addEventListener("DOMContentLoaded", () => {
     else if (e.key === "2") applyTheme("studio-light");
     else if (e.key === "3") applyTheme("studio-dark");
     else if (e.key === "4") applyTheme("ocean-light");
+    else if (e.key === "5") applyTheme("liquid-glass");
   });
 
   // ===== Card Mouse-Tracking Spotlight =====
