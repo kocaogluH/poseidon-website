@@ -259,6 +259,8 @@ document.addEventListener("DOMContentLoaded", () => {
     "studio-dark",
     "ocean-light",
     "liquid-glass",
+    "space-galaxy",
+    "solar-system",
   ];
 
   const THEME_DOT_COLORS = {
@@ -267,12 +269,25 @@ document.addEventListener("DOMContentLoaded", () => {
     "studio-dark": "#38bdf8",
     "ocean-light": "#22d3ee",
     "liquid-glass": "#bae6fd",
+    "space-galaxy": "#c084fc",
+    "solar-system": "#f59e0b",
   };
 
-  const storedTheme = localStorage.getItem("poseidon_theme");
-  const savedTheme = VALID_THEMES.includes(storedTheme)
-    ? storedTheme
-    : "ocean-video";
+  const rawCycleIdx = parseInt(
+    localStorage.getItem("poseidon_theme_cycle_idx"),
+    10
+  );
+  const cycleIdx =
+    Number.isInteger(rawCycleIdx) &&
+    rawCycleIdx >= 0 &&
+    rawCycleIdx < VALID_THEMES.length
+      ? rawCycleIdx
+      : 0;
+  const savedTheme = VALID_THEMES[cycleIdx];
+  localStorage.setItem(
+    "poseidon_theme_cycle_idx",
+    String((cycleIdx + 1) % VALID_THEMES.length)
+  );
 
   function applyTheme(theme) {
     const nextTheme = VALID_THEMES.includes(theme) ? theme : "ocean-video";
@@ -342,6 +357,8 @@ document.addEventListener("DOMContentLoaded", () => {
     else if (e.key === "3") applyTheme("studio-dark");
     else if (e.key === "4") applyTheme("ocean-light");
     else if (e.key === "5") applyTheme("liquid-glass");
+    else if (e.key === "6") applyTheme("space-galaxy");
+    else if (e.key === "7") applyTheme("solar-system");
   });
 
   // ===== Card Mouse-Tracking Spotlight =====
