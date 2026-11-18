@@ -3696,7 +3696,7 @@ html[data-theme="liquid-glass"] .form-group textarea {
 }
 
 /* ==========================================================================
-   COSMIC BACKDROP LAYERS (Galaxy & Solar System)
+   COSMIC BACKDROP LAYERS (Photorealistic Galaxy & Solar System)
    ========================================================================== */
 .ambient-galaxy-wrap,
 .ambient-solar-wrap {
@@ -3705,231 +3705,127 @@ html[data-theme="liquid-glass"] .form-group textarea {
   inset: 0;
   pointer-events: none;
   overflow: hidden;
+  background: #03020a;
+}
+
+.cosmic-photo {
+  position: absolute;
+  inset: -6%;
+  width: 112%;
+  height: 112%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  animation: cosmicDrift 20s ease-in-out infinite alternate;
+}
+
+.cosmic-photo-galaxy {
+  background-image: url("../assets/themes/galaxy-nebula.jpg");
+}
+
+.cosmic-photo-solar {
+  background-image: url("../assets/themes/solar-system.jpg");
+  background-position: right center;
+}
+
+.solar-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.cosmic-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 60% 50%, rgba(3, 2, 12, 0.12) 0%, rgba(3, 2, 12, 0.58) 100%),
+    linear-gradient(90deg, rgba(3, 2, 12, 0.52) 0%, rgba(3, 2, 12, 0.14) 55%, rgba(3, 2, 12, 0.25) 100%);
 }
 
 .galaxy-stars {
   position: absolute;
-  inset: -40px;
+  inset: -60px;
   background-repeat: repeat;
 }
 
 .galaxy-stars-sm {
   background-image:
-    radial-gradient(1px 1px at 24px 36px, rgba(255, 255, 255, 0.9), transparent),
-    radial-gradient(1px 1px at 92px 118px, rgba(196, 181, 253, 0.8), transparent),
-    radial-gradient(1.5px 1.5px at 164px 52px, rgba(186, 230, 253, 0.85), transparent),
-    radial-gradient(1px 1px at 220px 180px, rgba(255, 255, 255, 0.7), transparent);
-  background-size: 260px 220px;
-  animation: galaxyTwinkle 7s ease-in-out infinite alternate;
+    radial-gradient(1px 1px at 24px 36px, rgba(255, 255, 255, 0.85), transparent),
+    radial-gradient(1px 1px at 92px 118px, rgba(226, 232, 240, 0.7), transparent),
+    radial-gradient(1.5px 1.5px at 164px 52px, rgba(186, 230, 253, 0.75), transparent);
+  background-size: 280px 240px;
+  animation: galaxyTwinkle 5s ease-in-out infinite alternate, starDrift 48s linear infinite;
 }
 
 .galaxy-stars-lg {
   background-image:
-    radial-gradient(2px 2px at 45px 75px, #ffffff, transparent),
-    radial-gradient(2px 2px at 175px 140px, #e879f9, transparent),
-    radial-gradient(2.2px 2.2px at 290px 48px, #67e8f9, transparent);
-  background-size: 340px 260px;
-  animation: galaxyTwinkle 5s ease-in-out infinite alternate-reverse;
-}
-
-.galaxy-nebula {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(85px);
-  opacity: 0.55;
-}
-
-.galaxy-nebula-1 {
-  width: 680px;
-  height: 680px;
-  top: -120px;
-  right: -100px;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.55), rgba(59, 130, 246, 0.25) 55%, transparent 72%);
-  animation: nebulaDrift 18s ease-in-out infinite alternate;
-}
-
-.galaxy-nebula-2 {
-  width: 620px;
-  height: 620px;
-  bottom: -140px;
-  left: -120px;
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.38), rgba(6, 182, 212, 0.26) 55%, transparent 72%);
-  animation: nebulaDrift 22s ease-in-out infinite alternate-reverse;
-}
-
-.galaxy-spiral {
-  position: absolute;
-  top: 14%;
-  right: 8%;
-  width: 460px;
-  height: 460px;
-  border-radius: 50%;
-  background:
-    conic-gradient(
-      from 0deg,
-      rgba(168, 85, 247, 0.0) 0deg,
-      rgba(192, 132, 252, 0.28) 50deg,
-      rgba(56, 189, 248, 0.22) 110deg,
-      rgba(168, 85, 247, 0.0) 170deg,
-      rgba(232, 121, 249, 0.25) 230deg,
-      rgba(56, 189, 248, 0.18) 295deg,
-      rgba(168, 85, 247, 0.0) 360deg
-    ),
-    radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, rgba(192, 132, 252, 0.28) 18%, transparent 58%);
-  filter: blur(18px);
-  opacity: 0.65;
-  animation: galaxySpin 60s linear infinite;
-}
-
-/* Solar System Stage */
-.solar-system-stage {
-  position: absolute;
-  top: 50%;
-  right: -120px;
-  width: 900px;
-  height: 900px;
-  transform: translateY(-50%);
-}
-
-.solar-sun {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 112px;
-  height: 112px;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: radial-gradient(circle at 38% 38%, #fef08a 0%, #f59e0b 48%, #ea580c 85%, #9a3412 100%);
-  box-shadow:
-    0 0 48px rgba(251, 191, 36, 0.85),
-    0 0 120px rgba(249, 115, 22, 0.55),
-    0 0 220px rgba(234, 88, 12, 0.28);
-  animation: sunPulse 4.5s ease-in-out infinite alternate;
-}
-
-.solar-orbit {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border-radius: 50%;
-  border: 1px dashed rgba(251, 191, 36, 0.18);
-  transform: translate(-50%, -50%);
-}
-
-.solar-planet {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-}
-
-.orbit-mercury { width: 190px; height: 190px; animation: solarOrbit 10s linear infinite; }
-.planet-mercury { width: 8px; height: 8px; background: #cbd5e1; box-shadow: 0 0 6px rgba(203, 213, 225, 0.8); }
-
-.orbit-venus { width: 270px; height: 270px; animation: solarOrbit 17s linear infinite; }
-.planet-venus { width: 13px; height: 13px; background: radial-gradient(circle at 35% 35%, #fde68a, #d97706); box-shadow: 0 0 10px rgba(251, 191, 36, 0.65); }
-
-.orbit-earth { width: 370px; height: 370px; animation: solarOrbit 26s linear infinite; }
-.planet-earth { width: 15px; height: 15px; background: radial-gradient(circle at 35% 35%, #67e8f9, #2563eb 65%, #1e3a8a); box-shadow: 0 0 12px rgba(56, 189, 248, 0.8); }
-
-.orbit-mars { width: 470px; height: 470px; animation: solarOrbit 38s linear infinite; }
-.planet-mars { width: 11px; height: 11px; background: radial-gradient(circle at 35% 35%, #fca5a5, #dc2626); box-shadow: 0 0 8px rgba(239, 68, 68, 0.7); }
-
-.orbit-jupiter { width: 620px; height: 620px; animation: solarOrbit 64s linear infinite; }
-.planet-jupiter { width: 28px; height: 28px; background: linear-gradient(180deg, #fed7aa 0%, #c2410c 35%, #fdba74 55%, #9a3412 85%); box-shadow: 0 0 16px rgba(251, 146, 60, 0.55); }
-
-.orbit-saturn { width: 790px; height: 790px; animation: solarOrbit 92s linear infinite; }
-.planet-saturn {
-  width: 22px;
-  height: 22px;
-  background: radial-gradient(circle at 35% 35%, #fef3c7, #d97706);
-  box-shadow: 0 0 14px rgba(253, 224, 71, 0.55);
-}
-.planet-saturn::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 44px;
-  height: 12px;
-  border: 2.5px solid rgba(253, 230, 138, 0.75);
-  border-radius: 50%;
-  transform: translate(-50%, -50%) rotate(-18deg);
+    radial-gradient(2px 2px at 45px 75px, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(1.8px 1.8px at 175px 140px, rgba(226, 232, 240, 0.75), transparent),
+    radial-gradient(2px 2px at 290px 48px, rgba(196, 181, 253, 0.7), transparent);
+  background-size: 360px 280px;
+  animation: galaxyTwinkle 4s ease-in-out infinite alternate-reverse, starDrift 32s linear infinite;
 }
 
 @keyframes galaxyTwinkle {
-  0% { opacity: 0.55; }
-  100% { opacity: 1; }
+  0% { opacity: 0.35; }
+  100% { opacity: 0.9; }
 }
 
-@keyframes nebulaDrift {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(-36px, 28px) scale(1.1); }
+@keyframes starDrift {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-120px, 60px, 0); }
 }
 
-@keyframes galaxySpin {
-  0% { transform: rotate(0deg) scale(1); }
-  100% { transform: rotate(360deg) scale(1); }
-}
-
-@keyframes solarOrbit {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-@keyframes sunPulse {
-  0% { box-shadow: 0 0 42px rgba(251, 191, 36, 0.8), 0 0 110px rgba(249, 115, 22, 0.5); }
-  100% { box-shadow: 0 0 60px rgba(253, 224, 71, 0.95), 0 0 150px rgba(249, 115, 22, 0.7); }
+@keyframes cosmicDrift {
+  0% { transform: scale(1.02) translate3d(0%, 0%, 0); }
+  50% { transform: scale(1.08) translate3d(-1.8%, -1.0%, 0); }
+  100% { transform: scale(1.13) translate3d(-3.2%, 0.8%, 0); }
 }
 
 /* ==========================================================================
-   TEMA 6: UZAY & GALAKSİ (Derin Uzay + Nebula + Sarmal Galaksi)
+   TEMA 6: UZAY & GALAKSİ (Gerçekçi Sarmal Galaksi & Nebula)
    ========================================================================== */
 html[data-theme="space-galaxy"] {
   --bg-primary: #050314;
-  --bg-secondary: rgba(12, 8, 36, 0.45);
-  --section-alt-bg: rgba(16, 10, 44, 0.38);
-  --footer-bg: rgba(5, 3, 20, 0.85);
-  --bg-card: rgba(18, 12, 48, 0.56);
-  --bg-card-hover: rgba(28, 18, 72, 0.74);
+  --bg-secondary: rgba(6, 4, 20, 0.22);
+  --section-alt-bg: rgba(8, 5, 24, 0.24);
+  --footer-bg: rgba(5, 3, 20, 0.76);
+  --bg-card: rgba(14, 10, 38, 0.48);
+  --bg-card-hover: rgba(24, 16, 62, 0.68);
   --text-primary: #f8fafc;
-  --text-secondary: #ddd6fe;
+  --text-secondary: #e9d5ff;
   --accent: #a855f7;
   --accent-light: #e879f9;
   --btn-primary-text: #ffffff;
   --btn-primary-hover: #9333ea;
   --gradient: linear-gradient(135deg, #ffffff 0%, #e879f9 48%, #38bdf8 100%);
-  --gradient-bg: radial-gradient(circle at 50% 25%, #160b36 0%, #07051a 60%, #03020d 100%);
-  --border: rgba(192, 132, 252, 0.28);
-  --border-strong: rgba(232, 121, 249, 0.55);
-  --shadow: 0 24px 60px -14px rgba(10, 4, 34, 0.75);
+  --gradient-bg: transparent;
+  --border: rgba(216, 180, 254, 0.3);
+  --border-strong: rgba(232, 121, 249, 0.58);
+  --shadow: 0 24px 60px -14px rgba(4, 2, 18, 0.75);
   --radius: 18px;
   --font-heading: "Plus Jakarta Sans", "Inter", "Cairo", sans-serif;
-  --navbar-bg: rgba(8, 5, 28, 0.62);
-  --navbar-bg-scrolled: rgba(8, 5, 28, 0.88);
-  --spotlight-color: rgba(192, 132, 252, 0.22);
+  --navbar-bg: rgba(8, 5, 28, 0.52);
+  --navbar-bg-scrolled: rgba(8, 5, 28, 0.84);
+  --spotlight-color: rgba(216, 180, 254, 0.22);
 
-  --demo-bg: rgba(12, 8, 36, 0.35);
-  --win-bg: rgba(14, 10, 42, 0.72);
-  --win-header: rgba(24, 16, 62, 0.82);
-  --win-menubar: rgba(10, 6, 30, 0.78);
-  --win-stats: rgba(22, 14, 58, 0.55);
-  --win-panel: rgba(20, 14, 52, 0.62);
-  --win-panel-hover: rgba(32, 22, 78, 0.78);
-  --win-input: rgba(8, 5, 26, 0.72);
-  --win-border: rgba(192, 132, 252, 0.28);
-  --win-border-subtle: rgba(192, 132, 252, 0.14);
+  --demo-bg: rgba(8, 5, 24, 0.26);
+  --win-bg: rgba(12, 8, 36, 0.66);
+  --win-header: rgba(20, 14, 52, 0.78);
+  --win-menubar: rgba(8, 5, 26, 0.74);
+  --win-stats: rgba(18, 12, 48, 0.5);
+  --win-panel: rgba(16, 12, 44, 0.58);
+  --win-panel-hover: rgba(28, 20, 68, 0.76);
+  --win-input: rgba(6, 4, 20, 0.68);
+  --win-border: rgba(216, 180, 254, 0.28);
+  --win-border-subtle: rgba(216, 180, 254, 0.14);
   --win-text: #ffffff;
-  --win-text-muted: #ddd6fe;
+  --win-text-muted: #e9d5ff;
   --win-text-soft: #f5f3ff;
-  --win-btn-sec-bg: rgba(34, 22, 82, 0.75);
-  --win-btn-sec-hover: rgba(48, 32, 110, 0.9);
-}
-
-html[data-theme="space-galaxy"] body {
-  background: var(--gradient-bg);
-  background-attachment: fixed;
+  --win-btn-sec-bg: rgba(28, 18, 68, 0.72);
+  --win-btn-sec-hover: rgba(44, 28, 100, 0.88);
 }
 
 html[data-theme="space-galaxy"] .ambient-canvas,
@@ -3950,9 +3846,9 @@ html[data-theme="space-galaxy"] .telemetry-card,
 html[data-theme="space-galaxy"] .contact-info,
 html[data-theme="space-galaxy"] .contact-form,
 html[data-theme="space-galaxy"] .win-mockup {
-  backdrop-filter: blur(18px) saturate(150%);
-  -webkit-backdrop-filter: blur(18px) saturate(150%);
-  box-shadow: inset 0 1px 0 rgba(232, 121, 249, 0.24), 0 22px 52px -14px rgba(4, 2, 18, 0.72);
+  backdrop-filter: blur(16px) saturate(145%);
+  -webkit-backdrop-filter: blur(16px) saturate(145%);
+  box-shadow: inset 0 1px 0 rgba(232, 121, 249, 0.26), 0 22px 52px -14px rgba(4, 2, 18, 0.72);
 }
 
 html[data-theme="space-galaxy"] .btn-primary {
@@ -3972,52 +3868,47 @@ html[data-theme="space-galaxy"] .lang-option.active {
 }
 
 /* ==========================================================================
-   TEMA 7: GÜNEŞ SİSTEMİ (Güneş + Yörüngeler + Gezegenler)
+   TEMA 7: GÜNEŞ SİSTEMİ (Fotogerçekçi Güneş & Gezegenler — Doğal Gözlemevi)
    ========================================================================== */
 html[data-theme="solar-system"] {
-  --bg-primary: #07060c;
-  --bg-secondary: rgba(18, 13, 10, 0.42);
-  --section-alt-bg: rgba(20, 14, 10, 0.36);
-  --footer-bg: rgba(8, 6, 8, 0.88);
-  --bg-card: rgba(22, 16, 14, 0.58);
-  --bg-card-hover: rgba(34, 24, 18, 0.76);
-  --text-primary: #fffbeb;
-  --text-secondary: #fde68a;
-  --accent: #f59e0b;
-  --accent-light: #fcd34d;
-  --btn-primary-text: #0f172a;
-  --btn-primary-hover: #d97706;
-  --gradient: linear-gradient(135deg, #ffffff 0%, #fde047 45%, #fb923c 100%);
-  --gradient-bg: radial-gradient(circle at 82% 45%, #2a1406 0%, #0d090a 52%, #050508 100%);
-  --border: rgba(251, 191, 36, 0.28);
-  --border-strong: rgba(252, 211, 77, 0.55);
+  --bg-primary: #07080d;
+  --bg-secondary: rgba(10, 11, 16, 0.22);
+  --section-alt-bg: rgba(12, 13, 18, 0.26);
+  --footer-bg: rgba(7, 8, 13, 0.82);
+  --bg-card: rgba(15, 17, 24, 0.56);
+  --bg-card-hover: rgba(24, 27, 38, 0.74);
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --accent: #c89b54;
+  --accent-light: #e2c086;
+  --btn-primary-text: #ffffff;
+  --btn-primary-hover: #a67c3b;
+  --gradient: linear-gradient(135deg, #ffffff 0%, #e2e8f0 52%, #d4a373 100%);
+  --gradient-bg: transparent;
+  --border: rgba(203, 213, 225, 0.22);
+  --border-strong: rgba(212, 163, 115, 0.44);
   --shadow: 0 24px 60px -14px rgba(0, 0, 0, 0.8);
   --radius: 18px;
   --font-heading: "Plus Jakarta Sans", "Inter", "Cairo", sans-serif;
-  --navbar-bg: rgba(12, 9, 8, 0.64);
-  --navbar-bg-scrolled: rgba(12, 9, 8, 0.9);
-  --spotlight-color: rgba(251, 191, 36, 0.2);
+  --navbar-bg: rgba(10, 11, 16, 0.58);
+  --navbar-bg-scrolled: rgba(10, 11, 16, 0.88);
+  --spotlight-color: rgba(212, 163, 115, 0.16);
 
-  --demo-bg: rgba(16, 12, 10, 0.38);
-  --win-bg: rgba(20, 15, 12, 0.76);
-  --win-header: rgba(30, 22, 16, 0.84);
-  --win-menubar: rgba(14, 10, 8, 0.8);
-  --win-stats: rgba(28, 20, 15, 0.56);
-  --win-panel: rgba(26, 19, 14, 0.64);
-  --win-panel-hover: rgba(42, 30, 22, 0.8);
-  --win-input: rgba(12, 9, 8, 0.75);
-  --win-border: rgba(251, 191, 36, 0.28);
-  --win-border-subtle: rgba(251, 191, 36, 0.14);
-  --win-text: #fffbeb;
-  --win-text-muted: #fde68a;
-  --win-text-soft: #fef3c7;
-  --win-btn-sec-bg: rgba(42, 30, 20, 0.78);
-  --win-btn-sec-hover: rgba(60, 42, 28, 0.92);
-}
-
-html[data-theme="solar-system"] body {
-  background: var(--gradient-bg);
-  background-attachment: fixed;
+  --demo-bg: rgba(12, 13, 18, 0.28);
+  --win-bg: rgba(15, 17, 24, 0.72);
+  --win-header: rgba(22, 25, 34, 0.84);
+  --win-menubar: rgba(10, 12, 18, 0.8);
+  --win-stats: rgba(20, 23, 32, 0.54);
+  --win-panel: rgba(18, 21, 30, 0.62);
+  --win-panel-hover: rgba(28, 32, 44, 0.78);
+  --win-input: rgba(9, 10, 15, 0.74);
+  --win-border: rgba(203, 213, 225, 0.22);
+  --win-border-subtle: rgba(203, 213, 225, 0.12);
+  --win-text: #f8fafc;
+  --win-text-muted: #cbd5e1;
+  --win-text-soft: #e2e8f0;
+  --win-btn-sec-bg: rgba(28, 32, 44, 0.76);
+  --win-btn-sec-hover: rgba(42, 48, 64, 0.9);
 }
 
 html[data-theme="solar-system"] .ambient-canvas,
@@ -4038,25 +3929,25 @@ html[data-theme="solar-system"] .telemetry-card,
 html[data-theme="solar-system"] .contact-info,
 html[data-theme="solar-system"] .contact-form,
 html[data-theme="solar-system"] .win-mockup {
-  backdrop-filter: blur(16px) saturate(145%);
-  -webkit-backdrop-filter: blur(16px) saturate(145%);
-  box-shadow: inset 0 1px 0 rgba(253, 224, 71, 0.22), 0 22px 52px -14px rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(18px) saturate(135%);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 22px 52px -14px rgba(0, 0, 0, 0.78);
 }
 
 html[data-theme="solar-system"] .btn-primary {
-  background: linear-gradient(135deg, #fbbf24, #f97316);
-  color: #0f172a;
-  font-weight: 700;
-  box-shadow: 0 10px 28px -6px rgba(245, 158, 11, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  background: linear-gradient(135deg, #9a6b2f, #c89b54);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 10px 26px -8px rgba(200, 155, 84, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.28);
 }
 
 html[data-theme="solar-system"] .theme-dropdown,
 html[data-theme="solar-system"] .lang-dropdown {
-  background: rgba(16, 12, 10, 0.94);
+  background: rgba(14, 16, 22, 0.94);
 }
 
 html[data-theme="solar-system"] .theme-option.active,
 html[data-theme="solar-system"] .lang-option.active {
-  background: rgba(245, 158, 11, 0.24);
-  color: #fde047;
+  background: rgba(200, 155, 84, 0.22);
+  color: #e2c086;
 }
