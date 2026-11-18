@@ -2074,7 +2074,36 @@ section {
   width: 450px;
   max-width: calc(100% - 84px);
   transform-origin: center center;
-  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease, filter 0.45s ease;
+  transform: translate(-50%, -50%) translateX(var(--cf-x, 0px)) translateZ(var(--cf-z, 0px)) scale(var(--cf-scale, 1)) rotateY(var(--cf-rot, 0deg));
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease, filter 0.35s ease;
+}
+
+@media (hover: hover) {
+  .about-showcase:has(.cf-card:hover) {
+    position: relative;
+    z-index: 20;
+  }
+
+  .cf-stage-wrap:has(.cf-card:hover) {
+    overflow: visible;
+    z-index: 20;
+  }
+
+  .cf-card:hover {
+    transform: translate(-50%, -50%) translateX(var(--cf-x, 0px)) translateZ(140px) scale(1.24) rotateY(0deg);
+    opacity: 1 !important;
+    filter: none !important;
+    z-index: 50 !important;
+  }
+
+  .cf-card:hover .sc-screen-card {
+    border-color: rgba(56, 189, 248, 0.8);
+    box-shadow: 0 32px 72px -12px rgba(6, 182, 212, 0.45), 0 18px 40px rgba(0, 0, 0, 0.75);
+  }
+
+  .cf-card:hover .sc-custom-photo {
+    image-rendering: -webkit-optimize-contrast;
+  }
 }
 
 .cf-arrow {
