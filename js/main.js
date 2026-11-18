@@ -1340,8 +1340,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const abs = Math.abs(diff);
         if (abs === 0) {
           card.style.setProperty("--cf-x", "0px");
-          card.style.setProperty("--cf-z", "80px");
-          card.style.setProperty("--cf-scale", "1.04");
+          card.style.setProperty("--cf-z", "0px");
+          card.style.setProperty("--cf-scale", "1");
           card.style.setProperty("--cf-rot", "0deg");
           card.style.opacity = "1";
           card.style.zIndex = "10";
@@ -1351,7 +1351,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (abs === 1) {
           const sign = diff > 0 ? 1 : -1;
           card.style.setProperty("--cf-x", `${sign * step1}px`);
-          card.style.setProperty("--cf-z", "-90px");
+          card.style.setProperty("--cf-z", "-140px");
           card.style.setProperty("--cf-scale", "0.85");
           card.style.setProperty("--cf-rot", `${-sign * 26}deg`);
           card.style.opacity = "0.78";
@@ -1362,7 +1362,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (abs === 2) {
           const sign = diff > 0 ? 1 : -1;
           card.style.setProperty("--cf-x", `${sign * step2}px`);
-          card.style.setProperty("--cf-z", "-210px");
+          card.style.setProperty("--cf-z", "-260px");
           card.style.setProperty("--cf-scale", "0.68");
           card.style.setProperty("--cf-rot", `${-sign * 36}deg`);
           card.style.opacity = "0.42";
@@ -1372,7 +1372,7 @@ document.addEventListener("DOMContentLoaded", () => {
           card.classList.remove("is-active");
         } else {
           card.style.setProperty("--cf-x", "0px");
-          card.style.setProperty("--cf-z", "-320px");
+          card.style.setProperty("--cf-z", "-360px");
           card.style.setProperty("--cf-scale", "0.5");
           card.style.setProperty("--cf-rot", "0deg");
           card.style.opacity = "0";
