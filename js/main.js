@@ -1461,7 +1461,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       // Clicking a card in the 3D coverflow:
-      // Side cards slide to center. The active center card does not enlarge (per requirement).
+      // Side cards slide to center. Active center card opens full-resolution 2D lightbox.
       cfStage.addEventListener("click", (e) => {
         const cfCard = e.target.closest(".cf-card");
         if (!cfCard) return;
@@ -1469,9 +1469,81 @@ document.addEventListener("DOMContentLoaded", () => {
         if (idx !== cfIndex) {
           cfIndex = idx;
           updateCoverflowPositions();
+        } else {
+          openLightbox(idx);
         }
       });
     }
+
+    const lightbox = document.getElementById("scLightbox");
+    const lbBody = lightbox ? lightbox.querySelector(".sc-lightbox-body") : null;
+    const lbImg = document.getElementById("scLightboxImg");
+    const lbTag = document.getElementById("scLightboxTag");
+    const lbTitle = document.getElementById("scLightboxTitle");
+    const lbSub = document.getElementById("scLightboxSub");
+    const lbClose = document.getElementById("scLightboxClose");
+    const lbBackdrop = document.getElementById("scLightboxBackdrop");
+    const lbPrev = document.getElementById("scLightboxPrev");
+    const lbNext = document.getElementById("scLightboxNext");
+    let isLightboxOpen = false;
+
+    function updateLightboxContent(idx) {
+      const list = getScreens();
+      const item = list[idx];
+      if (!item || !lbImg) return;
+      if (lbBody) lbBody.classList.remove("is-zoomed");
+      lbImg.src = item.img;
+      lbImg.alt = item.title;
+      if (lbTag) lbTag.textContent = item.tag;
+      if (lbTitle) lbTitle.textContent = item.title;
+      if (lbSub) lbSub.textContent = item.sub;
+    }
+
+    if (lbImg && lbBody) {
+      lbImg.addEventListener("click", () => {
+        lbBody.classList.toggle("is-zoomed");
+      });
+    }
+
+    function openLightbox(idx) {
+      if (!lightbox) return;
+      isLightboxOpen = true;
+      updateLightboxContent(idx);
+      lightbox.classList.add("is-open");
+      lightbox.setAttribute("aria-hidden", "false");
+    }
+
+    function closeLightbox() {
+      if (!lightbox) return;
+      isLightboxOpen = false;
+      lightbox.classList.remove("is-open");
+      lightbox.setAttribute("aria-hidden", "true");
+    }
+
+    if (lbClose) lbClose.addEventListener("click", closeLightbox);
+    if (lbBackdrop) lbBackdrop.addEventListener("click", closeLightbox);
+    if (lbPrev) {
+      lbPrev.addEventListener("click", () => {
+        const total = getScreens().length;
+        cfIndex = (cfIndex - 1 + total) % total;
+        updateCoverflowPositions();
+        updateLightboxContent(cfIndex);
+      });
+    }
+    if (lbNext) {
+      lbNext.addEventListener("click", () => {
+        const total = getScreens().length;
+        cfIndex = (cfIndex + 1) % total;
+        updateCoverflowPositions();
+        updateLightboxContent(cfIndex);
+      });
+    }
+    document.addEventListener("keydown", (e) => {
+      if (!isLightboxOpen) return;
+      if (e.key === "Escape") closeLightbox();
+      else if (e.key === "ArrowLeft" && lbPrev) lbPrev.click();
+      else if (e.key === "ArrowRight" && lbNext) lbNext.click();
+    });
 
     showcase.addEventListener("mouseenter", () => {
       isStageHovered = true;
@@ -1481,7 +1553,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     setInterval(() => {
-      if (isStageHovered) return;
+      if (isStageHovered || isLightboxOpen) return;
       const total = getScreens().length;
       if (total <= 1) return;
       cfIndex = (cfIndex + 1) % total;

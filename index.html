@@ -1380,6 +1380,26 @@
       </div>
     </footer>
 
+    <!-- Showcase Lightbox Modal -->
+    <div class="sc-lightbox" id="scLightbox" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="sc-lightbox-backdrop" id="scLightboxBackdrop"></div>
+      <div class="sc-lightbox-dialog">
+        <div class="sc-lightbox-bar">
+          <div class="sc-lightbox-meta">
+            <span class="sc-win-tag" id="scLightboxTag"></span>
+            <strong id="scLightboxTitle"></strong>
+          </div>
+          <button type="button" class="sc-lightbox-close" id="scLightboxClose" aria-label="Kapat">✕</button>
+        </div>
+        <div class="sc-lightbox-body">
+          <button type="button" class="sc-lightbox-nav sc-lightbox-prev" id="scLightboxPrev" aria-label="Önceki">‹</button>
+          <img id="scLightboxImg" src="" alt="" />
+          <button type="button" class="sc-lightbox-nav sc-lightbox-next" id="scLightboxNext" aria-label="Sonraki">›</button>
+        </div>
+        <p class="sc-lightbox-sub" id="scLightboxSub"></p>
+      </div>
+    </div>
+
     <script charset="utf-8" src="js/translations.js?v=20261117b"></script>
     <script charset="utf-8" src="js/barcode-demo.js?v=20261117b"></script>
     <script charset="utf-8" src="js/main.js?v=20261117b"></script>
