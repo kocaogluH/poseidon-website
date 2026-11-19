@@ -282,7 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
     rawCycleIdx >= 0 &&
     rawCycleIdx < VALID_THEMES.length
       ? rawCycleIdx
-      : 0;
+      : Math.floor(Math.random() * VALID_THEMES.length);
   const savedTheme = VALID_THEMES[cycleIdx];
   localStorage.setItem(
     "poseidon_theme_cycle_idx",
