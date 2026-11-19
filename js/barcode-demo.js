@@ -530,8 +530,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ===== 1. MENÜ SEKMELERİ (TÜM SEKMELERİ ÇALIŞTIRMA) =====
-  const menuTabs = document.querySelectorAll(".win-menubar span");
-  const views = document.querySelectorAll(".win-view");
+  const warehouseScope = document.getElementById("system-panel-warehouse") || document;
+  const menuTabs = warehouseScope.querySelectorAll(".win-menubar span");
+  const views = warehouseScope.querySelectorAll(".win-view");
 
   menuTabs.forEach((tab) => {
     tab.addEventListener("click", () => {

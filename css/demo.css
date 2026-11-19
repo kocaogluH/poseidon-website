@@ -1124,3 +1124,319 @@
   .footer-actions { flex-direction: column; }
   .footer-actions button { width: 100%; justify-content: center; }
 }
+
+/* ===== Restaurant & Accounting Prototypes ===== */
+.resto-layout {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.resto-tables-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+  gap: 12px;
+}
+
+.resto-table-card {
+  background: var(--win-panel);
+  border: 1px solid var(--win-border);
+  border-radius: 10px;
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.resto-table-card:hover {
+  border-color: rgba(56, 189, 248, 0.45);
+  transform: translateY(-2px);
+}
+
+.resto-table-card.selected {
+  border-color: var(--accent-light);
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+}
+
+.resto-table-card.occupied {
+  border-left: 3px solid #38bdf8;
+}
+
+.resto-table-card.bill {
+  border-left: 3px solid #f59e0b;
+}
+
+.resto-table-card.empty {
+  border-left: 3px solid #22c55e;
+}
+
+.resto-table-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  color: var(--win-text);
+  font-size: 0.95rem;
+}
+
+.resto-table-zone {
+  font-size: 0.74rem;
+  color: var(--win-text-muted);
+}
+
+.resto-table-total {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent-light);
+}
+
+.resto-order-panel {
+  background: var(--win-panel);
+  border: 1px solid var(--win-border);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.resto-order-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--win-border);
+  padding-bottom: 10px;
+}
+
+.resto-order-head h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--win-text);
+}
+
+.resto-quick-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.resto-menu-chip {
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  color: var(--win-text);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.resto-menu-chip:hover {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: var(--accent-light);
+}
+
+.resto-order-items {
+  max-height: 210px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.resto-order-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--win-border);
+  border-radius: 6px;
+  font-size: 0.84rem;
+}
+
+.resto-qty-ctrl {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.resto-qty-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  border: 1px solid var(--win-border);
+  background: var(--win-bg);
+  color: var(--win-text);
+  cursor: pointer;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.resto-qty-btn:hover {
+  border-color: var(--accent-light);
+  color: var(--accent-light);
+}
+
+.kds-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 14px;
+}
+
+.kds-card {
+  background: var(--win-panel);
+  border: 1px solid var(--win-border);
+  border-top: 3px solid #f59e0b;
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.kds-card.ready {
+  border-top-color: #22c55e;
+}
+
+.kds-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  color: var(--win-text);
+}
+
+.kds-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.85rem;
+  color: var(--win-text-muted);
+}
+
+/* Accounting KPI & Form Grids */
+.proto-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.proto-kpi-card {
+  background: var(--win-panel);
+  border: 1px solid var(--win-border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.proto-kpi-label {
+  font-size: 0.78rem;
+  color: var(--win-text-muted);
+}
+
+.proto-kpi-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--win-text);
+}
+
+.proto-kpi-value.pos { color: #34d399; }
+.proto-kpi-value.neg { color: #f87171; }
+.proto-kpi-value.acc { color: var(--accent-light); }
+
+.acc-quick-form {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr auto;
+  gap: 10px;
+  background: var(--win-panel);
+  border: 1px solid var(--win-border);
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 16px;
+  align-items: center;
+}
+
+.acc-input {
+  background: var(--win-bg);
+  border: 1px solid var(--win-border);
+  color: var(--win-text);
+  padding: 9px 12px;
+  border-radius: 6px;
+  font-size: 0.86rem;
+  width: 100%;
+}
+
+.acc-invoice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.acc-form-card {
+  background: var(--win-panel);
+  border: 1px solid var(--win-border);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.acc-form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.acc-form-row label {
+  font-size: 0.78rem;
+  color: var(--win-text-muted);
+}
+
+.acc-banks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.acc-bank-card {
+  background: var(--win-panel);
+  border: 1px solid var(--win-border);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.proto-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.proto-badge.green { background: rgba(34, 197, 94, 0.15); color: #4ade80; }
+.proto-badge.blue { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
+.proto-badge.amber { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
+.proto-badge.red { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+
+@media (max-width: 860px) {
+  .resto-layout,
+  .acc-invoice-grid { grid-template-columns: 1fr; }
+  .proto-kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .acc-quick-form { grid-template-columns: 1fr; }
+}

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="tr" translate="no" class="notranslate">
   <head>
     <meta charset="UTF-8" />
@@ -714,7 +714,7 @@
 
         <!-- System Selection Tabs -->
         <div class="system-tabs fade-in">
-          <button class="system-tab-btn active">
+          <button class="system-tab-btn active" data-system="warehouse">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="2" y="4" width="20" height="16" rx="2"/>
               <path d="M6 8h1M6 12h1M6 16h1M10 8h2M10 12h2M10 16h2M15 8h3M15 12h3M15 16h3"/>
@@ -722,7 +722,7 @@
             <span data-i18n="demoSysTab1">Barkodlu Stok &amp; Depo Takip</span>
             <span class="badge-pill" data-i18n="demoSysLive">Canlı Demo</span>
           </button>
-          <button class="system-tab-btn" style="opacity: 0.6; cursor: default;" title="Çok Yakında">
+          <button class="system-tab-btn" data-system="restaurant">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
               <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
@@ -731,20 +731,20 @@
               <line x1="14" y1="1" x2="14" y2="4"/>
             </svg>
             <span data-i18n="demoSysTab2">Restoran &amp; Adisyon Otomasyonu</span>
-            <span class="badge-pill" data-i18n="demoSysSoon">Çok Yakında</span>
+            <span class="badge-pill" data-i18n="demoSysLive">Canlı Demo</span>
           </button>
-          <button class="system-tab-btn" style="opacity: 0.6; cursor: default;" title="Çok Yakında">
+          <button class="system-tab-btn" data-system="accounting">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="12" y1="1" x2="12" y2="23"/>
               <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
             </svg>
             <span data-i18n="demoSysTab3">Ön Muhasebe &amp; Finans</span>
-            <span class="badge-pill" data-i18n="demoSysSoon">Çok Yakında</span>
+            <span class="badge-pill" data-i18n="demoSysLive">Canlı Demo</span>
           </button>
         </div>
 
-        <!-- Windows Desktop Window Mockup -->
-        <div class="win-mockup fade-in">
+        <!-- Windows Desktop Window Mockup (Warehouse) -->
+        <div class="win-mockup fade-in" id="system-panel-warehouse">
           <!-- Window Title Bar -->
           <div class="win-titlebar">
             <div class="win-title-left">
@@ -1232,6 +1232,278 @@
 
           </div>
         </div>
+
+        <!-- Windows Desktop Window Mockup (Restaurant & POS) -->
+        <div class="win-mockup fade-in" id="system-panel-restaurant" style="display: none;">
+          <div class="win-titlebar">
+            <div class="win-title-left">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+              </svg>
+              <span data-i18n="restoWinTitle">Poseidon - Restoran &amp; Adisyon Otomasyonu v3.1 [Canlı Prototip]</span>
+            </div>
+            <div class="win-controls">
+              <span class="win-ctrl-btn minimize"></span>
+              <span class="win-ctrl-btn maximize"></span>
+              <span class="win-ctrl-btn close"></span>
+            </div>
+          </div>
+
+          <div class="win-menubar">
+            <span class="active" data-target="resto-tables" data-i18n="restoMenu1">🪑 Masa Düzeni &amp; Adisyon</span>
+            <span data-target="resto-kitchen" data-i18n="restoMenu2">🍳 Mutfak Ekranı (KDS)</span>
+            <span data-target="resto-menu" data-i18n="restoMenu3">📋 Menü &amp; Fiyatlar</span>
+            <span data-target="resto-reports" data-i18n="restoMenu4">📊 Gün Sonu &amp; Z Raporu</span>
+          </div>
+
+          <div class="win-stats-bar">
+            <div class="win-stat-item">
+              <span data-i18n="restoStatOpenLabel">Açık Masalar:</span>
+              <span class="win-stat-badge" id="restoStatOpenVal">0 / 8</span>
+            </div>
+            <div class="win-stat-item">
+              <span data-i18n="restoStatKitchenLabel">Mutfak Bekleyen:</span>
+              <span class="win-stat-badge" style="color: #fbbf24;" id="restoStatKitchenVal">0</span>
+            </div>
+            <div class="win-stat-item">
+              <span data-i18n="restoStatRevLabel">Günlük Ciro:</span>
+              <span class="win-stat-badge" style="color: #34d399;" id="restoStatRevVal">₺0,00</span>
+            </div>
+          </div>
+
+          <div class="win-body">
+            <!-- View 1: Masa Düzeni & Adisyon -->
+            <div class="win-view" id="resto-tables" style="display: block;">
+              <div class="resto-layout">
+                <div>
+                  <div class="view-heading" style="margin-bottom: 12px;">
+                    <h3 data-i18n="restoTablesTitle">🪑 Salon &amp; Teras Masaları</h3>
+                    <p data-i18n="restoTablesSub">Sipariş eklemek veya hesap kapatmak için bir masaya tıklayın.</p>
+                  </div>
+                  <div class="resto-tables-grid" id="restoTablesGrid"></div>
+                </div>
+
+                <div class="resto-order-panel">
+                  <div class="resto-order-head">
+                    <h4 id="restoSelectedTableTitle">M-01</h4>
+                    <span class="proto-badge blue" id="restoSelectedTableStatus">-</span>
+                  </div>
+
+                  <div style="font-size: 0.78rem; color: var(--win-text-muted);" data-i18n="restoQuickAddLabel">Hızlı Menüden Ekle:</div>
+                  <div class="resto-quick-menu" id="restoQuickMenu"></div>
+
+                  <div class="resto-order-items" id="restoOrderItems"></div>
+
+                  <div class="win-footer-bar" style="margin-top: 4px;">
+                    <div class="footer-totals">
+                      <div class="total-item price">
+                        <span data-i18n="restoOrderTotalLabel">Adisyon Toplamı:</span>
+                        <strong id="restoOrderTotal">₺0,00</strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <button class="win-btn-sec" id="restoBtnSendKitchen" data-i18n="restoBtnKitchen">🍳 Mutfağa Gönder</button>
+                    <button class="win-btn-sec" id="restoBtnRequestBill" data-i18n="restoBtnBill">🧾 Hesap İste</button>
+                    <button class="win-btn-primary" id="restoBtnPayCash" data-i18n="restoBtnPayCash">💵 Nakit Kapat</button>
+                    <button class="win-btn-primary" id="restoBtnPayCard" data-i18n="restoBtnPayCard">💳 Kart Kapat</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- View 2: Mutfak Ekranı (KDS) -->
+            <div class="win-view" id="resto-kitchen" style="display: none;">
+              <div class="view-heading" style="margin-bottom: 14px;">
+                <h3 data-i18n="restoKdsTitle">🍳 Canlı Mutfak Ekranı (KDS)</h3>
+                <p data-i18n="restoKdsSub">Masalardan mutfağa gönderilen siparişler anlık olarak burada listelenir.</p>
+              </div>
+              <div class="kds-grid" id="restoKdsGrid"></div>
+            </div>
+
+            <!-- View 3: Menü & Fiyatlar -->
+            <div class="win-view" id="resto-menu" style="display: none;">
+              <div class="view-heading" style="margin-bottom: 14px;">
+                <h3 data-i18n="restoMenuCatalogTitle">📋 Restoran Menü &amp; Fiyat Listesi</h3>
+                <p data-i18n="restoMenuCatalogSub">Ürün durumunu (Aktif / Tükendi) tek tıkla değiştirebilirsiniz.</p>
+              </div>
+              <div class="win-table-card">
+                <div class="win-table-wrapper">
+                  <table class="win-table">
+                    <thead>
+                      <tr>
+                        <th data-i18n="restoThItem">Ürün Adı</th>
+                        <th data-i18n="restoThCat">Kategori</th>
+                        <th data-i18n="restoThPrice">Fiyat</th>
+                        <th data-i18n="restoThStatus">Durum</th>
+                        <th data-i18n="demoThAction">İşlem</th>
+                      </tr>
+                    </thead>
+                    <tbody id="restoMenuTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- View 4: Gün Sonu & Z Raporu -->
+            <div class="win-view" id="resto-reports" style="display: none;">
+              <div class="view-heading" style="margin-bottom: 14px;">
+                <h3 data-i18n="restoRepTitle">📊 Gün Sonu &amp; Z Raporu Özeti</h3>
+                <p data-i18n="restoRepSub">Kapatılan masalar ve ödeme dağılımı canlı olarak hesaplanır.</p>
+              </div>
+              <div class="proto-kpi-grid" id="restoReportKpis"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Windows Desktop Window Mockup (Pre-Accounting & Finance) -->
+        <div class="win-mockup fade-in" id="system-panel-accounting" style="display: none;">
+          <div class="win-titlebar">
+            <div class="win-title-left">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+              <span data-i18n="accWinTitle">Poseidon - Ön Muhasebe &amp; Finans Yönetimi v4.0 [Canlı Prototip]</span>
+            </div>
+            <div class="win-controls">
+              <span class="win-ctrl-btn minimize"></span>
+              <span class="win-ctrl-btn maximize"></span>
+              <span class="win-ctrl-btn close"></span>
+            </div>
+          </div>
+
+          <div class="win-menubar">
+            <span class="active" data-target="acc-overview" data-i18n="accMenu1">📊 Finansal Özet &amp; Nakit</span>
+            <span data-target="acc-invoices" data-i18n="accMenu2">🧾 Fatura &amp; E-Fatura</span>
+            <span data-target="acc-accounts" data-i18n="accMenu3">👥 Cari Hesaplar</span>
+            <span data-target="acc-banks" data-i18n="accMenu4">🏦 Kasa &amp; Bankalar</span>
+          </div>
+
+          <div class="win-stats-bar">
+            <div class="win-stat-item">
+              <span data-i18n="accStatCashLabel">Toplam Kasa &amp; Banka:</span>
+              <span class="win-stat-badge" style="color: #34d399;" id="accStatCashVal">₺0,00</span>
+            </div>
+            <div class="win-stat-item">
+              <span data-i18n="accStatPendingLabel">Bekleyen Tahsilat:</span>
+              <span class="win-stat-badge" style="color: #fbbf24;" id="accStatPendingVal">₺0,00</span>
+            </div>
+            <div class="win-stat-item">
+              <span data-i18n="accStatGibLabel">E-Fatura Portalı:</span>
+              <span class="win-stat-badge" style="color: #38bdf8;" data-i18n="accStatGibVal">GİB Bağlı ✓</span>
+            </div>
+          </div>
+
+          <div class="win-body">
+            <!-- View 1: Finansal Özet & Nakit Akışı -->
+            <div class="win-view" id="acc-overview" style="display: block;">
+              <div class="proto-kpi-grid" id="accKpiGrid"></div>
+
+              <div class="acc-quick-form">
+                <input type="text" id="accTxDesc" class="acc-input" placeholder="İşlem açıklaması (Örn: Yazılım Danışmanlık Tahsilatı)..." data-i18n-placeholder="accTxDescPh" />
+                <input type="number" id="accTxAmount" class="acc-input" placeholder="Tutar (₺)" min="1" data-i18n-placeholder="accTxAmountPh" />
+                <select id="accTxType" class="acc-input">
+                  <option value="income" data-i18n="accOptIncome">Gelir (+)</option>
+                  <option value="expense" data-i18n="accOptExpense">Gider (-)</option>
+                </select>
+                <button class="win-btn-primary" id="accBtnAddTx" data-i18n="accBtnAddTx">➕ İşlem Ekle</button>
+              </div>
+
+              <div class="win-table-card">
+                <div class="win-table-wrapper">
+                  <table class="win-table">
+                    <thead>
+                      <tr>
+                        <th data-i18n="accThDate">Tarih</th>
+                        <th data-i18n="accThDesc">Açıklama</th>
+                        <th data-i18n="accThType">Tür</th>
+                        <th data-i18n="accThAmount">Tutar</th>
+                      </tr>
+                    </thead>
+                    <tbody id="accTxTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- View 2: Fatura & E-Fatura -->
+            <div class="win-view" id="acc-invoices" style="display: none;">
+              <div class="acc-invoice-grid">
+                <div class="acc-form-card">
+                  <h4 style="margin: 0; color: var(--win-text);" data-i18n="accInvFormTitle">🧾 Hızlı E-Fatura Oluştur</h4>
+                  <div class="acc-form-row">
+                    <label data-i18n="accInvClientLbl">Cari Hesap / Müşteri</label>
+                    <select id="accInvClient" class="acc-input"></select>
+                  </div>
+                  <div class="acc-form-row">
+                    <label data-i18n="accInvItemLbl">Hizmet / Ürün Açıklaması</label>
+                    <input type="text" id="accInvItem" class="acc-input" placeholder="Örn: Yıllık ERP Lisans Bedeli" data-i18n-placeholder="accInvItemPh" />
+                  </div>
+                  <div class="acc-form-row">
+                    <label data-i18n="accInvAmountLbl">Net Tutar (KDV %20 Hariç)</label>
+                    <input type="number" id="accInvAmount" class="acc-input" value="12500" min="1" />
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--win-text-muted);">
+                    <span data-i18n="accInvVatLabel">KDV (%20) Dahil Toplam:</span>
+                    <strong id="accInvGrandTotal" style="color: var(--accent-light);">₺15.000,00</strong>
+                  </div>
+                  <button class="win-btn-primary" id="accBtnCreateInv" data-i18n="accBtnCreateInv">⚡ E-Fatura Kes &amp; Gönder</button>
+                </div>
+
+                <div class="win-table-card">
+                  <div class="win-table-wrapper">
+                    <table class="win-table">
+                      <thead>
+                        <tr>
+                          <th data-i18n="accThInvNo">Fatura No</th>
+                          <th data-i18n="accThClient">Cari</th>
+                          <th data-i18n="accThAmount">Tutar</th>
+                          <th data-i18n="restoThStatus">Durum</th>
+                          <th data-i18n="demoThAction">İşlem</th>
+                        </tr>
+                      </thead>
+                      <tbody id="accInvTableBody"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- View 3: Cari Hesaplar -->
+            <div class="win-view" id="acc-accounts" style="display: none;">
+              <div class="filter-search-box" style="margin-bottom: 14px;">
+                <input type="text" id="accClientSearch" class="scan-input" placeholder="Cari ünvanı veya vergi no ile ara..." data-i18n-placeholder="accClientSearchPh" />
+              </div>
+              <div class="win-table-card">
+                <div class="win-table-wrapper">
+                  <table class="win-table">
+                    <thead>
+                      <tr>
+                        <th data-i18n="accThClient">Cari Ünvanı</th>
+                        <th data-i18n="accThTaxNo">Vergi No</th>
+                        <th data-i18n="accThBalance">Bakiye</th>
+                        <th data-i18n="demoThAction">İşlem</th>
+                      </tr>
+                    </thead>
+                    <tbody id="accClientsTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- View 4: Kasa & Bankalar -->
+            <div class="win-view" id="acc-banks" style="display: none;">
+              <div class="view-heading" style="margin-bottom: 14px;">
+                <h3 data-i18n="accBanksTitle">🏦 Aktif Kasa &amp; Banka Hesapları</h3>
+                <p data-i18n="accBanksSub">Gelir ve gider hareketleri kasa ve banka bakiyelerine anlık yansır.</p>
+              </div>
+              <div class="acc-banks-grid" id="accBanksGrid"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1466,6 +1738,7 @@
 
     <script charset="utf-8" src="js/translations.js?v=20261117b"></script>
     <script charset="utf-8" src="js/barcode-demo.js?v=20261117b"></script>
+    <script charset="utf-8" src="js/prototypes-demo.js?v=20261119a"></script>
     <script charset="utf-8" src="js/main.js?v=20261117b"></script>
   </body>
 </html>
