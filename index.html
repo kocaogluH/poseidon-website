@@ -30,12 +30,19 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
+        "@type": ["Organization", "ProfessionalService"],
         "name": "Poseidon Yazılım",
         "alternateName": "Poseidon",
         "url": "https://xn--poseidonyazlm-ebcb.com/",
         "logo": "https://xn--poseidonyazlm-ebcb.com/assets/logo.png",
         "email": "poseidonyazilim1@gmail.com",
+        "telephone": "+90-531-664-07-05",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Antakya",
+          "addressRegion": "Hatay",
+          "addressCountry": "TR"
+        },
         "description": "Yenilikçi yazılım çözümleri, web geliştirme ve kurumsal yazılım hizmetleri."
       }
     </script>
@@ -56,7 +63,7 @@
           muted
           loop
           playsinline
-          preload="auto"
+          preload="metadata"
           poster="https://commons.wikimedia.org/wiki/Special:FilePath/Aerial_view_of_sand_beach._Top_view_sea_waves._Drone_footage.webm?width=1280"
         >
           <source src="https://commons.wikimedia.org/wiki/Special:FilePath/Aerial_view_of_sand_beach._Top_view_sea_waves._Drone_footage.webm" type="video/webm" />
@@ -87,10 +94,10 @@
       <div class="container">
         <a href="#" class="logo"><img src="assets/logo.png" alt="Poseidon Logo" class="logo-img" /> POSEIDON</a>
         <div class="nav-links" id="navLinks">
-          <a href="#about" data-i18n="navAbout">Hakkimizda</a>
+          <a href="#about" data-i18n="navAbout">Hakkımızda</a>
           <a href="#services" data-i18n="navServices">Hizmetler</a>
           <a href="#demos" data-i18n="navDemos">Sistemlerimiz</a>
-          <a href="#contact" data-i18n="navContact">Iletisim</a>
+          <a href="#contact" data-i18n="navContact">İletişim</a>
 
           <!-- Language Switcher -->
           <div class="lang-switcher" id="langSwitcher">
@@ -304,7 +311,7 @@
                   <span class="eyebrow-dot"></span>
                   <span data-i18n="scrollyStep1Eyebrow">01 / DİJİTAL ÇEKİRDEK</span>
                 </div>
-                <h1 class="scrolly-title" data-i18n="heroTitle">Dijital Dönüşümün <span>Çekirdek</span> Mimarisi</h1>
+                <h2 class="scrolly-title" data-i18n="heroTitle">Dijital Dönüşümün <span>Çekirdek</span> Mimarisi</h2>
                 <p class="scrolly-desc" data-i18n="scrollyStep1Desc">
                   Donanım gücünü parçalara ayırıp en saf yazılım modülleriyle birleştiriyoruz. Aşağı kaydırdıkça mimarinin nasıl kurulduğunu izleyin.
                 </p>
@@ -1398,7 +1405,7 @@
             </div>
             <div class="contact-quick">
               <a class="quick-link" id="emailQuickLink" href="mailto:poseidonyazilim1@gmail.com" data-i18n="contactEmailQuick">E-posta ile yaz</a>
-              <a class="quick-link" id="whatsappQuickLink" href="#" target="_blank" rel="noreferrer" data-i18n="contactWhatsAppQuick">WhatsApp'tan yaz</a>
+              <a class="quick-link" id="whatsappQuickLink" href="https://wa.me/905316640705" target="_blank" rel="noreferrer" data-i18n="contactWhatsAppQuick">WhatsApp'tan yaz</a>
             </div>
           </div>
         </div>
@@ -1411,19 +1418,19 @@
         <div class="footer-grid">
           <div class="footer-brand">
             <a href="#" class="logo"><img src="assets/logo.png" alt="Poseidon Logo" class="logo-img" /> POSEIDON</a>
-            <p data-i18n="footerDesc">Yenilikci yazilim cozumleri ile dijital donusumunuze guc katiyoruz.</p>
+            <p data-i18n="footerDesc">Yenilikçi yazılım çözümleri ile dijital dönüşümünüze güç katıyoruz.</p>
           </div>
           <div class="footer-section">
-            <h4 data-i18n="footerLinksTitle">Hizli Baglantilar</h4>
+            <h4 data-i18n="footerLinksTitle">Hızlı Bağlantılar</h4>
             <ul>
-              <li><a href="#about" data-i18n="navAbout">Hakkimizda</a></li>
+              <li><a href="#about" data-i18n="navAbout">Hakkımızda</a></li>
               <li><a href="#services" data-i18n="navServices">Hizmetler</a></li>
               <li><a href="#demos" data-i18n="navDemos">Sistemlerimiz</a></li>
-              <li><a href="#contact" data-i18n="navContact">Iletisim</a></li>
+              <li><a href="#contact" data-i18n="navContact">İletişim</a></li>
             </ul>
           </div>
           <div class="footer-section">
-            <h4 data-i18n="footerContactTitle">Iletisim</h4>
+            <h4 data-i18n="footerContactTitle">İletişim</h4>
             <ul>
               <li>poseidonyazilim1@gmail.com</li>
               <li>+90 531 664 07 05</li>
@@ -1432,7 +1439,7 @@
           </div>
         </div>
         <div class="footer-bottom">
-          &copy; 2026 Poseidon. <span data-i18n="footerRights">Tum haklari saklidir.</span>
+          &copy; 2026 Poseidon. <span data-i18n="footerRights">Tüm hakları saklıdır.</span>
         </div>
       </div>
     </footer>
